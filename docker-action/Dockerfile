@@ -16,7 +16,7 @@ ARG contrast_api_username
 ARG contrast_api_api_key
 ARG contrast_api_service_key
 ARG contrast_application_name
-ARG contrast_agent_java_standalone_app-name
+ARG contrast_agent_java_standalone_app_name
 ARG contrast_application_version
 ARG contrast_server_name
 ARG azure_application_jvm_options
