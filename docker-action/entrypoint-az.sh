@@ -46,7 +46,7 @@ echo "-------------------------------------------"
 # get application endpoint for jar upload
 echo "retrieving endpoint information..."
 #AZURE_APPLICATION_URL=$(az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep -o '"url": *"[^"]*' test.txt | grep -o '[^"]*$'
-AZURE_APPLICATION_URL="https://${AZURE_SPRING_CLOUD_SERVICE_NAME}-${AZURE_APPLICATION_NAME}.azuremicroservices.io"
+AZURE_APPLICATION_URL="https://${AZURE_SP_SERVICE_NAME}-${AZURE_APPLICATION_NAME}.azuremicroservices.io"
 echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
 echo "-------------------------------------------"
