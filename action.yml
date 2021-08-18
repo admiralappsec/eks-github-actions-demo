@@ -63,7 +63,7 @@ inputs:
     required: true
   azure-application-jvm-options:
     description: ''
-    required: false
+    required: true
 outputs:
   time: # id of output
     description: 'The time the action executed the inline commands'
