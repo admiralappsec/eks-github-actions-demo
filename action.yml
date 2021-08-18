@@ -40,7 +40,7 @@ inputs:
   contrast-api-url:
     description: ''
     required: true
-  contrast-api-user-name:
+  contrast-api-username:
     description: ''
     required: true
   contrast-api-api-key:
@@ -63,7 +63,7 @@ inputs:
     required: true
   azure-application-jvm-options:
     description: ''
-    required: true
+    required: false
 outputs:
   time: # id of output
     description: 'The time the action executed the inline commands'

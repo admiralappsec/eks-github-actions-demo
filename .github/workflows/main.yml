@@ -24,6 +24,15 @@ jobs:
           azure-resource-group-name: 'azure-spring-cloud-sa'
           azure-region: 'EAST US'
           contrast-agent-download-url: 'https://search.maven.org/remotecontent?filepath=com/contrastsecurity/contrast-agent/3.8.5.20504/contrast-agent-3.8.5.20504.jar'
+          contrast-api-url: 'https://eval.contrastsecurity.com/Contrast'
+          contrast-api-username: 'agent_a8cd7a84-5cc2-4df6-b5d9-c016cc2c6f53@Marktomczaorg'
+          contrast-api-api-key: 'DOeAUIavVy5NmqNA11bnuKemAq946yn7'
+          contrast-api-service-key: 'K7E3Y5QDM6MUMVUB'
+          contrast-application-name: 'springone-workshop-petclinic'
+          contrast-agent-java-standalone-app-name: 'springone-workshop-petclinic'
+          contrast-application-version: '1'
+          contrast-server-name: 'azure-spring-cloud-instance-1'
+          azure-application-jvm-options: ''
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.contrast-deployment.outputs.time }} wthen this action was run."
