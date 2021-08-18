@@ -61,7 +61,7 @@ inputs:
   contrast-server-name:
     description: ''
     required: true
-  azure-application-jvm-options
+  azure-application-jvm-options:
     description: ''
     required: true
 outputs:
