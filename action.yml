@@ -1,0 +1,93 @@
+# action.yml
+name: 'Contrast Security Azure Spring Cloud Deployment'
+description: 'Deploy an Azure Spring Cloud Application with a Contrast Security Agent'
+inputs:
+  application-name:  # name of application
+    description: 'name of application to be deployed to azure spring cloud'
+    required: true
+  spring-cloud-service-name:
+    description: ''
+    required: true
+  file-upload-artifact-location:
+    description: ''
+    required: true
+    default: '/spring-upload.jar'
+  application-artifact-location:
+    description: ''
+    required: true
+    default: '/another-jar.jar'
+  azure-application-id:
+    description: ''
+    required: true
+  azure-tenant-id:
+    description: ''
+    required: true
+  azure-client-secret:
+    description: ''
+    required: true
+  azure-subscription-id:
+    description: ''
+    required: true
+  azure-resource-group-name: 
+    description: ''
+    required: true
+  azure-region:
+    description: ''
+    required: true
+  contrast-agent-download-url:
+    description: ''
+    required: true
+  contrast-api-url:
+    description: ''
+    required: true
+  contrast-api-user-name:
+    description: ''
+    required: true
+  contrast-api-api-key:
+    description: ''
+    required: true
+  contrast-api-service-key:
+    description: ''
+    required: true
+  contrast-application-name:
+    description: ''
+    required: true
+  contrast-agent-java-standalone-app-name:
+    description: ''
+    required: true
+  contrast-application-version:
+    description: ''
+    required: true
+  contrast-server-name:
+    description: ''
+    required: true
+  azure-application-jvm-options
+    description: ''
+    required: true
+outputs:
+  time: # id of output
+    description: 'The time the action executed the inline commands'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.application-name }}
+    - ${{ inputs.spring-cloud-service-name }}
+    - ${{ inputs.file-upload-artifact-location }}
+    - ${{ inputs.application-artifact-location }}
+    - ${{ inputs.azure-application-id }}
+    - ${{ inputs.azure-tenant-id }} 
+    - ${{ inputs.azure-client-secret }}
+    - ${{ inputs.azure-subscription-id }}
+    - ${{ inputs.azure-resource-group-name }}
+    - ${{ inputs.azure-region }}
+    - ${{ inputs.contrast-agent-download-url }}
+    - ${{ inputs.contrast-api-url }}
+    - ${{ inputs.contrast-api-username }}
+    - ${{ inputs.contrast-api-api-key }}
+    - ${{ inputs.contrast-api-service-key }}
+    - ${{ inputs.contrast-application-name }}
+    - ${{ inputs.contrast-agent-java-standalone-app-name }}
+    - ${{ inputs.contrast-application-version }}
+    - ${{ inputs.contrast-server-name }}
+    - ${{ inputs.azure-application-jvm-options }} 
