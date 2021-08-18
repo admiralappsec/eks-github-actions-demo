@@ -32,7 +32,7 @@ if (contrastUploadFileIndex > -1) {
 //declare variables for automation passed via arguments on the command line
 const urlPage = urlValue;
 const isHeadless = false; // headlessValue;
-const launchArgs = [];
+const launchArgs = ['--no-sandbox'];
 const contrastUploadFile = contrastUploadFileValue;
 const userAgent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
 const submitElement = '#singleUploadForm > button';

@@ -48,7 +48,7 @@ COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar
 COPY package.json /package.json
 COPY puppet-upload.js /puppet-upload.js
 
-RUN apk update && apk add nodejs npm
+RUN apk update && apk add nodejs npm chromium
 RUN npm install
 
 ENTRYPOINT ["/entrypoint.sh"]
