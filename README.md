@@ -4,6 +4,11 @@ This action deploys an application with a Contrast Security Agent to either:
 an existing application running on Azure Spring Cloud
 a new application to be run on Azure Spring Cloud
 
+## Prerequisites
+
+Functioning Azure Spring Cloud Instance
+Functioning Spring Configuration Server
+
 ## Inputs
 
 ## `input-1`
