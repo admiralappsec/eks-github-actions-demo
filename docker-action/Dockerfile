@@ -49,6 +49,7 @@ COPY entrypoint-az.sh /entrypoint.sh
 COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar
 COPY package.json /package.json
 COPY puppet-upload.js /puppet-upload.js
+COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} ${AZURE_APPLICATION_ARTIFACT_LOCATION}
 
 RUN apk update && apk add --no-cache nodejs npm chromium nss freetype harfbuzz ca-certificates ttf-freefont && npm install
 
