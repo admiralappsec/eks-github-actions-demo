@@ -40,7 +40,7 @@ ENV CONTRAST_API_SERVICE_KEY ${contrast_api_service_key}
 ENV CONTRAST_APPLICATION_NAME ${contrast_application_name} 
 ENV CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME ${contrast_agent_java_standalone_app_name} 
 ENV CONTRAST_APPLICATION_VERSION ${contrast_application_version} 
-ENV CONTRAST-SERVER_NAME ${contrast_server_name} 
+ENV CONTRAST_SERVER_NAME ${contrast_server_name} 
 ENV AZURE_APPLICATION_JVM_OPTIONS ${azure_application_jvm_options} 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true 
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
