@@ -45,7 +45,7 @@ echo "-------------------------------------------"
 
 # get application endpoint for jar upload
 echo "retrieving endpoint information..."
-AZURE_APPLICATION_URL=$(az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep "url:" | cut -d':' -f1-)
+AZURE_APPLICATION_URL=$(az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep "url:"
 echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
 echo "-------------------------------------------"
@@ -85,7 +85,7 @@ echo "-------------------------------------------"
 # get application endpoint for jar upload
 echo "retrieving endpoint information..."
 #az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep url
-AZURE_APPLICATION_URL2=$(az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep "url:" | cut -d':' -f1-)
+AZURE_APPLICATION_URL2=$(az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep "url:"
 echo ${AZURE_APPLICATION_URL2}
 echo "successfully retrieved endpoint information"
 echo "-------------------------------------------" 
