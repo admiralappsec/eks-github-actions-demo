@@ -62,7 +62,7 @@ echo "-------------------------------------------"
 # upload contrast Security jar file into application using file-upload jar - script in the /artifacts directory
 # this is where the nodejs puppeteer script runs
 echo "running puppet-upload.js script..."
-# node puppet-upload.js --url "${AZURE_APPLICATION_URL}" --headless false --contrast-upload-file 'contrast.jar'
+node puppet-upload.js --url "${AZURE_APPLICATION_URL}" --headless false --contrast-upload-file 'contrast.jar'
 echo "puppet-upload.js script successfully completed."
 echo "-------------------------------------------"
 
