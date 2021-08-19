@@ -23,7 +23,7 @@ jobs:
           azure-subscription-id: 'fa9b4730-faca-44b9-a408-28c675e4a6a1'
           azure-resource-group-name: 'azure-spring-cloud-sa'
           azure-region: 'EAST US'
-          contrast-agent-download-url: 'https://search.maven.org/remotecontent?filepath=com/contrastsecurity/contrast-agent/3.8.5.20504/contrast-agent-3.8.5.20504.jar'
+          contrast-agent-download-url: 'https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST'
           contrast-api-url: 'https://eval.contrastsecurity.com/Contrast'
           contrast-api-username: 'agent_a8cd7a84-5cc2-4df6-b5d9-c016cc2c6f53@Marktomczaorg'
           contrast-api-api-key: 'DOeAUIavVy5NmqNA11bnuKemAq946yn7'

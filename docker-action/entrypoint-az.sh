@@ -53,7 +53,7 @@ echo "-------------------------------------------"
 
 # download constrast security jar file
 echo "downloading contrast security java agent jar file..."
-curl "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" --output contrast.jar
+curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
 echo "successfully downloaded contrast security java agent jar file"
 ls -a
 pwd
