@@ -62,14 +62,14 @@ echo "-------------------------------------------"
 # upload contrast Security jar file into application using file-upload jar - script in the /artifacts directory
 # this is where the nodejs puppeteer script runs
 echo "running puppet-upload.js script..."
-node puppet-upload.js --url "${AZURE_APPLICATION_URL}" --headless false --contrast-upload-file 'contrast.jar'
+# node puppet-upload.js --url "${AZURE_APPLICATION_URL}" --headless false --contrast-upload-file 'contrast.jar'
 echo "puppet-upload.js script successfully completed."
 echo "-------------------------------------------"
 
 # deploy sample file-upload jar into the Azure Spring Cloud application
 echo "deploying application jar..."
 # az spring-cloud app deploy --name "${AZURE_APPLICATION_NAME}" --jar-path "${AZURE_FILE_UPLOAD_ARTIFACT_LOCATION}"
-az spring-cloud app deploy --name ${AZURE_APPLICATION_NAME} --jar-path ${AZURE_FILE_UPLOAD_ARTIFACT_LOCATION} --jvm-options=${AZURE_APPLICATION_JVM_OPTIONS} --env CONTRAST_API_URL=${CONTRAST_API_URL} CONTRAST_API_USER_NAME=${CONTRAST_API_USERNAME} CONTRAST_API_API_KEY=${CONTRAST_API_API_KEY} CONTRAST_API_SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST_APPLICATION_NAME=${CONTRAST_APPLICATION_NAME} CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST_APPLICATION_VERSION=${CONTRAST_APPLICATION_VERSION} CONTRAST_SERVER_NAME=${CONTRAST_SERVER_NAME} CONTRAST_AGENT_LOGGER_STDERR=true --verbose
+# az spring-cloud app deploy --name ${AZURE_APPLICATION_NAME} --jar-path ${AZURE_FILE_UPLOAD_ARTIFACT_LOCATION} --jvm-options=${AZURE_APPLICATION_JVM_OPTIONS} --env CONTRAST_API_URL=${CONTRAST_API_URL} CONTRAST_API_USER_NAME=${CONTRAST_API_USERNAME} CONTRAST_API_API_KEY=${CONTRAST_API_API_KEY} CONTRAST_API_SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST_APPLICATION_NAME=${CONTRAST_APPLICATION_NAME} CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST_APPLICATION_VERSION=${CONTRAST_APPLICATION_VERSION} CONTRAST_SERVER_NAME=${CONTRAST_SERVER_NAME} CONTRAST_AGENT_LOGGER_STDERR=true --verbose
 echo "successfully deployed application jar"
 echo "-------------------------------------------"
 
