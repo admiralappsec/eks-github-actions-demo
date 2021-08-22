@@ -41,39 +41,41 @@ const responseElement = '#singleFileUploadSuccess > p:nth-child(1)';
 try {
     (async () => {
         // set some options (set headless to false so we can see 
-        let launchOptions = { headless: isHeadless, args: launchArgs };
-    
-        const browser = await puppeteer.launch(launchOptions);
-        const page = await browser.newPage();
-    
-        // set viewport and user agent (just in case for nice viewing)
-        await page.setUserAgent(userAgent);
-    
-        // go to the target web
-        await page.goto(urlPage);
-    
-        // get the ElementHandle of the selector above
-        const inputUploadHandle = await page.$('input[type=file]');
-    
-        // prepare file to upload, I'm using contrast.jar file on same directory as this script
-        let fileToUpload = contrastUploadFile;
-    
-        // Sets the value of the file input to fileToUpload
-        inputUploadHandle.uploadFile(fileToUpload);
-    
-        // doing click on button to trigger upload file
-        await page.evaluate(() => {
-            document.getElementById('singleFileUploadInput').click();
-        });
-
-        //click submit
-        await page.click(submitElement); 
         
-        //wait for response confirmation <p>
-       // await page.waitForSelector(responseElement).then((res) => console.log(res));
+        try {
+          let launchOptions = { headless: isHeadless, args: launchArgs };
     
-        //close the browser
-        await browser.close();
+          const browser = await puppeteer.launch(launchOptions);
+          const page = await browser.newPage();
+    
+          // set viewport and user agent (just in case for nice viewing)
+          await page.setUserAgent(userAgent);
+    
+          // go to the target web
+          await page.goto(urlPage);
+    
+          // get the ElementHandle of the selector above
+          const inputUploadHandle = await page.$('input[type=file]');
+    
+          // prepare file to upload, I'm using contrast.jar file on same directory as this script
+          let fileToUpload = contrastUploadFile;
+    
+          // Sets the value of the file input to fileToUpload
+          inputUploadHandle.uploadFile(fileToUpload);
+    
+          // doing click on button to trigger upload file
+          await page.evaluate(() => {
+            document.getElementById('singleFileUploadInput').click();
+          });
+
+          //click submit
+          await page.click(submitElement); 
+            
+          //close the browser
+          await browser.close();
+        } catch(err) {
+          alert(err);
+        }
     })();
 } catch (error) {
     throw error;
