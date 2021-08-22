@@ -16,7 +16,7 @@ jobs:
           application-name: 'springone-petclinic-mark-testing'
           spring-cloud-service-name: 'mark-spring-cloud-test'
           file-upload-artifact-location: '/spring-upload.jar'
-          application-artifact-location: '/spring-petclinic-1.5.1.jar'
+          application-artifact-location: '/spring-petclinic-2.4.5.jar'
           azure-application-id: '4d43ffdc-1eda-4bce-9796-8202eee0ed19'
           azure-tenant-id: '48d090fb-932b-4e13-9c76-4aa018e3e1e8'
           azure-client-secret: 'zk_B-gb._08qz-IXu14ErB~JVcQed7~ASc'
