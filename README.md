@@ -19,7 +19,7 @@ Functioning Spring Configuration Server
 
 **Required** 
 
-### file-upload-artifact-location:
+### `file-upload-artifact-location`
 
 **Required**
 
