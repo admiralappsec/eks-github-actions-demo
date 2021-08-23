@@ -49,16 +49,10 @@ inputs:
   contrast-api-service-key:
     description: ''
     required: true
-  contrast-application-name:
-    description: ''
-    required: true
   contrast-agent-java-standalone-app-name:
     description: ''
     required: true
   contrast-application-version:
-    description: ''
-    required: true
-  contrast-server-name:
     description: ''
     required: true
   azure-application-jvm-options:
@@ -86,8 +80,6 @@ runs:
     - ${{ inputs.contrast-api-username }}
     - ${{ inputs.contrast-api-api-key }}
     - ${{ inputs.contrast-api-service-key }}
-    - ${{ inputs.contrast-application-name }}
     - ${{ inputs.contrast-agent-java-standalone-app-name }}
     - ${{ inputs.contrast-application-version }}
-    - ${{ inputs.contrast-server-name }}
     - ${{ inputs.azure-application-jvm-options }} 

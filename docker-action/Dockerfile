@@ -15,10 +15,8 @@ ARG contrast_api_url
 ARG contrast_api_username
 ARG contrast_api_api_key
 ARG contrast_api_service_key
-ARG contrast_application_name
 ARG contrast_agent_java_standalone_app_name
 ARG contrast_application_version
-ARG contrast_server_name
 ARG azure_application_jvm_options
 
 ENV AZURE_ADAL_LOGGING_ENABLED=1 
@@ -36,11 +34,9 @@ ENV AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL ${azure_contrast_agent_download_url}
 ENV CONTRAST_API_URL ${contrast_api_url} 
 ENV CONTRAST_API_USERNAME ${contrast_api_username} 
 ENV CONTRAST_API_API_KEY ${contrast_api_api_key} 
-ENV CONTRAST_API_SERVICE_KEY ${contrast_api_service_key} 
-ENV CONTRAST_APPLICATION_NAME ${contrast_application_name} 
+ENV CONTRAST_API_SERVICE_KEY ${contrast_api_service_key}  
 ENV CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME ${contrast_agent_java_standalone_app_name} 
-ENV CONTRAST_APPLICATION_VERSION ${contrast_application_version} 
-ENV CONTRAST_SERVER_NAME ${contrast_server_name} 
+ENV CONTRAST_APPLICATION_VERSION ${contrast_application_version}  
 ENV AZURE_APPLICATION_JVM_OPTIONS ${azure_application_jvm_options} 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true 
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
