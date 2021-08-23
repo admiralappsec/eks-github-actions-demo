@@ -98,7 +98,7 @@ Functioning Spring Configuration Server
 The time this action ran.
 
 ## Example usage
-
+`
 - name: Contrast Security Azure Spring Cloud Deployment
         uses: ./ # Uses an action in the root directory
         id: contrast-deployment
@@ -125,4 +125,5 @@ The time this action ran.
           azure-application-jvm-options: '-javaagent:/persistent/apm/contrast.jar'
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.contrast-deployment.outputs.time }} wthen this action was run."
+        run: echo "The time was ${{ steps.contrast-deployment.outputs.time }} then this action was run."
+`
