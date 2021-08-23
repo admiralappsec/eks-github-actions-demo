@@ -63,33 +63,24 @@ Functioning Spring Configuration Server
 
 **Required**
 
-### contrast-api-api-key:
 
-**Required**
+- A Deployed and functioning Azure Spring Cloud Instance
+- A deployed and functioning Spring Configuration Server
+- A deployed and functioning Java Application - (OPTIONAL)
 
-### contrast-api-service-key:
-
-**Required**
-
-### contrast-application-name:
-
-**Required**
-
-### contrast-agent-java-standalone-app-name:
-
-**Required**
-
-### contrast-application-version:
-
-**Required**
-
-### contrast-server-name:
-
-**Required**
-
-### azure-application-jvm-options:
-
-**Required**
+## Inputs
+- `application-name`
+  - REQUIRED: YES
+  - Description:
+  - Default: No Default Value
+- `spring-cloud-service-name`
+  - REQUIRED: YES
+  - Description:
+  - Default: No Default Value
+- `file-upload-artifact-location`
+  - REQUIRED: YES
+  - Description:
+  - Default: No Default Value
 
 ## Outputs
 
