@@ -11,89 +11,89 @@ Functioning Spring Configuration Server
 
 ## Inputs
 
-## `application-name`
+### `application-name`
 
 **Required**
 
-## `spring-cloud-service-name`
+### `spring-cloud-service-name`
 
 **Required** 
 
-## file-upload-artifact-location:
+### file-upload-artifact-location:
 
 **Required**
 
-## application-artifact-location:
+### application-artifact-location:
 
 **Required**
 
-## azure-application-id:
+### azure-application-id:
 
 **Required**
 
-## azure-tenant-id:
+### azure-tenant-id:
 
 **Required**
 
-## azure-client-secret:
+### azure-client-secret:
 
 **Required**
 
-## azure-subscription-id:
+### azure-subscription-id:
 
 **Required**
 
-## azure-resource-group-name:
+### azure-resource-group-name:
 
 **Required**
 
-## azure-region:
+### azure-region:
 
 **Required**
 
-## contrast-agent-download-url:
+### contrast-agent-download-url:
 
 **Required**
 
-## contrast-api-url:
+### contrast-api-url:
 
 **Required**
 
-## contrast-api-username:
+### contrast-api-username:
 
 **Required**
 
-## contrast-api-api-key:
+### contrast-api-api-key:
 
 **Required**
 
-## contrast-api-service-key:
+### contrast-api-service-key:
 
 **Required**
 
-## contrast-application-name:
+### contrast-application-name:
 
 **Required**
 
-## contrast-agent-java-standalone-app-name:
+### contrast-agent-java-standalone-app-name:
 
 **Required**
 
-## contrast-application-version:
+### contrast-application-version:
 
 **Required**
 
-## contrast-server-name:
+### contrast-server-name:
 
 **Required**
 
-## azure-application-jvm-options:
+### azure-application-jvm-options:
 
 **Required**
 
 ## Outputs
 
-## `time`
+### `time`
 
 The time this action ran.
 
