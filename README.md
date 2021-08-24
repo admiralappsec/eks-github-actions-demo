@@ -1,6 +1,6 @@
 # azure-spring-cloud-contrast-security-github-action
 
-![Contrast Security](./images/contrast-security-original.png)
+![Contrast Security](./images/contrast-security-original.png) ![Azure Spring Cloud](./images/Webp.net-resizeimage.png)
 
 [![.github/workflows/main.yml](https://github.com/admiralappsec/springone-github-action/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/admiralappsec/springone-github-action/actions/workflows/main.yml)
 
