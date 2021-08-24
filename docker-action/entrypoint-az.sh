@@ -45,7 +45,6 @@ echo "-------------------------------------------"
 
 # get application endpoint for jar upload
 echo "retrieving endpoint information..."
-#AZURE_APPLICATION_URL=$(az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep -o '"url": *"[^"]*' test.txt | grep -o '[^"]*$'
 AZURE_APPLICATION_URL="https://${AZURE_SP_SERVICE_NAME}-${AZURE_APPLICATION_NAME}.azuremicroservices.io"
 echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
@@ -55,8 +54,6 @@ echo "-------------------------------------------"
 echo "downloading contrast security java agent jar file..."
 curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
 echo "successfully downloaded contrast security java agent jar file"
-ls -a
-pwd
 echo "-------------------------------------------"
 
 # upload contrast Security jar file into application using file-upload jar - script in the /artifacts directory
@@ -73,16 +70,14 @@ echo "sleep concluded. continue processing..."
 echo "------------------------------------------"
 
 # deploy sample file-upload jar into the Azure Spring Cloud application
-# echo "deploying application jar..."
-# az spring-cloud app deploy --name "${AZURE_APPLICATION_NAME}" --jar-path "${AZURE_FILE_UPLOAD_ARTIFACT_LOCATION}"
+echo "deploying application jar..."
 az spring-cloud app deploy --name ${AZURE_APPLICATION_NAME} --jar-path ${AZURE_APPLICATION_ARTIFACT_LOCATION} --jvm-options=${AZURE_APPLICATION_JVM_OPTIONS} --env CONTRAST__API__URL=${CONTRAST_API_URL} CONTRAST__API__USER_NAME=${CONTRAST_API_USERNAME} CONTRAST__API__API_KEY=${CONTRAST_API_API_KEY} CONTRAST__API__SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST__AGENT__JAVA__STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST__APPLICATION__VERSION=${CONTRAST_APPLICATION_VERSION} CONTRAST__AGENT__LOGGER__STDERR=true --verbose
-# echo "successfully deployed application jar"
+echo "successfully deployed application jar"
 echo "-------------------------------------------"
 
 # get application endpoint for jar upload
 echo "retrieving endpoint information..."
 #az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep url
-#AZURE_APPLICATION_URL2=$(az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep -o '"url": *"[^"]*' test.txt | grep -o '[^"]*$'
 echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
 echo "-------------------------------------------" 
