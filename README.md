@@ -100,6 +100,18 @@ This github action deploys a java application with a Contrast Security Java Agen
   - REQUIRED: NO
   - Description: "The configuration file location for the Contrast Security Java Agent - used to communication with Contrast Security Team Server. If this input field contains a value, this will override the individual contrast-specific configurations set using the passed parameters from the file specified."
   - Default: No Default Value
+
+```sh
+{
+    contrast-api-url: xxx,
+    contrast-api-username: xxx,
+    contrast-api-api-key: xxx,
+    contrast-api-service-key: xxx,
+    contrast-agent-java-standalone-app-name: xxx,
+    contrast-application-version: xxx
+}
+```
+
 - `azure-authentication-details-file`
   - REQUIRED: NO
   - Description: "The configuration file location for Azure-specific logins, regions, etc... If this input field contains a value, this will override the individual azure-specific configurations set using the passed parameters from the file specified."
@@ -149,10 +161,8 @@ Can be found at these links:
           contrast-api-username: xxx
           contrast-api-api-key: xxx
           contrast-api-service-key: xxx
-          contrast-application-name: 'springone-workshop-petclinic'
           contrast-agent-java-standalone-app-name: 'springone-workshop-petclinic'
           contrast-application-version: '1'
-          contrast-server-name: 'azure-spring-cloud-instance-1'
           azure-application-jvm-options: '-javaagent:/persistent/apm/contrast.jar'
       # Use the output from the `hello` step
       - name: Get the output time
