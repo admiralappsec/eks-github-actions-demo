@@ -1,6 +1,6 @@
 # azure-spring-cloud-contrast-security-github-action
 
-![example workflow](https://github.com/admiralappsec/springone-github-action/actions/workflows/badge.svg?branch=main)
+[![.github/workflows/main.yml](https://github.com/admiralappsec/springone-github-action/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/admiralappsec/springone-github-action/actions/workflows/main.yml)
 
 ## Features
 
