@@ -4,7 +4,7 @@
 
 [![.github/workflows/main.yml](https://github.com/admiralappsec/springone-github-action/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/admiralappsec/springone-github-action/actions/workflows/main.yml)
 
-## Features
+<hr />
 
 This github action deploys a java application with a Contrast Security Java Agent (JAR) to either:
 - an existing application running on Azure Spring Cloud on an existing Azure Spring Cloud instance
