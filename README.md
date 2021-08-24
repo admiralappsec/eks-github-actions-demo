@@ -104,6 +104,17 @@ This github action deploys a java application with a Contrast Security Java Agen
   - REQUIRED: NO
   - Description: "The configuration file location for Azure-specific logins, regions, etc... If this input field contains a value, this will override the individual azure-specific configurations set using the passed parameters from the file specified."
   - Default: No Default Value
+
+```sh
+{
+    azure-application-id: xxx,
+    azure-tenant-id: xxx,
+    azure-client-secret: xxx,
+    azure-subscription-id: xxx,
+    azure-resource-group-name: xxx,
+    azure-region: xxx
+}
+```
   
 ## Outputs
 
