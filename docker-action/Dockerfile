@@ -10,7 +10,6 @@ ARG azure_spring_cloud_service_name
 ARG azure_application_name
 ARG azure_file_upload_artifact_location
 ARG azure_application_artifact_location
-ARG azure_contrast_agent_download_url
 ARG contrast_api_url
 ARG contrast_api_username
 ARG contrast_api_api_key
@@ -28,9 +27,9 @@ ENV AZURE_REGION ${azure_region}
 ENV AZURE_RESOURCE_GROUP_NAME ${azure_resource_group_name} 
 ENV AZURE_SP_SERVICE_NAME ${azure_spring_cloud_service_name} 
 ENV AZURE_APPLICATION_NAME ${azure_application_name} 
-ENV AZURE_FILE_UPLOAD_ARTIFACT_LOCATION ${azure_file_upload_artifact_location} 
+ENV AZURE_FILE_UPLOAD_ARTIFACT_LOCATION "/spring-upload.jar" 
 ENV AZURE_APPLICATION_ARTIFACT_LOCATION ${azure_application_artifact_location} 
-ENV AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL ${azure_contrast_agent_download_url} 
+ENV AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL "https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST" 
 ENV CONTRAST_API_URL ${contrast_api_url} 
 ENV CONTRAST_API_USERNAME ${contrast_api_username} 
 ENV CONTRAST_API_API_KEY ${contrast_api_api_key} 

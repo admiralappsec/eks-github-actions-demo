@@ -8,10 +8,6 @@ inputs:
   spring-cloud-service-name:
     description: ''
     required: true
-  file-upload-artifact-location:
-    description: ''
-    required: true
-    default: '/spring-upload.jar'
   application-artifact-location:
     description: ''
     required: true
@@ -32,9 +28,6 @@ inputs:
     description: ''
     required: true
   azure-region:
-    description: ''
-    required: true
-  contrast-agent-download-url:
     description: ''
     required: true
   contrast-api-url:
@@ -67,7 +60,6 @@ runs:
   args:
     - ${{ inputs.application-name }}
     - ${{ inputs.spring-cloud-service-name }}
-    - ${{ inputs.file-upload-artifact-location }}
     - ${{ inputs.application-artifact-location }}
     - ${{ inputs.azure-application-id }}
     - ${{ inputs.azure-tenant-id }} 
@@ -75,7 +67,6 @@ runs:
     - ${{ inputs.azure-subscription-id }}
     - ${{ inputs.azure-resource-group-name }}
     - ${{ inputs.azure-region }}
-    - ${{ inputs.contrast-agent-download-url }}
     - ${{ inputs.contrast-api-url }}
     - ${{ inputs.contrast-api-username }}
     - ${{ inputs.contrast-api-api-key }}
