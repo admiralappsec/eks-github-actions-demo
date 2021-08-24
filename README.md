@@ -98,7 +98,8 @@ This github action deploys a java application with a Contrast Security Java Agen
 ### In Process**
 - `contrast-security-configuration-file`
   - REQUIRED: NO
-  - Description: "The configuration file location for the Contrast Security Java Agent - used to communication with Contrast Security Team Server. If this input field contains a value, this will override the individual contrast-specific configurations set using the passed parameters from the file specified."
+  - Description: "The configuration file location for the Contrast Security Java Agent - used to communication with Contrast Security Team Server. 
+    > Note: If this input field contains a value, this will `override` the individual contrast-specific configurations set using the passed parameters from the file specified."
   - Default: No Default Value
 
 ```sh
@@ -114,7 +115,8 @@ This github action deploys a java application with a Contrast Security Java Agen
 
 - `azure-authentication-details-file`
   - REQUIRED: NO
-  - Description: "The configuration file location for Azure-specific logins, regions, etc... If this input field contains a value, this will override the individual azure-specific configurations set using the passed parameters from the file specified."
+  - Description: "The configuration file location for Azure-specific logins, regions, etc...
+    > Note: If this input field contains a value, this will `override` the individual contrast-specific configurations set using the passed parameters from the file specified."
   - Default: No Default Value
 
 ```sh
