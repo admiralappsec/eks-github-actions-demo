@@ -1,19 +1,19 @@
 #!/bin/bash
 
-set -x
+# set -x
 
 echo "mapping environment variables to inputs..."
 
-if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
+if [ -z $CONTRAST_SECURITY_CREDENTIALS_FILE ]; then
     echo "No Contrast Security credentials file passed via input."
     echo "Using individual user inputs as environment variables."
     echo "-----------------------------"
 else
     echo "contrast_security_credentials_file value:"
-    "$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.'
+    $CONTRAST_SECURITY_CREDENTIALS_FILE | jq '.'
     echo "Contrast Security credentials file found"
     echo "parsing configuration file and setting to environment variables..."
-    export CONTRAST_API_URL=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast-api-url')
+    export CONTRAST_API_URL=$($CONTRAST_SECURITY_CREDENTIALS_FILE | jq '.contrast-api-url')
     export CONTRAST_API_USERNAME=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast-api-username')
     export CONTRAST_API_API_KEY=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast-api-api-key')
     export CONTRAST_API_SERICE_KEY=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast-api-service-key')
