@@ -2,6 +2,8 @@
 
 # set -x
 
+printenv
+
 echo "mapping environment variables to inputs..."
 
 if [ -z $CONTRAST_SECURITY_CREDENTIALS_FILE ]; then
@@ -9,16 +11,18 @@ if [ -z $CONTRAST_SECURITY_CREDENTIALS_FILE ]; then
     echo "Using individual user inputs as environment variables."
     echo "-----------------------------"
 else
+    echo "$CONTRAST_SECURITY_CREDENTIALS_FILE" >> contrast.json
     echo "contrast_security_credentials_file value:"
-    $CONTRAST_SECURITY_CREDENTIALS_FILE | jq '.'
+    cat contrast.json
+    contrast.json | jq '.'
     echo "Contrast Security credentials file found"
     echo "parsing configuration file and setting to environment variables..."
-    export CONTRAST_API_URL=$($CONTRAST_SECURITY_CREDENTIALS_FILE | jq '.contrast-api-url')
-    export CONTRAST_API_USERNAME=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast-api-username')
-    export CONTRAST_API_API_KEY=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast-api-api-key')
-    export CONTRAST_API_SERICE_KEY=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast-api-service-key')
-    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast-agent-java-standalone-app-name')
-    export CONTRAST_APPLICATION_VERSION=$("$CONTRAST_SECURITY_CREDENTIALS_FILE" | jq '.contrast_application_version')
+    export CONTRAST_API_URL=$(contrast.json | jq '.contrast-api-url')
+    export CONTRAST_API_USERNAME=$(contrast.json | jq '.contrast-api-username')
+    export CONTRAST_API_API_KEY=$(contrast.json | jq '.contrast-api-api-key')
+    export CONTRAST_API_SERICE_KEY=$(contrast.json | jq '.contrast-api-service-key')
+    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$(contrast.json | jq '.contrast-agent-java-standalone-app-name')
+    export CONTRAST_APPLICATION_VERSION=$(contrast.json | jq '.contrast_application_version')
     echo "parsing and mapping complete."
     echo "-----------------------------"
 fi
