@@ -78,6 +78,4 @@ runs:
     - ${{ inputs.contrast-api-service-key }}
     - ${{ inputs.contrast-agent-java-standalone-app-name }}
     - ${{ inputs.contrast-application-version }}
-    - ${{ inputs.azure-application-jvm-options }}
-    - ${{ inputs.azure-credentials-file }}
-    - ${{ inputs.contrast-security-credentials-file }} 
+    - ${{ inputs.azure-application-jvm-options }} 
