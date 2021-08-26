@@ -54,7 +54,7 @@ RUN apk update && apk add --no-cache nodejs npm jq chromium nss freetype harfbuz
 # RUN ["chmod", "+x", "/entrypoint-env.sh"]
 # RUN ./entrypoint-env.sh
 
-ENTRYPOINT ["/entrypoint.sh",$azure_application_id,$azure_tenant_id,$azure_client_secret,$azure_subscription_id,$azure_region,$azure_resource_group_name,$azure_spring_cloud_service_name,$contrast_api_url,$contrast_api_username,$contrast_api_api_key,$contrast_api_service_key,$contrast_agent_java_standalone_app_name,$contrast_application_version,$azure_application_name,$azure_application_jvm_options,$contrast_security_credentials_file,$azure_credentials_file,$azure_application_artifact_location]
+ENTRYPOINT ["/entrypoint.sh","$azure_application_id","$azure_tenant_id","$azure_client_secret","$azure_subscription_id","$azure_region","$azure_resource_group_name","$azure_spring_cloud_service_name","$contrast_api_url","$contrast_api_username","$contrast_api_api_key","$contrast_api_service_key","$contrast_agent_java_standalone_app_name","$contrast_application_version","$azure_application_name","$azure_application_jvm_options","$contrast_security_credentials_file","$azure_credentials_file","$azure_application_artifact_location"]
 
 #FROM node:current-alpine3.11 AS upload_contrast_jar
 
