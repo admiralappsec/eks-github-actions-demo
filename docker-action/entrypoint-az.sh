@@ -24,7 +24,7 @@ else
     export CONTRAST_API_URL=$(cat contrast.json | jq '.contrast_api_url')
     export CONTRAST_API_USERNAME=$(cat contrast.json | jq '.contrast_api_username')
     export CONTRAST_API_API_KEY=$(cat contrast.json | jq '.contrast_api_api_key')
-    export CONTRAST_API_SERICE_KEY=$(cat contrast.json | jq '.contrast_api_service_key')
+    export CONTRAST_API_SERVICE_KEY=$(cat contrast.json | jq '.contrast_api_service_key')
     export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$(cat contrast.json | jq '.contrast_agent_java_standalone_app_name')
     export CONTRAST_APPLICATION_VERSION=$(cat contrast.json | jq '.contrast_application_version')
     echo "parsing and mapping complete."
