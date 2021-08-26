@@ -28,6 +28,8 @@ else
     export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$(cat contrast.json | jq -r '.contrast_agent_java_standalone_app_name')
     export CONTRAST_APPLICATION_VERSION=$(cat contrast.json | jq -r '.contrast_application_version')
     echo "parsing and mapping complete."
+    echo "removing contrast.json..."
+    rm -f contrast.json
     echo "-----------------------------"
 fi
 
@@ -45,18 +47,26 @@ if [ -z "$AZURE_CREDENTIALS_FILE" ]; then
     echo "Using individual user inputs as environment variables."
     echo "-----------------------------"
 else
+    echo "$AZURE_CREDENTIALS_FILE" >> azure.json
     echo "azure_credentials_file value:"
-    "$AZURE_CREDENTIALS_FILE" | jq '.'
+    cat azure.json
+    cat azure.json | jq '.'
     echo "Azure configuration file found"
     echo "parsing configuration file and setting to environment variables..."
-    export AZURE_APPLICATION_ID=$("$AZURE_CREDENTIALS_FILE" | jq '.azure_application_id')
-    export AZURE_TENANT_ID=$("$AZURE_CREDENTIALS_FILE" | jq '.azure_tenant_id')
-    export AZURE_CLIENT_SECRET=$("$AZURE_CREDENTIALS_FILE" | jq '.azure_client_secret')
-    export AZURE_SUBSCRIPTION_ID=$("$AZURE_CREDENTIALS_FILE" | jq '.azure_subscription_id')
-    export AZURE_REGION=$("$AZURE_CREDENTIALS_FILE" | jq '.azure_region')
-    export AZURE_RESOURCE_GROUP_NAME=$("$AZURE_CREDENTIALS_FILE" | jq '.azure_resource_group_name')
-    export AZURE_SP_SERVICE_NAME=$("$AZURE_CREDENTIALS_FILE" | jq '.azure_spring_cloud_service_name')
+    echo "quick test"
+    echo "-----------"
+    cat azure.json | jq -r '.azure_tenant_id'
+    echo "mapping..."
+    export AZURE_APPLICATION_ID=$(cat azure.json | jq -r '.azure_application_id')
+    export AZURE_TENANT_ID=$(cat azure.json | jq -r '.azure_tenant_id')
+    export AZURE_CLIENT_SECRET=$(cat azure.json | jq -r '.azure_client_secret')
+    export AZURE_SUBSCRIPTION_ID=$(cat azure.json | jq -r '.azure_subscription_id')
+    export AZURE_REGION=$(cat azure.json | jq -r '.azure_region')
+    export AZURE_RESOURCE_GROUP_NAME=$(cat azure.json | jq -r '.azure_resource_group_name')
+    export AZURE_SP_SERVICE_NAME=$(cat azure.json | jq -r '.azure_spring_cloud_service_name')
     echo "parsing and mapping complete."
+    echo "removing azure.json..."
+    rm -f azure.json
     echo "-----------------------------"
 fi
 
