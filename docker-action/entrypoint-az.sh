@@ -7,11 +7,11 @@ echo "mapping environment variables to standard outputs..."
 export AZURE_ADAL_LOGGING_ENABLED=1
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-export AZURE_APPLICATION_JVM_OPTIONS=${azure_application_jvm_options}
+export AZURE_APPLICATION_JVM_OPTIONS=${15}  #azure_application_jvm_options
 export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
 export AZURE_FILE_UPLOAD_ARTIFACT_LOCATION="/spring-upload.jar"
-export AZURE_APPLICATION_NAME=${azure_application_name}
-# export AZURE_APPLICATION_ARTIFACT_LOCATION=$azure_application_artifact_location
+export AZURE_APPLICATION_NAME=${14}  #azure_application_name
+export AZURE_APPLICATION_ARTIFACT_LOCATION=${18}  #azure_application_artifact_location
 
 echo "mapping complete."
 echo "results:"
@@ -26,28 +26,28 @@ echo "azure-application-name: $AZURE_APPLICATION_NAME"
 echo "azure-application-artifact-location: $AZURE_APPLICATION_ARTIFACT_LOCATION"
 echo "---------------------------------"
 
-if [ -z "$contrast_security_credentials_file" ]; then
-    echo "No Contrast Security configuration file passed via input"
+if [ -z "${16}" ]; then
+    echo "No Contrast Security credentials file passed via input"
     echo "Using individual inputs as environment variables..."
-    export CONTRAST_API_URL=$contrast_api_url
-    export CONTRAST_API_USERNAME=$contrast_api_username
-    export CONTRAST_API_API_KEY=$contrast_api_api_key
-    export CONTRAST_API_SERICE_KEY=$contrast_api_service_key
-    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$contrast_agent_java_standalone_app_name
-    export CONTRAST_APPLICATION_VERSION=$contrast_application_version
+    export CONTRAST_API_URL=${8}  #contrast_api_url
+    export CONTRAST_API_USERNAME=${9}  #contrast_api_username
+    export CONTRAST_API_API_KEY=${10}  #contrast_api_api_key
+    export CONTRAST_API_SERICE_KEY=${11}  #contrast_api_service_key
+    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=${12}  #contrast_agent_java_standalone_app_name
+    export CONTRAST_APPLICATION_VERSION=${13}  #contrast_application_version
     echo "environment variable mapping complete."
     echo "-----------------------------"
 else
     echo "contrast_security_credentials_file value:"
-    $contrast_security_credentials_file | jq '.'
-    echo "Contrast Security configuration file found"
+    "${16}" | jq '.'
+    echo "Contrast Security credentials file found"
     echo "parsing configuration file and setting to environment variables..."
-    export CONTRAST_API_URL=$("$contrast_security_credentials_file" | jq '.contrast-api-url')
-    export CONTRAST_API_USERNAME=$("$contrast_security_credentials_file" | jq '.contrast-api-username')
-    export CONTRAST_API_API_KEY=$("$contrast_security_credentials_file" | jq '.contrast-api-api-key')
-    export CONTRAST_API_SERICE_KEY=$("$contrast_security_credentials_file" | jq '.contrast-api-service-key')
-    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$("$contrast_security_credentials_file" | jq '.contrast-agent-java-standalone-app-name')
-    export CONTRAST_APPLICATION_VERSION=$("$contrast_security_credentials_file" | jq '.contrast_application_version')
+    export CONTRAST_API_URL=$("${16}" | jq '.contrast-api-url')
+    export CONTRAST_API_USERNAME=$("${16}" | jq '.contrast-api-username')
+    export CONTRAST_API_API_KEY=$("${16}" | jq '.contrast-api-api-key')
+    export CONTRAST_API_SERICE_KEY=$("${16}" | jq '.contrast-api-service-key')
+    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$("${16}" | jq '.contrast-agent-java-standalone-app-name')
+    export CONTRAST_APPLICATION_VERSION=$("${16}" | jq '.contrast_application_version')
     echo "parsing and mapping complete."
     echo "-----------------------------"
 fi
@@ -61,30 +61,30 @@ echo "contrast-agent-java-standalone-app-name: $CONTRAST_AGENT_JAVA_STANDALONE_A
 echo "contrast-application-version: $CONTRAST_APPLICATION_VERSION"
 echo "---------------------------------"
 
-if [ -z "$azure_credentials_file" ]; then
-    echo "No Azure configuration file passed via input"
+if [ -z "${17}" ]; then
+    echo "No Azure credentials file passed via input"
     echo "Using individual inputs as environment variables..."
-    export AZURE_APPLICATION_ID=$azure_application_id
-    export AZURE_TENANT_ID=$azure_tenant_id
-    export AZURE_CLIENT_SECRET=$azure_client_secret
-    export AZURE_SUBSCRIPTION_ID=$azure_subscription_id
-    export AZURE_REGION=$azure_region
-    export AZURE_RESOURCE_GROUP_NAME=$azure_resource_group_name
-    export AZURE_SP_SERVICE_NAME=$azure_spring_cloud_service_name
+    export AZURE_APPLICATION_ID=${1}  #azure_application_id
+    export AZURE_TENANT_ID=${2}  #azure_tenant_id
+    export AZURE_CLIENT_SECRET=${3}  #azure_client_secret
+    export AZURE_SUBSCRIPTION_ID=$4{}  #azure_subscription_id
+    export AZURE_REGION=${5}  #azure_region
+    export AZURE_RESOURCE_GROUP_NAME=${6}  #azure_resource_group_name
+    export AZURE_SP_SERVICE_NAME=${7}  #azure_spring_cloud_service_name
     echo "environment  mapping complete."
     echo "-----------------------------"
 else
     echo "azure_credentials_file value:"
-    $azure_credentials_file | jq '.'
+    "${17}" | jq '.'
     echo "Azure configuration file found"
     echo "parsing configuration file and setting to environment variables..."
-    export AZURE_APPLICATION_ID=$("$azure_credentials_file" | jq '.azure_application_id')
-    export AZURE_TENANT_ID=$("$azure_credentials_file" | jq '.azure_tenant_id')
-    export AZURE_CLIENT_SECRET=$("$azure_credentials_file" | jq '.azure_client_secret')
-    export AZURE_SUBSCRIPTION_ID=$("$azure_credentials_file" | jq '.azure_subscription_id')
-    export AZURE_REGION=$("$azure_credentials_file" | jq '.azure_region')
-    export AZURE_RESOURCE_GROUP_NAME=$("$azure_credentials_file" | jq '.azure_resource_group_name')
-    export AZURE_SP_SERVICE_NAME=$("$azure_credentials_file" | jq '.azure_spring_cloud_service_name')
+    export AZURE_APPLICATION_ID=$("${17}" | jq '.azure_application_id')
+    export AZURE_TENANT_ID=$("${17}" | jq '.azure_tenant_id')
+    export AZURE_CLIENT_SECRET=$("${17}" | jq '.azure_client_secret')
+    export AZURE_SUBSCRIPTION_ID=$("${17}" | jq '.azure_subscription_id')
+    export AZURE_REGION=$("${17}" | jq '.azure_region')
+    export AZURE_RESOURCE_GROUP_NAME=$("${17}" | jq '.azure_resource_group_name')
+    export AZURE_SP_SERVICE_NAME=$("${17}" | jq '.azure_spring_cloud_service_name')
     echo "parsing and mapping complete."
     echo "-----------------------------"
 fi
