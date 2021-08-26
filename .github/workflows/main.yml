@@ -22,13 +22,14 @@ jobs:
           azure-subscription-id: 'fa9b4730-faca-44b9-a408-28c675e4a6a1'
           azure-resource-group-name: 'azure-spring-cloud-sa'
           azure-region: 'EAST US'
-          contrast-api-url: 'https://eval.contrastsecurity.com/Contrast'
-          contrast-api-username: 'agent_a8cd7a84-5cc2-4df6-b5d9-c016cc2c6f53@Marktomczaorg'
-          contrast-api-api-key: 'DOeAUIavVy5NmqNA11bnuKemAq946yn7'
-          contrast-api-service-key: 'K7E3Y5QDM6MUMVUB'
-          contrast-agent-java-standalone-app-name: 'springone-workshop-petclinic-new'
-          contrast-application-version: '1'
+          contrast-api-url:
+          contrast-api-username:
+          contrast-api-api-key:
+          contrast-api-service-key:
+          contrast-agent-java-standalone-app-name:
+          contrast-application-version:
           azure-application-jvm-options: '-javaagent:/persistent/apm/contrast.jar'
+          contrast-security-credentials-file: "{'contrast-api-url': 'https://eval.contrastsecurity.com/Contrast','contrast-api-username': 'agent_a8cd7a84-5cc2-4df6-b5d9-c016cc2c6f53@Marktomczaorg','contrast-api-api-key': 'DOeAUIavVy5NmqNA11bnuKemAq946yn7','contrast-api-service-key': 'K7E3Y5QDM6MUMVUB','contrast-agent-java-standalone-app-name': 'springone-workshop-petclinic-new','contrast-application-version': '1'}"
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.contrast-deployment.outputs.time }} wthen this action was run."
