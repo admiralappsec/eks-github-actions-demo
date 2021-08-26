@@ -17,11 +17,15 @@ else
     cat contrast.json | jq '.'
     echo "Contrast Security credentials file found"
     echo "parsing configuration file and setting to environment variables..."
-    export CONTRAST_API_URL=$(cat contrast.json | jq '.contrast-api-url')
-    export CONTRAST_API_USERNAME=$(cat contrast.json | jq '.contrast-api-username')
-    export CONTRAST_API_API_KEY=$(cat contrast.json | jq '.contrast-api-api-key')
-    export CONTRAST_API_SERICE_KEY=$(cat contrast.json | jq '.contrast-api-service-key')
-    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$(cat contrast.json | jq '.contrast-agent-java-standalone-app-name')
+    echo "quick test"
+    echo "-----------"
+    cat contrast.json | jq '.contrast_api_url'
+    echo "mapping..."
+    export CONTRAST_API_URL=$(cat contrast.json | jq '.contrast_api_url')
+    export CONTRAST_API_USERNAME=$(cat contrast.json | jq '.contrast_api_username')
+    export CONTRAST_API_API_KEY=$(cat contrast.json | jq '.contrast_api_api_key')
+    export CONTRAST_API_SERICE_KEY=$(cat contrast.json | jq '.contrast_api_service_key')
+    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$(cat contrast.json | jq '.contrast_agent_java_standalone_app_name')
     export CONTRAST_APPLICATION_VERSION=$(cat contrast.json | jq '.contrast_application_version')
     echo "parsing and mapping complete."
     echo "-----------------------------"
