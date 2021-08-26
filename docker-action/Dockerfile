@@ -51,6 +51,7 @@ COPY puppet-upload.js /puppet-upload.js
 COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} ${AZURE_APPLICATION_ARTIFACT_LOCATION}
 
 RUN apk update && apk add --no-cache nodejs npm jq chromium nss freetype harfbuzz ca-certificates ttf-freefont && npm install
+RUN ["chmod", "+x", "/entrypoint-env.sh"]
 RUN ./entrypoint-env.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
