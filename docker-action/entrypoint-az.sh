@@ -19,14 +19,14 @@ else
     echo "parsing configuration file and setting to environment variables..."
     echo "quick test"
     echo "-----------"
-    cat contrast.json | jq '.contrast_api_url'
+    cat contrast.json | jq -r '.contrast_api_url'
     echo "mapping..."
-    export CONTRAST_API_URL=$(cat contrast.json | jq '.contrast_api_url')
-    export CONTRAST_API_USERNAME=$(cat contrast.json | jq '.contrast_api_username')
-    export CONTRAST_API_API_KEY=$(cat contrast.json | jq '.contrast_api_api_key')
-    export CONTRAST_API_SERVICE_KEY=$(cat contrast.json | jq '.contrast_api_service_key')
-    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$(cat contrast.json | jq '.contrast_agent_java_standalone_app_name')
-    export CONTRAST_APPLICATION_VERSION=$(cat contrast.json | jq '.contrast_application_version')
+    export CONTRAST_API_URL=$(cat contrast.json | jq -r '.contrast_api_url')
+    export CONTRAST_API_USERNAME=$(cat contrast.json | jq -r '.contrast_api_username')
+    export CONTRAST_API_API_KEY=$(cat contrast.json | jq -r '.contrast_api_api_key')
+    export CONTRAST_API_SERVICE_KEY=$(cat contrast.json | jq -r '.contrast_api_service_key')
+    export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$(cat contrast.json | jq -r '.contrast_agent_java_standalone_app_name')
+    export CONTRAST_APPLICATION_VERSION=$(cat contrast.json | jq -r '.contrast_application_version')
     echo "parsing and mapping complete."
     echo "-----------------------------"
 fi
