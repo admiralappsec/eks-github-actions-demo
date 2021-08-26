@@ -63,7 +63,7 @@ else
     export AZURE_SUBSCRIPTION_ID=$(cat azure.json | jq -r '.azure_subscription_id')
     export AZURE_REGION=$(cat azure.json | jq -r '.azure_region')
     export AZURE_RESOURCE_GROUP_NAME=$(cat azure.json | jq -r '.azure_resource_group_name')
-    export AZURE_SP_SERVICE_NAME=$(cat azure.json | jq -r '.azure_spring_cloud_service_name')
+    # export AZURE_SP_SERVICE_NAME=$(cat azure.json | jq -r '.azure_spring_cloud_service_name')
     echo "parsing and mapping complete."
     echo "removing azure.json..."
     rm -f azure.json
@@ -77,7 +77,7 @@ echo "azure-client-secret: $AZURE_CLIENT_SECRET"
 echo "azure-subscription-id: $AZURE_SUBSCRIPTION_ID"
 echo "azure-region: $AZURE_REGION"
 echo "azure-resource-group-name: $AZURE_RESOURCE_GROUP_NAME"
-echo "azure-sp-service-name: $AZURE_SP_SERVICE_NAME"
+# echo "azure-sp-service-name: $AZURE_SP_SERVICE_NAME"
 echo "---------------------------------"
 
 echo "printing environment variables for testing..."
