@@ -42,6 +42,8 @@ ENV CONTRAST_API_API_KEY ${contrast_api_api_key}
 ENV CONTRAST_API_SERVICE_KEY ${contrast_api_service_key}  
 ENV CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME ${contrast_agent_java_standalone_app_name} 
 ENV CONTRAST_APPLICATION_VERSION ${contrast_application_version} 
+ENV CONTRAST_SECURITY_CREDENTIALS_FILE ${contrast_security_credentials_file}
+ENV AZURE_CREDENTIALS_FILE ${azure_credentials_file}
 
 COPY entrypoint-az.sh /entrypoint.sh
 COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar
