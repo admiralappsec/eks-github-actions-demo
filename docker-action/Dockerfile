@@ -43,7 +43,7 @@ ARG azure_credentials_file
 # ENV CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME ${contrast_agent_java_standalone_app_name} 
 # ENV CONTRAST_APPLICATION_VERSION ${contrast_application_version} 
 
-COPY entrypoint-env.sh /entrypoint-env.sh
+# COPY entrypoint-env.sh /entrypoint-env.sh
 COPY entrypoint-az.sh /entrypoint.sh
 COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar
 COPY package.json /package.json
@@ -51,8 +51,8 @@ COPY puppet-upload.js /puppet-upload.js
 COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} ${AZURE_APPLICATION_ARTIFACT_LOCATION}
 
 RUN apk update && apk add --no-cache nodejs npm jq chromium nss freetype harfbuzz ca-certificates ttf-freefont && npm install
-RUN ["chmod", "+x", "/entrypoint-env.sh"]
-RUN ./entrypoint-env.sh
+# RUN ["chmod", "+x", "/entrypoint-env.sh"]
+# RUN ./entrypoint-env.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
