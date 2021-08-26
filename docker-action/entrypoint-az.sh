@@ -1,17 +1,17 @@
 #!/bin/bash
 
-set -x
+# set -x
 
 echo "mapping environment variables to standard outputs..."
 
 export AZURE_ADAL_LOGGING_ENABLED=1
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-export AZURE_APPLICATION_JVM_OPTIONS=$azure_application_jvm_options
+export AZURE_APPLICATION_JVM_OPTIONS=${azure_application_jvm_options}
 export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
 export AZURE_FILE_UPLOAD_ARTIFACT_LOCATION="/spring-upload.jar"
-export AZURE_APPLICATION_NAME=$azure_application_name
-export AZURE_APPLICATION_ARTIFACT_LOCATION=$azure_application_artifact_location
+export AZURE_APPLICATION_NAME=${azure_application_name}
+# export AZURE_APPLICATION_ARTIFACT_LOCATION=$azure_application_artifact_location
 
 echo "mapping complete."
 echo "results:"

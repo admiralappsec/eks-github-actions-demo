@@ -27,7 +27,7 @@ ARG azure_credentials_file
 # ENV AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL "https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
 # ENV AZURE_FILE_UPLOAD_ARTIFACT_LOCATION "/spring-upload.jar"
 # ENV AZURE_APPLICATION_NAME ${azure_application_name}        
-# ENV AZURE_APPLICATION_ARTIFACT_LOCATION ${azure_application_artifact_location}
+ENV AZURE_APPLICATION_ARTIFACT_LOCATION ${azure_application_artifact_location}
 
 # ENV AZURE_APPLICATION_ID ${azure_application_id} 
 # ENV AZURE_TENANT_ID ${azure_tenant_id} 
