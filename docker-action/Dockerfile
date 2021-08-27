@@ -27,7 +27,7 @@ ENV AZURE_APPLICATION_JVM_OPTIONS ${azure_application_jvm_options}
 ENV AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL "https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
 ENV AZURE_FILE_UPLOAD_ARTIFACT_LOCATION "/spring-upload.jar"
 ENV AZURE_APPLICATION_NAME ${azure_application_name}        
-ENV AZURE_APPLICATION_ARTIFACT_LOCATION "/application-artifact.jar"
+ENV AZURE_APPLICATION_ARTIFACT_LOCATION ${azure_application_artifact_location}
 
 ENV AZURE_APPLICATION_ID ${azure_application_id} 
 ENV AZURE_TENANT_ID ${azure_tenant_id} 
@@ -49,7 +49,7 @@ COPY entrypoint-az.sh /entrypoint.sh
 COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar
 COPY package.json /package.json
 COPY puppet-upload.js /puppet-upload.js
-COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} /${AZURE_APPLICATION_ARTIFACT_LOCATION}
+COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} /application-artifact.jar
 
 RUN apk update && apk add --no-cache nodejs npm jq chromium nss freetype harfbuzz ca-certificates ttf-freefont && npm install
 

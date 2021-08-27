@@ -31,7 +31,7 @@ This github action deploys a java application with a Contrast Security Java Agen
   - Description: "Azure Spring Cloud service name."
   - Default: No Default Value
 - `file-upload-artifact-location`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Location of the artifact used to upload the contrast.jar file. Location relative to /docker-action/Dockerfile."
   - Default: No Default Value
 - `application-artifact-location`
@@ -39,63 +39,61 @@ This github action deploys a java application with a Contrast Security Java Agen
   - Description: "Location of the deployable application artifact. Location relative to /docker-action/Dockerfile."
   - Default: No Default Value
 - `azure-application-id`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Azure application id (service principal, etc...)."
   - Default: No Default Value
 - `azure-tenant-id`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Azure tenant id (domain id)."
   - Default: No Default Value
 - `azure-client-secret`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Azure client secret."
   - Default: No Default Value
 - `azure-subscription-id`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Azure subscription id."
   - Default: No Default Value
 - `azure-resource-group-name`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Azure resource group name."
   - Default: No Default Value
 - `azure-region`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Azure region."
   - Default: No Default Value
 - `contrast-agent-download-url`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Agent download url associated with the Contrast Security Team Server."
   - Default: No Default Value
 - `contrast-api-url`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "The Contrast Security Team Server URL."
   - Default: No Default Value
 - `contrast-api-username`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "The username asssociated with the login for the Contrast Security Team Server."
   - Default: No Default Value
 - `contrast-api-api-key`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "The API key associated with the Contrast Security Team Server."
   - Default: No Default Value
 - `contrast-api-service-key`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "API service key associated with Contrast Security Team Server."
   - Default: No Default Value
 - `contrast-agent-java-standalone-app-name`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Application name associated with Contrast Security Team Server."
   - Default: No Default Value
 - `contrast-application-version`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Application version associated with the Contrast Security Application on Team Server."
   - Default: No Default Value
 - `azure-application-jvm-options`
-  - REQUIRED: YES
+  - REQUIRED: NO
   - Description: "Deployable application's jvm-options to pass to the Azure Spring Cloud PaaS deployment."
   - Default: No Default Value
-  
-### In Process**
 - `contrast-security-configuration-file`
   - REQUIRED: NO
   - Description: "The configuration file location for the Contrast Security Java Agent - used to communication with Contrast Security Team Server. 
@@ -150,22 +148,10 @@ Can be found at these links:
         with:
           application-name: 'springone-petclinic-mark-testing'
           spring-cloud-service-name: 'mark-spring-cloud-test'
-          file-upload-artifact-location: '/spring-upload.jar'
           application-artifact-location: '/spring-petclinic-2.4.5.jar'
-          azure-application-id: xxx
-          azure-tenant-id: xxx
-          azure-client-secret: xxx
-          azure-subscription-id: xxx
-          azure-resource-group-name: xxx
-          azure-region: xxx
-          contrast-agent-download-url: 'https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST'
-          contrast-api-url: 'https://eval.contrastsecurity.com/Contrast'
-          contrast-api-username: xxx
-          contrast-api-api-key: xxx
-          contrast-api-service-key: xxx
-          contrast-agent-java-standalone-app-name: 'springone-workshop-petclinic'
-          contrast-application-version: '1'
           azure-application-jvm-options: '-javaagent:/persistent/apm/contrast.jar'
+          contrast-security-credentials-file: ''
+          azure-credentials-file: ''
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.contrast-deployment.outputs.time }} then this action was run."
