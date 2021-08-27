@@ -22,7 +22,10 @@ AZURE_CREDENTIALS_FILE=${17}
 
 # cp AZURE_APPLICATION_ARTIFACT_LOCATION  ./docker-action/application-artifact.jar
 
+echo "entering 'docker-action' directory...'
 cd /docker-action
+echo "what's on the file system..."
+ls -a
 echo "creating docker image with the following inputs..."
 
 echo "azure-application-name: $AZURE_APPLICATION_NAME"
