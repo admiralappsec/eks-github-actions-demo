@@ -22,7 +22,7 @@ AZURE_CREDENTIALS_FILE=${17}
 
 # cp AZURE_APPLICATION_ARTIFACT_LOCATION  ./docker-action/application-artifact.jar
 
-echo "entering 'docker-action' directory...'
+echo "entering docker-action directory...'
 cd /docker-action
 echo "what is on the file system..."
 ls -a
