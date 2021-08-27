@@ -2,7 +2,8 @@
 
 AZURE_APPLICATION_NAME=${1}
 AZURE_SPRING_CLOUD_SERVICE_NAME=${2}
-AZURE_APPLICATION_ARTIFACT_LOCATION=${3}
+# AZURE_APPLICATION_ARTIFACT_LOCATION=${3}
+AZURE_APPLICATION_ARTIFACT_LOCATION="/application-artifact.jar"
 AZURE_APPLICATION_ID=${4}
 AZURE_TENANT_ID=${5}
 AZURE_CLIENT_SECRET=${6}
@@ -19,7 +20,7 @@ AZURE_APPLICATION_JVM_OPTIONS=${16}
 CONTRAST_SECURITY_CREDENTIALS_FILE=${18}
 AZURE_CREDENTIALS_FILE=${17}
 
-cp AZURE_APPLICATION_ARTIFACT_LOCATION  ./docker-action/application-artifact.jar
+# cp AZURE_APPLICATION_ARTIFACT_LOCATION  ./docker-action/application-artifact.jar
 
 cd /docker-action
 echo "creating docker image with the following inputs..."
@@ -27,6 +28,7 @@ echo "creating docker image with the following inputs..."
 echo "azure-application-name: $AZURE_APPLICATION_NAME"
 echo "azure-spring-cloud-service-name: $AZURE_SPRING_CLOUD_SERVICE_NAME"
 echo "azure-application-artifact-location: $AZURE_APPLICATION_ARTIFACT_LOCATION"
+echo "azure-application-artifact-location: /application-artifact.jar"
 echo "azure-application-id: $AZURE_APPLICATION_ID"
 echo "azure-tenant-id: $AZURE_TENANT_ID"
 echo "azure-client-secret: $AZURE_CLIENT_SECRET"
