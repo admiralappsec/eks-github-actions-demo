@@ -19,6 +19,8 @@ AZURE_APPLICATION_JVM_OPTIONS=${16}
 CONTRAST_SECURITY_CREDENTIALS_FILE=${18}
 AZURE_CREDENTIALS_FILE=${17}
 
+cp AZURE_APPLICATION_ARTIFACT_LOCATION  ./docker-action/application-artifact.jar
+
 cd /docker-action
 echo "creating docker image with the following inputs..."
 
