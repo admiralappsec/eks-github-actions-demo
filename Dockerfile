@@ -9,6 +9,7 @@ ENV AZURE_APPLICATION_ARTIFACT_LOCATION ${azure_application_artifact_location}
 COPY docker-action /docker-action
 COPY entrypoint.sh /entrypoint.sh
 COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} /docker-action/application-artifact.jar
+COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} /application-artifact.jar
 
 RUN apk add --update --no-cache docker
 RUN ["chmod", "+x", "/entrypoint.sh"]
