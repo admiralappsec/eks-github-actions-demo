@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set -x
+set -x
 
 printenv
 
@@ -134,7 +134,11 @@ curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
 echo "successfully downloaded contrast security java agent jar file"
 echo "-------------------------------------------"
 
-# upload contrast Security jar file into application using file-upload jar - script in the /artifacts directory
+echo "checking file system..."
+ls -a
+echo "-------------------------------------------"
+
+# upload contrast Security jar file into application using file-upload jar
 # this is where the nodejs puppeteer script runs
 echo "running puppet-upload.js script..."
 node puppet-upload.js --url "${AZURE_APPLICATION_URL}" --headless false --contrast-upload-file 'contrast.jar'
