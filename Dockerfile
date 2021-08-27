@@ -9,9 +9,9 @@ ENV AZURE_APPLICATION_ARTIFACT_LOCATION ${azure_application_artifact_location}
 COPY docker-action /docker-action
 COPY entrypoint.sh /entrypoint.sh
 COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} /docker-action/application-artifact.jar
-COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} /application-artifact.jar
+COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} ${AZURE_APPLICATION_ARTIFACT_LOCATION}
 
-RUN apk add --update --no-cache docker
+RUN apk add --update --no-cache docker stat
 RUN ["chmod", "+x", "/entrypoint.sh"]
 RUN echo "this is what is inside the base directory:" && ls -a && stat ${AZURE_APPLICATION_ARTIFACT_LOCATION} && echo "...and inside docker-action:" && cd docker-action && ls -a && stat application-artifact.jar 
 
