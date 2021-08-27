@@ -13,7 +13,7 @@ COPY ${AZURE_APPLICATION_ARTIFACT_LOCATION} ${AZURE_APPLICATION_ARTIFACT_LOCATIO
 
 RUN apk add --update --no-cache docker
 RUN ["chmod", "+x", "/entrypoint.sh"]
-RUN echo "this is what is inside the base directory:" && ls -a && ls -l ${AZURE_APPLICATION_ARTIFACT_LOCATION} && echo "...and inside docker-action:" && cd docker-action && ls -a && ls -l application-artifact.jar 
+RUN echo "this is what is inside the base directory:" && ls -l && echo "...and inside docker-action:" && cd docker-action && ls -l 
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/entrypoint.sh"]

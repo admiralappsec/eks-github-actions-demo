@@ -135,7 +135,7 @@ echo "successfully downloaded contrast security java agent jar file"
 echo "-------------------------------------------"
 
 echo "checking file system..."
-ls -a
+ls -l
 echo "-------------------------------------------"
 
 # upload contrast Security jar file into application using file-upload jar

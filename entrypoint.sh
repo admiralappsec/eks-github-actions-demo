@@ -23,7 +23,7 @@ AZURE_CREDENTIALS_FILE=${17}
 echo "entering docker-action directory..."
 cd /docker-action
 echo "what is on the file system..."
-ls -a
+ls -l
 stat $AZURE_APPLICATION_ARTIFACT_LOCATION
 echo "creating docker image with the following inputs..."
 
