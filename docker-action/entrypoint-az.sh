@@ -170,4 +170,9 @@ echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
 echo "-------------------------------------------"
 
-echo "::set-output name=deployedurl::${AZURE_APPLICATION_URL}" 
+# get contrast team server application url
+#echo "retrieving contrast team server application url..."
+#CONTRAST_TEAM_SERVER_APP_URL=$()
+#echo ${CONTRAST_TEAM_SERVER_APP_URL}
+#echo "successfully retrieved contrast team server app endpoint information"
+#echo "-------------------------------------------" 
