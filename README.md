@@ -11,8 +11,8 @@
 <hr />
 
 This github action deploys a java application with a Contrast Security Java Agent (JAR) to either:
-- an existing application running on Azure Spring Cloud on an existing Azure Spring Cloud instance
-- an existing running instance of Azure Spring Cloud and creates a new application during the deployment process
+- an existing application running on Azure Spring Cloud on an existing Azure Spring Cloud instance.
+- an existing running instance of Azure Spring Cloud and creates a new application during the deployment process.
 
 ## Prerequisites
 
