@@ -18,8 +18,8 @@ CONTRAST_APPLICATION_VERSION=${15}
 AZURE_APPLICATION_JVM_OPTIONS=${16}
 CONTRAST_SECURITY_CREDENTIALS_FILE=${18}
 AZURE_CREDENTIALS_FILE=${17}
-GITHUB_DEVELOPER_TOKEN=${19}
-GITHUB_USER_REPO=${20}
+# GITHUB_DEVELOPER_TOKEN=${19}
+# GITHUB_USER_REPO=${20}
 
 echo "creating docker image with the following inputs..."
 
@@ -41,8 +41,8 @@ echo "contrast-application-version: $CONTRAST_APPLICATION_VERSION"
 echo "azure-application-jvm-options: $AZURE_APPLICATION_JVM_OPTIONS"
 echo "contrast-security-credentials-file: $CONTRAST_SECURITY_CREDENTIALS_FILE"
 echo "azure-credentials-file: $AZURE_CREDENTIALS_FILE"
-echo "github-developer-token: $GITHUB_DEVELOPER_TOKEN"
-echo "github-user-repo: $GITHUB_USER_REPO"
+# echo "github-developer-token: $GITHUB_DEVELOPER_TOKEN"
+# echo "github-user-repo: $GITHUB_USER_REPO"
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
