@@ -85,4 +85,4 @@ runs:
     - ${{ inputs.azure-credentials-file }}
     - ${{ inputs.contrast-security-credentials-file }}
     - ${{ inputs.github-developer-token }}
-    - ${{ env.GITHUB_REPOSITORY  }} 
+    - "${GITHUB_REPOSITORY}" 
