@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+set -x
+
 AZURE_APPLICATION_NAME=${1}
 AZURE_SPRING_CLOUD_SERVICE_NAME=${2}
 AZURE_APPLICATION_ARTIFACT_LOCATION=${3}
@@ -21,9 +23,12 @@ CONTRAST_SECURITY_CREDENTIALS_FILE=${18}
 GITHUB_DEVELOPER_TOKEN=${19}
 GITHUB_USER_REPO=${20}
 
+echo "printing environment variables..."
+printenv
+
 echo "entering docker-action directory..."
 cd docker-action
-ehco "what is inside..."
+echo "what is inside..."
 ls -l
 echo "creating docker image with the following inputs..."
 
