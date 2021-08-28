@@ -157,9 +157,20 @@ sleep 10s;
 echo "sleep concluded. continue processing..."
 echo "------------------------------------------"
 
+# if user doesn't pass any application jvm options, then just append the contrast security java agent location, else append the contrast java agent location with a space between the passed jvm options the user passes via input
+if [ -z "$AZURE_APPLICATION_JVM_OPTIONS" ]; then
+    echo "No user-defined application jvm options passed"
+    echo "using -javaagent:/persistent/apm/contrast.jar..."
+    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="-javaagent:/persistent/apm/contrast.jar"
+else
+    echo "user passed in application-specific jvm options outside of contrast deployment"
+    echo "appending contrast java agent location to user input..."
+    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="${AZURE_APPLICATION_JVM_OPTIONS} -javaagent:/persistent/apm/contrast.jar"
+fi
+
 # deploy sample file-upload jar into the Azure Spring Cloud application
 echo "deploying application jar..."
-az spring-cloud app deploy --name ${AZURE_APPLICATION_NAME} --jar-path application-artifact.jar --jvm-options=${AZURE_APPLICATION_JVM_OPTIONS} --env CONTRAST__API__URL=${CONTRAST_API_URL} CONTRAST__API__USER_NAME=${CONTRAST_API_USERNAME} CONTRAST__API__API_KEY=${CONTRAST_API_API_KEY} CONTRAST__API__SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST__AGENT__JAVA__STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST__APPLICATION__VERSION=${CONTRAST_APPLICATION_VERSION} CONTRAST__AGENT__LOGGER__STDERR=true --verbose
+az spring-cloud app deploy --name ${AZURE_APPLICATION_NAME} --jar-path application-artifact.jar --jvm-options=${END_RESULT_AZURE_APPLICATION_JVM_OPTIONS} --env CONTRAST__API__URL=${CONTRAST_API_URL} CONTRAST__API__USER_NAME=${CONTRAST_API_USERNAME} CONTRAST__API__API_KEY=${CONTRAST_API_API_KEY} CONTRAST__API__SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST__AGENT__JAVA__STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST__APPLICATION__VERSION=${CONTRAST_APPLICATION_VERSION} CONTRAST__AGENT__LOGGER__STDERR=true --verbose
 echo "successfully deployed application jar"
 echo "-------------------------------------------"
 
