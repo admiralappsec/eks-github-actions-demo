@@ -19,6 +19,8 @@ ARG contrast_application_version
 ARG azure_application_jvm_options
 ARG contrast_security_credentials_file
 ARG azure_credentials_file
+ARG github_developer_token
+ARG github_user_repo
 
 ENV AZURE_ADAL_LOGGING_ENABLED=1
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
@@ -44,6 +46,8 @@ ENV CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME ${contrast_agent_java_standalone_app
 ENV CONTRAST_APPLICATION_VERSION ${contrast_application_version} 
 ENV CONTRAST_SECURITY_CREDENTIALS_FILE ${contrast_security_credentials_file}
 ENV AZURE_CREDENTIALS_FILE ${azure_credentials_file}
+ENV GITHUB_DEVELOPER_TOKEN ${github_developer_token}
+ENV GITHUB_USER_REPO ${github_user_repo}
 
 COPY entrypoint-az.sh /entrypoint.sh
 COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar

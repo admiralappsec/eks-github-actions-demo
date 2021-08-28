@@ -56,6 +56,13 @@ inputs:
   contrast-security-credentials-file:
     description: ''
     required: false
+  github-developer-token:
+    description: ''
+    required: true
+  github-user-repo:
+    description: ''
+    required: false
+    default: "$GITHUB_REPOSITORY"
 outputs:
   time: # id of output
     description: 'The time the action executed the inline commands'
@@ -80,4 +87,6 @@ runs:
     - ${{ inputs.contrast-application-version }}
     - ${{ inputs.azure-application-jvm-options }}
     - ${{ inputs.azure-credentials-file }}
-    - ${{ inputs.contrast-security-credentials-file }} 
+    - ${{ inputs.contrast-security-credentials-file }}
+    - ${{ inputs.github-developer-token }}
+    - ${{ inputs.github-user-repo }} 
