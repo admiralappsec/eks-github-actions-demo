@@ -59,10 +59,6 @@ inputs:
   github-developer-token:
     description: ''
     required: true
-  github-user-repo:
-    description: ''
-    required: false
-    default: "$GITHUB_REPOSITORY"
 outputs:
   time: # id of output
     description: 'The time the action executed the inline commands'
@@ -89,4 +85,4 @@ runs:
     - ${{ inputs.azure-credentials-file }}
     - ${{ inputs.contrast-security-credentials-file }}
     - ${{ inputs.github-developer-token }}
-    - ${{ inputs.github-user-repo }} 
+    - ${{ env.GITHUB_REPOSITORY  }} 
