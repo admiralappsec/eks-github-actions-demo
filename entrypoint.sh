@@ -21,6 +21,10 @@ CONTRAST_SECURITY_CREDENTIALS_FILE=${18}
 GITHUB_DEVELOPER_TOKEN=${19}
 GITHUB_USER_REPO=${20}
 
+echo "entering docker-action directory..."
+cd docker-action
+ehco "what is inside..."
+ls -l
 echo "creating docker image with the following inputs..."
 
 echo "azure-application-name: $AZURE_APPLICATION_NAME"
