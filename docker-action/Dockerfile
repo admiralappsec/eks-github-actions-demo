@@ -22,6 +22,8 @@ ARG azure_credentials_file
 ARG github_developer_token
 ARG github_user_repo
 ARG github_developer_branch
+ARG application_memory
+ARG application_instance_count
 
 ENV AZURE_ADAL_LOGGING_ENABLED=1
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
@@ -50,6 +52,8 @@ ENV AZURE_CREDENTIALS_FILE ${azure_credentials_file}
 ENV GITHUB_DEVELOPER_TOKEN ${github_developer_token}
 ENV GITHUB_USER_REPO ${github_user_repo}
 ENV GITHUB_DEVELOPER_BRANCH ${github_developer_branch}
+ENV APPLICATION_MEMORY ${application_memory}
+ENV APPLICATION_INSTANCE_COUNT ${application_instance_count}
 
 COPY entrypoint-az.sh /entrypoint.sh
 COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar

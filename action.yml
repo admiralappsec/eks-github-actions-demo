@@ -63,6 +63,14 @@ inputs:
     description: ''
     required: false
     default: 'main'
+  application-memory:
+    description: ''
+    required: false
+    default: '2'
+  application-instance-count:
+    description: ''
+    required: false
+    default: '1'
 outputs:
   deployedurl:
     description: 'The URL of the deployed application on the Azure Spring Cloud PaaS'
@@ -89,4 +97,6 @@ runs:
     - ${{ inputs.azure-credentials-file }}
     - ${{ inputs.contrast-security-credentials-file }}
     - ${{ inputs.github-developer-token }}
-    - ${{ inputs.github-developer-branch }} 
+    - ${{ inputs.github-developer-branch }}
+    - ${{ inputs.application-memory }}
+    - ${{ inputs.application-instance-count }} 
