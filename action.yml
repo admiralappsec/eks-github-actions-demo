@@ -59,9 +59,10 @@ inputs:
   github-developer-token:
     description: ''
     required: true
-  github-user-repo:
+  github-developer-branch:
     description: ''
-    required: true
+    required: false
+    default: 'main'
 outputs:
   time: # id of output
     description: 'The time the action executed the inline commands'
@@ -88,4 +89,4 @@ runs:
     - ${{ inputs.azure-credentials-file }}
     - ${{ inputs.contrast-security-credentials-file }}
     - ${{ inputs.github-developer-token }}
-    - ${{ inputs.github-user-repo }} 
+    - ${{ inputs.github-developer-branch }} 

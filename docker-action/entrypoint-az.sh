@@ -136,9 +136,9 @@ echo "-------------------------------------------"
 
 # download application artifact jar file
 echo "downloading application artifact jar file..."
-curl -o application-artifact.jar https://${GITHUB_DEVELOPER_TOKEN}@raw.githubusercontent.com/${GITHUB_USER_REPO}/${AZURE_APPLICATION_ARTIFACT_LOCATION}
+curl -o application-artifact.jar https://${GITHUB_DEVELOPER_TOKEN}@raw.githubusercontent.com/${GITHUB_USER_REPO}/${GITHUB_DEVELOPER_BRANCH}/${AZURE_APPLICATION_ARTIFACT_LOCATION}
 echo "successfully downloaded application artifact jar file"
-echo "-------------------------------------------""
+echo "-------------------------------------------"
 
 echo "checking file system..."
 ls -l

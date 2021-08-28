@@ -21,6 +21,7 @@ ARG contrast_security_credentials_file
 ARG azure_credentials_file
 ARG github_developer_token
 ARG github_user_repo
+ARG github_developer_branch
 
 ENV AZURE_ADAL_LOGGING_ENABLED=1
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
@@ -48,6 +49,7 @@ ENV CONTRAST_SECURITY_CREDENTIALS_FILE ${contrast_security_credentials_file}
 ENV AZURE_CREDENTIALS_FILE ${azure_credentials_file}
 ENV GITHUB_DEVELOPER_TOKEN ${github_developer_token}
 ENV GITHUB_USER_REPO ${github_user_repo}
+ENV GITHUB_DEVELOPER_BRANCH ${github_developer_branch}
 
 COPY entrypoint-az.sh /entrypoint.sh
 COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar

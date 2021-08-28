@@ -14,7 +14,6 @@ jobs:
         id: contrast-deployment
         with:
           github-developer-token: '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'
-          github-user-repo: 'admiralappsec/springone-github-action/main'
           application-name: 'springone-petclinic-mark-testing'
           spring-cloud-service-name: 'mark-spring-cloud-test'
           application-artifact-location: 'spring-petclinic-2.4.5.jar'
