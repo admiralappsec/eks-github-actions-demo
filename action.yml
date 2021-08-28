@@ -64,8 +64,8 @@ inputs:
     required: false
     default: 'main'
 outputs:
-  time: # id of output
-    description: 'The time the action executed the inline commands'
+  deployed-application-url:
+    description: 'The URL of the deployed application on the Azure Spring Cloud PaaS'
 runs:
   using: 'docker'
   image: 'Dockerfile'

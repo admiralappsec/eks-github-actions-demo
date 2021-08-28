@@ -159,7 +159,7 @@ echo "------------------------------------------"
 
 # deploy sample file-upload jar into the Azure Spring Cloud application
 echo "deploying application jar..."
-az spring-cloud app deploy --name ${AZURE_APPLICATION_NAME} --jar-path ${AZURE_APPLICATION_ARTIFACT_LOCATION} --jvm-options=${AZURE_APPLICATION_JVM_OPTIONS} --env CONTRAST__API__URL=${CONTRAST_API_URL} CONTRAST__API__USER_NAME=${CONTRAST_API_USERNAME} CONTRAST__API__API_KEY=${CONTRAST_API_API_KEY} CONTRAST__API__SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST__AGENT__JAVA__STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST__APPLICATION__VERSION=${CONTRAST_APPLICATION_VERSION} CONTRAST__AGENT__LOGGER__STDERR=true --verbose
+az spring-cloud app deploy --name ${AZURE_APPLICATION_NAME} --jar-path application-artifact.jar --jvm-options=${AZURE_APPLICATION_JVM_OPTIONS} --env CONTRAST__API__URL=${CONTRAST_API_URL} CONTRAST__API__USER_NAME=${CONTRAST_API_USERNAME} CONTRAST__API__API_KEY=${CONTRAST_API_API_KEY} CONTRAST__API__SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST__AGENT__JAVA__STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST__APPLICATION__VERSION=${CONTRAST_APPLICATION_VERSION} CONTRAST__AGENT__LOGGER__STDERR=true --verbose
 echo "successfully deployed application jar"
 echo "-------------------------------------------"
 
@@ -168,4 +168,6 @@ echo "retrieving endpoint information..."
 #az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep url
 echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
-echo "-------------------------------------------" 
+echo "-------------------------------------------"
+
+echo "::set-output name=deployed-application-url::${AZURE_APPLICATION_URL}" 
