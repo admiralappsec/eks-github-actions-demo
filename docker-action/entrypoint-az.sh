@@ -170,4 +170,4 @@ echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
 echo "-------------------------------------------"
 
-echo "::set-output name=deployed-application-url::${AZURE_APPLICATION_URL}" 
+echo "::set-output name=deployedurl::${AZURE_APPLICATION_URL}" 

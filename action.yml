@@ -64,7 +64,7 @@ inputs:
     required: false
     default: 'main'
 outputs:
-  deployed-application-url:
+  deployedurl:
     description: 'The URL of the deployed application on the Azure Spring Cloud PaaS'
 runs:
   using: 'docker'
