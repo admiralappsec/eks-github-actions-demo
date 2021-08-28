@@ -127,7 +127,14 @@ This github action deploys a java application with a Contrast Security Java Agen
     azure-region: xxx
 }
 ```
-  
+- `github-developer-token`
+  - REQUIRED: YES
+  - Description: ""
+  - Default: No Default Value
+- `github-developer-branch`
+  - REQUIRED: NO
+  - Description: ""
+  - Default: 'main'  
 ## Outputs
 
 - `time`
@@ -148,13 +155,10 @@ Can be found at these links:
         with:
           application-name: 'springone-petclinic-mark-testing'
           spring-cloud-service-name: 'mark-spring-cloud-test'
-          application-artifact-location: '/spring-petclinic-2.4.5.jar'
-          azure-application-jvm-options: '-javaagent:/persistent/apm/contrast.jar'
-          contrast-security-credentials-file: ''
-          azure-credentials-file: ''
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.contrast-deployment.outputs.time }} then this action was run."
+          application-artifact-location: 'spring-petclinic-2.4.5.jar'
+          contrast-security-credentials-file: ${{ secrets.CONTRAST_CREDS_FILE }}
+          azure-credentials-file: ${{ secrets.AZURE_CREDS_FILE }}
+          github-developer-token: ${{ secrets.GITHUB_DEV_TOKEN }}
 ```
 
 ## Development
