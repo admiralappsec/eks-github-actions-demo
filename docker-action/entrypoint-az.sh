@@ -111,7 +111,7 @@ echo "-------------------------------------------"
 # create spring cloud application and assign specs
 echo "creating spring cloud application..."
 # az spring-cloud app create --name "${AZURE_APPLICATION_NAME}" --service "${AZURE_SP_SERVICE_NAME}" -g ${AZURE_RESOURCE_GROUP_NAME} --instance-count 1 --is-public true --memory 2 --jvm-options='-Xms2048m -Xmx2048m' --enable-persistent-storage true --assign-endpoint;
-az spring-cloud app create --name "${AZURE_APPLICATION_NAME}" --instance-count "${APPLICATION_INSTANCE_COUNT}" --is-public true --memory "${APPLICATION_MEMORY}" --jvm-options="${AZURE_APPLICATION_JVM_OPTIONS}" --enable-persistent-storage true
+az spring-cloud app create --name "${AZURE_APPLICATION_NAME}" --instance-count "${APPLICATION_INSTANCE_COUNT}" --is-public true --memory "${APPLICATION_MEMORY}" --jvm-options='-Xms2048m -Xmx2048m' --enable-persistent-storage true
 echo "successfully created spring cloud application"
 echo "-------------------------------------------"
 
@@ -157,15 +157,18 @@ sleep 10s;
 echo "sleep concluded. continue processing..."
 echo "------------------------------------------"
 
+# set up quote variable for interpolation - fix later
+QUOTE="'"
+
 # if user doesn't pass any application jvm options, then just append the contrast security java agent location, else append the contrast java agent location with a space between the passed jvm options the user passes via input
 if [ -z "$AZURE_APPLICATION_JVM_OPTIONS" ]; then
     echo "No user-defined application jvm options passed"
     echo "using -javaagent:/persistent/apm/contrast.jar..."
-    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="\'-javaagent:/persistent/apm/contrast.jar\'"
+    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="${QUOTE}-javaagent:/persistent/apm/contrast.jar${QUOTE}"
 else
     echo "user passed in application-specific jvm options outside of contrast deployment"
     echo "appending contrast java agent location to user input..."
-    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="\'${AZURE_APPLICATION_JVM_OPTIONS} -javaagent:/persistent/apm/contrast.jar\'"
+    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="${QUOTE}${AZURE_APPLICATION_JVM_OPTIONS} -javaagent:/persistent/apm/contrast.jar${QUOTE}"
 fi
 
 # deploy sample file-upload jar into the Azure Spring Cloud application
