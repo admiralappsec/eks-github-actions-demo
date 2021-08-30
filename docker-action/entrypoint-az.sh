@@ -157,9 +157,6 @@ sleep 10s;
 echo "sleep concluded. continue processing..."
 echo "------------------------------------------"
 
-# set up quote variable for interpolation - fix later
-QUOTE="'"
-
 # if user doesn't pass any application jvm options, then just append the contrast security java agent location, else append the contrast java agent location with a space between the passed jvm options the user passes via input
 if [ -z "$AZURE_APPLICATION_JVM_OPTIONS" ]; then
     echo "No user-defined application jvm options passed"
