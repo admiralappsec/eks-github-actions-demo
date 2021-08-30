@@ -168,7 +168,7 @@ if [ -z "$AZURE_APPLICATION_JVM_OPTIONS" ]; then
 else
     echo "user passed in application-specific jvm options outside of contrast deployment"
     echo "appending contrast java agent location to user input..."
-    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="'""${AZURE_APPLICATION_JVM_OPTIONS} -javaagent:/persistent/apm/contrast.jar""'"
+    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="${AZURE_APPLICATION_JVM_OPTIONS} -javaagent:/persistent/apm/contrast.jar"
 fi
 
 # deploy sample file-upload jar into the Azure Spring Cloud application
