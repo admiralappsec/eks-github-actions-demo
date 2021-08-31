@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-set -x
+# set -x
 
 AZURE_APPLICATION_NAME=${1}
 AZURE_SPRING_CLOUD_SERVICE_NAME=${2}
@@ -26,38 +26,38 @@ GITHUB_DEVELOPER_BRANCH=${20}
 APPLICATION_MEMORY=${21}
 APPLICATION_INSTANCE_COUNT=${22}
 
-echo "printing environment variables..."
-printenv
+#echo "printing environment variables..."
+#printenv
 
-echo "entering docker-action directory..."
+#echo "entering docker-action directory..."
 cd docker-action
-echo "what is inside..."
-ls -l
-echo "creating docker image with the following inputs..."
+#echo "what is inside..."
+#ls -l
+#echo "creating docker image with the following inputs..."
 
-echo "azure-application-name: $AZURE_APPLICATION_NAME"
-echo "azure-spring-cloud-service-name: $AZURE_SPRING_CLOUD_SERVICE_NAME"
-echo "azure-application-artifact-location: $AZURE_APPLICATION_ARTIFACT_LOCATION"
-echo "azure-application-id: $AZURE_APPLICATION_ID"
-echo "azure-tenant-id: $AZURE_TENANT_ID"
-echo "azure-client-secret: $AZURE_CLIENT_SECRET"
-echo "azure-subscription-id: $AZURE_SUBSCRIPTION_ID"
-echo "azure-resource-group-name: $AZURE_RESOURCE_GROUP_NAME"
-echo "azure-region: $AZURE_REGION"
-echo "contrast-api-url: $CONTRAST_API_URL"
-echo "contrast-api-username: $CONTRAST_API_USERNAME"
-echo "contrast-api-api-key: $CONTRAST_API_API_KEY"
-echo "contrast-api-service-key: $CONTRAST_API_SERVICE_KEY"
-echo "contrast-agent-java-standalone-app-name: $CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME"
-echo "contrast-application-version: $CONTRAST_APPLICATION_VERSION"
-echo "azure-application-jvm-options: $AZURE_APPLICATION_JVM_OPTIONS"
-echo "contrast-security-credentials-file: $CONTRAST_SECURITY_CREDENTIALS_FILE"
-echo "azure-credentials-file: $AZURE_CREDENTIALS_FILE"
-echo "github-developer-token: $GITHUB_DEVELOPER_TOKEN"
-echo "github-user-repo: $GITHUB_USER_REPO"
-echo "github-developer-branch: $GITHUB_DEVELOPER_BRANCH"
-echo "application-memory: $APPLICATION_MEMORY"
-echo "application-instance-count: $APPLICATION_INSTANCE_COUNT"
+#echo "azure-application-name: $AZURE_APPLICATION_NAME"
+#echo "azure-spring-cloud-service-name: $AZURE_SPRING_CLOUD_SERVICE_NAME"
+#echo "azure-application-artifact-location: $AZURE_APPLICATION_ARTIFACT_LOCATION"
+#echo "azure-application-id: $AZURE_APPLICATION_ID"
+#echo "azure-tenant-id: $AZURE_TENANT_ID"
+#echo "azure-client-secret: $AZURE_CLIENT_SECRET"
+#echo "azure-subscription-id: $AZURE_SUBSCRIPTION_ID"
+#echo "azure-resource-group-name: $AZURE_RESOURCE_GROUP_NAME"
+#echo "azure-region: $AZURE_REGION"
+#echo "contrast-api-url: $CONTRAST_API_URL"
+#echo "contrast-api-username: $CONTRAST_API_USERNAME"
+#echo "contrast-api-api-key: $CONTRAST_API_API_KEY"
+#echo "contrast-api-service-key: $CONTRAST_API_SERVICE_KEY"
+#echo "contrast-agent-java-standalone-app-name: $CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME"
+#echo "contrast-application-version: $CONTRAST_APPLICATION_VERSION"
+#echo "azure-application-jvm-options: $AZURE_APPLICATION_JVM_OPTIONS"
+#echo "contrast-security-credentials-file: $CONTRAST_SECURITY_CREDENTIALS_FILE"
+#echo "azure-credentials-file: $AZURE_CREDENTIALS_FILE"
+#echo "github-developer-token: $GITHUB_DEVELOPER_TOKEN"
+#echo "github-user-repo: $GITHUB_USER_REPO"
+#echo "github-developer-branch: $GITHUB_DEVELOPER_BRANCH"
+#echo "application-memory: $APPLICATION_MEMORY"
+#echo "application-instance-count: $APPLICATION_INSTANCE_COUNT"
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-set -x
+#set -x
 
-printenv
+#printenv
 
-echo "mapping environment variables to inputs..."
+#echo "mapping environment variables to inputs..."
 
 if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
     echo "No Contrast Security credentials file passed via input."
@@ -12,14 +12,14 @@ if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
     echo "-----------------------------"
 else
     echo "$CONTRAST_SECURITY_CREDENTIALS_FILE" >> contrast.json
-    echo "contrast_security_credentials_file value:"
-    cat contrast.json
-    cat contrast.json | jq '.'
+#    echo "contrast_security_credentials_file value:"
+#    cat contrast.json
+#    cat contrast.json | jq '.'
     echo "Contrast Security credentials file found"
     echo "parsing configuration file and setting to environment variables..."
-    echo "quick test"
-    echo "-----------"
-    cat contrast.json | jq -r '.contrast_api_url'
+#    echo "quick test"
+#    echo "-----------"
+#    cat contrast.json | jq -r '.contrast_api_url'
     echo "mapping..."
     export CONTRAST_API_URL=$(cat contrast.json | jq -r '.contrast_api_url')
     export CONTRAST_API_USERNAME=$(cat contrast.json | jq -r '.contrast_api_username')
@@ -28,19 +28,19 @@ else
     export CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME=$(cat contrast.json | jq -r '.contrast_agent_java_standalone_app_name')
     export CONTRAST_APPLICATION_VERSION=$(cat contrast.json | jq -r '.contrast_application_version')
     echo "parsing and mapping complete."
-    echo "removing contrast.json..."
+#    echo "removing contrast.json..."
     rm -f contrast.json
     echo "-----------------------------"
 fi
 
-echo "results:"
-echo "contrast-api-url: $CONTRAST_API_URL"
-echo "contrast-api-username: $CONTRAST_API_USERNAME"
-echo "contrast-api-api-key: $CONTRAST_API_API_KEY"
-echo "contrast-api-service-key: $CONTRAST_API_SERICE_KEY"
-echo "contrast-agent-java-standalone-app-name: $CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME"
-echo "contrast-application-version: $CONTRAST_APPLICATION_VERSION"
-echo "---------------------------------"
+#echo "results:"
+#echo "contrast-api-url: $CONTRAST_API_URL"
+#echo "contrast-api-username: $CONTRAST_API_USERNAME"
+#echo "contrast-api-api-key: $CONTRAST_API_API_KEY"
+#echo "contrast-api-service-key: $CONTRAST_API_SERICE_KEY"
+#echo "contrast-agent-java-standalone-app-name: $CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME"
+#echo "contrast-application-version: $CONTRAST_APPLICATION_VERSION"
+#echo "---------------------------------"
 
 if [ -z "$AZURE_CREDENTIALS_FILE" ]; then
     echo "No Azure credentials file passed via input"
@@ -48,14 +48,14 @@ if [ -z "$AZURE_CREDENTIALS_FILE" ]; then
     echo "-----------------------------"
 else
     echo "$AZURE_CREDENTIALS_FILE" >> azure.json
-    echo "azure_credentials_file value:"
-    cat azure.json
-    cat azure.json | jq '.'
+#    echo "azure_credentials_file value:"
+#    cat azure.json
+#    cat azure.json | jq '.'
     echo "Azure configuration file found"
     echo "parsing configuration file and setting to environment variables..."
-    echo "quick test"
-    echo "-----------"
-    cat azure.json | jq -r '.azure_tenant_id'
+#    echo "quick test"
+#    echo "-----------"
+#    cat azure.json | jq -r '.azure_tenant_id'
     echo "mapping..."
     export AZURE_APPLICATION_ID=$(cat azure.json | jq -r '.azure_application_id')
     export AZURE_TENANT_ID=$(cat azure.json | jq -r '.azure_tenant_id')
@@ -65,24 +65,24 @@ else
     export AZURE_RESOURCE_GROUP_NAME=$(cat azure.json | jq -r '.azure_resource_group_name')
     # export AZURE_SP_SERVICE_NAME=$(cat azure.json | jq -r '.azure_spring_cloud_service_name')
     echo "parsing and mapping complete."
-    echo "removing azure.json..."
+#    echo "removing azure.json..."
     rm -f azure.json
     echo "-----------------------------"
 fi
 
-echo "results:"
-echo "azure-application-id: $AZURE_APPLICATION_ID"
-echo "azure-tenant-id: $AZURE_TENANT_ID"
-echo "azure-client-secret: $AZURE_CLIENT_SECRET"
-echo "azure-subscription-id: $AZURE_SUBSCRIPTION_ID"
-echo "azure-region: $AZURE_REGION"
-echo "azure-resource-group-name: $AZURE_RESOURCE_GROUP_NAME"
+#echo "results:"
+#echo "azure-application-id: $AZURE_APPLICATION_ID"
+#echo "azure-tenant-id: $AZURE_TENANT_ID"
+#echo "azure-client-secret: $AZURE_CLIENT_SECRET"
+#echo "azure-subscription-id: $AZURE_SUBSCRIPTION_ID"
+#echo "azure-region: $AZURE_REGION"
+#echo "azure-resource-group-name: $AZURE_RESOURCE_GROUP_NAME"
 # echo "azure-sp-service-name: $AZURE_SP_SERVICE_NAME"
-echo "---------------------------------"
+#echo "---------------------------------"
 
-echo "printing environment variables for testing..."
-printenv
-echo "-------------------------------------------"
+#echo "printing environment variables for testing..."
+#printenv
+#echo "-------------------------------------------"
 
 # install spring-cloud extension into azure cli
 echo "++installing azure spring-cloud extension into azure cli..."
@@ -140,9 +140,9 @@ curl -o application-artifact.jar https://${GITHUB_DEVELOPER_TOKEN}@raw.githubuse
 echo "successfully downloaded application artifact jar file"
 echo "-------------------------------------------"
 
-echo "checking file system..."
-ls -l
-echo "-------------------------------------------"
+#echo "checking file system..."
+#ls -l
+#echo "-------------------------------------------"
 
 # upload contrast Security jar file into application using file-upload jar
 # this is where the nodejs puppeteer script runs
@@ -182,10 +182,3 @@ echo "retrieving endpoint information..."
 echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
 echo "-------------------------------------------"
-
-# get contrast team server application url
-#echo "retrieving contrast team server application url..."
-#CONTRAST_TEAM_SERVER_APP_URL=$()
-#echo ${CONTRAST_TEAM_SERVER_APP_URL}
-#echo "successfully retrieved contrast team server app endpoint information"
-#echo "-------------------------------------------" 

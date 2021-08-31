@@ -1,12 +1,4 @@
-![Contrast Security](./images/contrast-security-original.png) ![Azure Spring Cloud](./images/Webp.net-resizeimage.png)
-
-<hr />
-
 # azure-spring-cloud-contrast-security-github-action
-
-<hr />
-
-[![.github/workflows/main.yml](https://github.com/admiralappsec/springone-github-action/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/admiralappsec/springone-github-action/actions/workflows/main.yml)
 
 <hr />
 
@@ -133,8 +125,16 @@ This github action deploys a java application with a Contrast Security Java Agen
   - Default: No Default Value
 - `github-developer-branch`
   - REQUIRED: NO
-  - Description: ""
-  - Default: 'main'  
+  - Description: "Repository branch the deployable artifact is located in"
+  - Default: 'main'
+- `application-memory`
+  - REQUIRED: NO
+  - Description: 'Memory allocated to application deployment'
+  - Default: '2'
+- `application-instance-count`
+  - REQUIRED: NO
+  - Description: 'Instance count allocated to application deployment'
+  - Default: '1'  
 ## Outputs
 
 - `time`
