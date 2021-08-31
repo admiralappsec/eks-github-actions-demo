@@ -1,0 +1,21 @@
+# on: [push]
+
+jobs:
+  deploy_with_contrast_job:
+    runs-on: ubuntu-latest
+    name: Deploy Azure Spring Cloud Application with Contrast Security
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Contrast Security Azure Spring Cloud Deployment
+        uses: ./ # Uses an action in the root directory
+        id: contrast-deployment
+        with:
+          github-developer-token: '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'
+          application-name: 'springone-petclinic-mark-testing'
+          spring-cloud-service-name: 'mark-spring-cloud-test'
+          application-artifact-location: 'spring-petclinic-2.4.5.jar'
+          contrast-security-credentials-file: '{"contrast_api_url": "https://eval.contrastsecurity.com/Contrast","contrast-api-username": "agent_a8cd7a84-5cc2-4df6-b5d9-c016cc2c6f53@Marktomczaorg","contrast-api-api-key": "DOeAUIavVy5NmqNA11bnuKemAq946yn7","contrast-api-service-key": "K7E3Y5QDM6MUMVUB","contrast-agent-java-standalone-app-name": "springone-workshop-petclinic-new","contrast-application-version": "1"}'
+          azure-credentials-file: '{"azure_application_id": "4d43ffdc-1eda-4bce-9796-8202eee0ed19","azure_tenant_id": "48d090fb-932b-4e13-9c76-4aa018e3e1e8","azure_client_secret": "zk_B-gb._08qz-IXu14ErB~JVcQed7~ASc","azure_subscription_id": "fa9b4730-faca-44b9-a408-28c675e4a6a1","azure_resource_group_name": "azure-spring-cloud-sa","azure_region": "EAST US"}'
