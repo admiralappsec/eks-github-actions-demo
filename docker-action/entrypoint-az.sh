@@ -135,13 +135,13 @@ echo "successfully downloaded contrast security java agent jar file"
 echo "-------------------------------------------"
 
 # download application artifact jar file
-echo "downloading application artifact jar file..."
-curl -o application-artifact.jar https://${GITHUB_DEVELOPER_TOKEN}@raw.githubusercontent.com/${GITHUB_USER_REPO}/${GITHUB_DEVELOPER_BRANCH}/${AZURE_APPLICATION_ARTIFACT_LOCATION}
-echo "successfully downloaded application artifact jar file"
-echo "-------------------------------------------"
+# echo "downloading application artifact jar file..."
+# curl -o application-artifact.jar https://${GITHUB_DEVELOPER_TOKEN}@raw.githubusercontent.com/${GITHUB_USER_REPO}/${GITHUB_DEVELOPER_BRANCH}/${AZURE_APPLICATION_ARTIFACT_LOCATION}
+# echo "successfully downloaded application artifact jar file"
+# echo "-------------------------------------------"
 
-# echo "checking file system..."
-# ls -l
+echo "checking file system..."
+ls -l
 # echo "-------------------------------------------"
 
 # upload contrast Security jar file into application using file-upload jar

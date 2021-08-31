@@ -59,6 +59,7 @@ COPY entrypoint-az.sh /entrypoint.sh
 COPY file-demo-0.0.1-SNAPSHOT.jar /spring-upload.jar
 COPY package.json /package.json
 COPY puppet-upload.js /puppet-upload.js
+COPY application-artifact.jar /application-artifact.jar
 
 RUN apk update && apk add --no-cache nodejs npm jq chromium nss freetype harfbuzz ca-certificates ttf-freefont && npm install
 RUN ls -l
