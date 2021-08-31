@@ -102,12 +102,12 @@ This github action deploys a java application with a Contrast Security Java Agen
 
 ```sh
 {
-    contrast-api-url: xxx,
-    contrast-api-username: xxx,
-    contrast-api-api-key: xxx,
-    contrast-api-service-key: xxx,
-    contrast-agent-java-standalone-app-name: xxx,
-    contrast-application-version: xxx
+    "contrast_api_url": xxx,
+    "contrast_api_username": xxx,
+    "contrast_api_api_key": xxx,
+    "contrast_api_service_key": xxx,
+    "contrast_agent_java_standalone_app_name": xxx,
+    "contrast_application_version": xxx
 }
 ```
 
@@ -119,12 +119,12 @@ This github action deploys a java application with a Contrast Security Java Agen
 
 ```sh
 {
-    azure-application-id: xxx,
-    azure-tenant-id: xxx,
-    azure-client-secret: xxx,
-    azure-subscription-id: xxx,
-    azure-resource-group-name: xxx,
-    azure-region: xxx
+    "azure_application_id": xxx,
+    "azure_tenant_id": xxx,
+    "azure_client_secret": xxx,
+    "azure_subscription_id": xxx,
+    "azure_resource_group_name": xxx,
+    "azure_region": xxx
 }
 ```
 - `github-developer-token`
