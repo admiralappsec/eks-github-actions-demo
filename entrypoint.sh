@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-set -x
+# set -x
 
 AZURE_APPLICATION_NAME=${1}
 AZURE_SPRING_CLOUD_SERVICE_NAME=${2}
@@ -26,15 +26,15 @@ GITHUB_DEVELOPER_BRANCH=${20}
 APPLICATION_MEMORY=${21}
 APPLICATION_INSTANCE_COUNT=${22}
 
-echo "printing environment variables..."
-printenv
+# echo "printing environment variables..."
+# printenv
 
-echo "file system..."
-ls -a
+# echo "file system..."
+# ls -a
 echo "entering docker-action directory..."
 cd /usr/bin/docker-action
-#echo "what is inside..."
-ls -l
+# echo "what is inside..."
+# ls -l
 #echo "creating docker image with the following inputs..."
 
 #echo "azure-application-name: $AZURE_APPLICATION_NAME"

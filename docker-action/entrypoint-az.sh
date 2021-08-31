@@ -1,10 +1,10 @@
 #!/bin/bash
 
-set -x
+# set -x
 
-printenv
+# printenv
 
-#echo "mapping environment variables to inputs..."
+# echo "mapping environment variables to inputs..."
 
 if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
     echo "No Contrast Security credentials file passed via input."
@@ -33,14 +33,14 @@ else
     echo "-----------------------------"
 fi
 
-#echo "results:"
-#echo "contrast-api-url: $CONTRAST_API_URL"
-#echo "contrast-api-username: $CONTRAST_API_USERNAME"
-#echo "contrast-api-api-key: $CONTRAST_API_API_KEY"
-#echo "contrast-api-service-key: $CONTRAST_API_SERICE_KEY"
-#echo "contrast-agent-java-standalone-app-name: $CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME"
-#echo "contrast-application-version: $CONTRAST_APPLICATION_VERSION"
-#echo "---------------------------------"
+# echo "results:"
+# echo "contrast-api-url: $CONTRAST_API_URL"
+# echo "contrast-api-username: $CONTRAST_API_USERNAME"
+# echo "contrast-api-api-key: $CONTRAST_API_API_KEY"
+# echo "contrast-api-service-key: $CONTRAST_API_SERICE_KEY"
+# echo "contrast-agent-java-standalone-app-name: $CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME"
+# echo "contrast-application-version: $CONTRAST_APPLICATION_VERSION"
+# echo "---------------------------------"
 
 if [ -z "$AZURE_CREDENTIALS_FILE" ]; then
     echo "No Azure credentials file passed via input"
@@ -70,19 +70,19 @@ else
     echo "-----------------------------"
 fi
 
-#echo "results:"
-#echo "azure-application-id: $AZURE_APPLICATION_ID"
-#echo "azure-tenant-id: $AZURE_TENANT_ID"
-#echo "azure-client-secret: $AZURE_CLIENT_SECRET"
-#echo "azure-subscription-id: $AZURE_SUBSCRIPTION_ID"
-#echo "azure-region: $AZURE_REGION"
-#echo "azure-resource-group-name: $AZURE_RESOURCE_GROUP_NAME"
+# echo "results:"
+# echo "azure-application-id: $AZURE_APPLICATION_ID"
+# echo "azure-tenant-id: $AZURE_TENANT_ID"
+# echo "azure-client-secret: $AZURE_CLIENT_SECRET"
+# echo "azure-subscription-id: $AZURE_SUBSCRIPTION_ID"
+# echo "azure-region: $AZURE_REGION"
+# echo "azure-resource-group-name: $AZURE_RESOURCE_GROUP_NAME"
 # echo "azure-sp-service-name: $AZURE_SP_SERVICE_NAME"
-#echo "---------------------------------"
+# echo "---------------------------------"
 
-#echo "printing environment variables for testing..."
-#printenv
-#echo "-------------------------------------------"
+# echo "printing environment variables for testing..."
+# printenv
+# echo "-------------------------------------------"
 
 # install spring-cloud extension into azure cli
 echo "++installing azure spring-cloud extension into azure cli..."
@@ -140,9 +140,9 @@ curl -o application-artifact.jar https://${GITHUB_DEVELOPER_TOKEN}@raw.githubuse
 echo "successfully downloaded application artifact jar file"
 echo "-------------------------------------------"
 
-#echo "checking file system..."
-#ls -l
-#echo "-------------------------------------------"
+# echo "checking file system..."
+# ls -l
+# echo "-------------------------------------------"
 
 # upload contrast Security jar file into application using file-upload jar
 # this is where the nodejs puppeteer script runs
