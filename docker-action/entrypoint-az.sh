@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# set -x
+set -x
 
-# printenv
+printenv
 
 # echo "mapping environment variables to inputs..."
 
