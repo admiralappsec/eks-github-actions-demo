@@ -20,10 +20,6 @@ This github action deploys a java application with a Contrast Security Java Agen
   - REQUIRED: YES
   - Description: "Azure Spring Cloud service name."
   - Default: No Default Value
-- `file-upload-artifact-location`
-  - REQUIRED: NO
-  - Description: "Location of the artifact used to upload the contrast.jar file. Location relative to /docker-action/Dockerfile."
-  - Default: No Default Value
 - `application-artifact-location`
   - REQUIRED: YES
   - Description: "Location of the deployable application artifact. Location relative to /docker-action/Dockerfile."
@@ -148,12 +144,12 @@ Can be found at these links:
 
 ```sh
 - name: Contrast Security Azure Spring Cloud Deployment
-        uses: ./ # Uses an action in the root directory - for testing purposes
+        uses: admiralappsec/springone-github-action@v1.3
         id: contrast-deployment
         with:
           application-name: <SPRING CLOUD APPLICATION NAME>
           spring-cloud-service-name: <SPRING CLOUD SERVICE NAME>
-          application-artifact-location: <DEPLOYABLE ARTIFACT - JAR>
+          application-artifact-location: <DEPLOYABLE ARTIFACT - JAR> #relative to '/github/workspace/'
           contrast-security-credentials-file: ${{ secrets.CONTRAST_CREDS_FILE }}
           azure-credentials-file: ${{ secrets.AZURE_CREDS_FILE }}
           github-developer-token: ${{ secrets.GITHUB_DEV_TOKEN }}

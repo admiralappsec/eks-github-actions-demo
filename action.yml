@@ -6,50 +6,72 @@ branding:
   color: 'gray-dark'
 inputs:
   application-name:
+    description: 'Name of the application deployed to Azure Spring Cloud'
     required: true
   spring-cloud-service-name:
+    description: 'Azure Spring Cloud service name'
     required: true
   application-artifact-location:
+    description: 'Location of the deployable application artifact. Location relative to /github/workspace/'
     required: true
   azure-application-id:
+    description: 'Azure application id (service principal, etc...)'
     required: false
   azure-tenant-id:
+    description: 'Azure tenant id (domain id)'
     required: false
   azure-client-secret:
+    description: 'Azure client secret'
     required: false
   azure-subscription-id:
+    description: 'Azure subscription id'
     required: false
-  azure-resource-group-name: 
+  azure-resource-group-name:
+    description: 'Azure resource group name' 
     required: false
   azure-region:
+    description: 'Azure region'
     required: false
   contrast-api-url:
+    description: 'Contrast Team Server URL'
     required: false
   contrast-api-username:
+    description: 'The username associated with the login for the Contrast Team Server API'
     required: false
   contrast-api-api-key:
+    description: 'The API key associated with the Contrast Security Team Server'
     required: false
   contrast-api-service-key:
+    description: 'API service key associated with Contrast Security Team Server'
     required: false
   contrast-agent-java-standalone-app-name:
+    description: 'Application name associated with Contrast Security Team Server'
     required: false
   contrast-application-version:
+    description: 'Application version associated with the Contrast Security Application on Team Server'
     required: false
   azure-application-jvm-options:
+    description: 'Deployable application jvm-options to pass to the Azure Spring Cloud PaaS deployment'
     required: false
   azure-credentials-file:
+    description: 'The configuration file location for Azure-specific logins, regions, etc...'
     required: false
   contrast-security-credentials-file:
+    description: 'The configuration file location for the Contrast Security Java Agent - used to communication with Contrast Security Team Server'
     required: false
   github-developer-token:
+    description: 'Personal development token to acces github API'
     required: true
   github-developer-branch:
+    description: 'Repository branch the deployable artifact is located in'
     required: false
     default: 'main'
   application-memory:
+    description: 'Memory allocated to application deployment'
     required: false
     default: '2'
   application-instance-count:
+    description: 'Instance count allocated to application deployment'
     required: false
     default: '1'
 outputs:
