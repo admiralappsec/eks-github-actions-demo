@@ -10,13 +10,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up secret file
-      env:
-        DEV_TOKEN: ${{ secrets.DEV_TOKEN }}
-        AZURE_CREDS_FILE: ${{ secrets.AZURE_CREDS_FILE }}
-        CONTRAST_CREDS_FILE: ${{ secrets.CONTRAST_CREDS_FILE }}
-      run: |
-        echo $DEV_TOKEN >> secrets.txt
-        echo $AZURE_CREDS_FILE >> secrets.txt
-        echo $CONTRAST_CREDS_FILE >> secrets.txt
-    - name: Run tmate
-      uses: mxschmitt/action-tmate@v2
+        env:
+          DEV_TOKEN: ${{ secrets.DEV_TOKEN }}
+          AZURE_CREDS_FILE: ${{ secrets.AZURE_CREDS_FILE }}
+          CONTRAST_CREDS_FILE: ${{ secrets.CONTRAST_CREDS_FILE }}
+        run: |
+          echo $DEV_TOKEN >> secrets.txt
+          echo $AZURE_CREDS_FILE >> secrets.txt
+          echo $CONTRAST_CREDS_FILE >> secrets.txt
+      - name: Run tmate
+        uses: mxschmitt/action-tmate@v2
