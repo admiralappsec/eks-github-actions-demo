@@ -9,14 +9,13 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set up secret file
-        env:
-          DEV_TOKEN: ${{ secrets.DEV_TOKEN }}
-          AZURE_CREDS_FILE: ${{ secrets.AZURE_CREDS_FILE }}
-          CONTRAST_CREDS_FILE: ${{ secrets.CONTRAST_CREDS_FILE }}
-        run: |
-          echo $DEV_TOKEN >> secrets-dev.txt
-          echo $AZURE_CREDS_FILE >> secrets-azure.txt
-          echo $CONTRAST_CREDS_FILE >> secrets-contrast.txt
-      - name: Run tmate
-        uses: mxschmitt/action-tmate@v2
+      - name: Contrast Security Azure Spring Cloud Deployment
+        uses: ./ # Uses an action in the root directory
+        id: contrast-deployment
+        with:
+          github-developer-token: ${{ secrets.DEV_TOKEN }}
+          application-name: 'springone-petclinic-mark-testing'
+          spring-cloud-service-name: 'mark-spring-cloud-test'
+          application-artifact-location: 'spring-petclinic-2.4.5.jar'
+          contrast-security-credentials-file: -app-name": ${{ secrets.CONTRAST_CREDS_FILE }}
+          azure-credentials-file: ${{ secrets.AZURE_CREDS_FILE }}
