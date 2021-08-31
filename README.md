@@ -1,7 +1,7 @@
 ![Contrast Security](./images/contrast-security-original.png) ![Azure Spring Cloud](./images/Webp.net-resizeimage.png)
 
 <hr />
-<hr />
+
 # azure-spring-cloud-contrast-security-github-action
 
 <hr />
