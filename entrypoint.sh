@@ -4,8 +4,8 @@ set -x
 
 AZURE_APPLICATION_NAME=${1}
 AZURE_SPRING_CLOUD_SERVICE_NAME=${2}
-# AZURE_APPLICATION_ARTIFACT_LOCATION=${3}
-AZURE_APPLICATION_ARTIFACT_LOCATION='/usr/bin/docker-action/application-artifact.jar'
+AZURE_APPLICATION_ARTIFACT_LOCATION=${3}
+#AZURE_APPLICATION_ARTIFACT_LOCATION='/usr/bin/docker-action/application-artifact.jar'
 AZURE_APPLICATION_ID=${4}
 AZURE_TENANT_ID=${5}
 AZURE_CLIENT_SECRET=${6}
@@ -32,6 +32,8 @@ APPLICATION_INSTANCE_COUNT=${22}
 
 # echo "file system..."
 # ls -a
+echo "copying input file from host into container file system..."
+cp $AZURE_APPLICATION_ARTIFACT_LOCATION /usr/bin/docker-action/application-artifact.jar
 echo "entering docker-action directory..."
 cd /usr/bin/docker-action
 echo "what is inside..."
