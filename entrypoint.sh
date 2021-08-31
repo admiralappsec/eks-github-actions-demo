@@ -33,10 +33,10 @@ APPLICATION_INSTANCE_COUNT=${22}
 # echo "file system..."
 # ls -a
 echo "see what is inside the working directory..."
-cd /home/runner/work/workshop-testing/workshop-testing/target
+cd /github/workspace/target
 ls -l
 echo "copying input file from host into container file system..."
-cp $AZURE_APPLICATION_ARTIFACT_LOCATION /usr/bin/docker-action/application-artifact.jar
+cp /github/workspace/$AZURE_APPLICATION_ARTIFACT_LOCATION /usr/bin/docker-action/application-artifact.jar
 echo "entering docker-action directory..."
 cd /usr/bin/docker-action
 echo "what is inside..."
