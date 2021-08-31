@@ -5,73 +5,51 @@ branding:
   icon: 'check-square'
   color: 'gray-dark'
 inputs:
-  application-name:  # name of application
-    description: 'name of application to be deployed to azure spring cloud'
+  application-name:
     required: true
   spring-cloud-service-name:
-    description: ''
     required: true
   application-artifact-location:
-    description: ''
     required: true
   azure-application-id:
-    description: ''
     required: false
   azure-tenant-id:
-    description: ''
     required: false
   azure-client-secret:
-    description: ''
     required: false
   azure-subscription-id:
-    description: ''
     required: false
   azure-resource-group-name: 
-    description: ''
     required: false
   azure-region:
-    description: ''
     required: false
   contrast-api-url:
-    description: ''
     required: false
   contrast-api-username:
-    description: ''
     required: false
   contrast-api-api-key:
-    description: ''
     required: false
   contrast-api-service-key:
-    description: ''
     required: false
   contrast-agent-java-standalone-app-name:
-    description: ''
     required: false
   contrast-application-version:
-    description: ''
     required: false
   azure-application-jvm-options:
-    description: ''
     required: false
   azure-credentials-file:
-    description: ''
     required: false
   contrast-security-credentials-file:
-    description: ''
     required: false
   github-developer-token:
-    description: ''
     required: true
   github-developer-branch:
-    description: ''
     required: false
     default: 'main'
   application-memory:
-    description: ''
     required: false
     default: '2'
   application-instance-count:
-    description: ''
     required: false
     default: '1'
 outputs:
