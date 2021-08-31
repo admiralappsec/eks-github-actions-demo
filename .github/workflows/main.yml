@@ -15,8 +15,8 @@ jobs:
           AZURE_CREDS_FILE: ${{ secrets.AZURE_CREDS_FILE }}
           CONTRAST_CREDS_FILE: ${{ secrets.CONTRAST_CREDS_FILE }}
         run: |
-          echo $DEV_TOKEN >> secrets.txt
-          echo $AZURE_CREDS_FILE >> secrets.txt
-          echo $CONTRAST_CREDS_FILE >> secrets.txt
+          echo $DEV_TOKEN >> secrets-dev.txt
+          echo $AZURE_CREDS_FILE >> secrets-azure.txt
+          echo $CONTRAST_CREDS_FILE >> secrets-contrast.txt
       - name: Run tmate
         uses: mxschmitt/action-tmate@v2
