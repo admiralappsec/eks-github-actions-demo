@@ -151,9 +151,9 @@ Can be found at these links:
         uses: ./ # Uses an action in the root directory - for testing purposes
         id: contrast-deployment
         with:
-          application-name: 'springone-petclinic-mark-testing'
-          spring-cloud-service-name: 'mark-spring-cloud-test'
-          application-artifact-location: 'spring-petclinic-2.4.5.jar'
+          application-name: <SPRING CLOUD APPLICATION NAME>
+          spring-cloud-service-name: <SPRING CLOUD SERVICE NAME>
+          application-artifact-location: <DEPLOYABLE ARTIFACT - JAR>
           contrast-security-credentials-file: ${{ secrets.CONTRAST_CREDS_FILE }}
           azure-credentials-file: ${{ secrets.AZURE_CREDS_FILE }}
           github-developer-token: ${{ secrets.GITHUB_DEV_TOKEN }}
