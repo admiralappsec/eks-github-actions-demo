@@ -1,8 +1,8 @@
 #!/bin/bash
 
-set -x
+# set -x
 
-printenv
+# printenv
 
 # echo "mapping environment variables to inputs..."
 
@@ -140,8 +140,8 @@ echo "-------------------------------------------"
 # echo "successfully downloaded application artifact jar file"
 # echo "-------------------------------------------"
 
-echo "checking file system..."
-ls -l
+# echo "checking file system..."
+# ls -l
 # echo "-------------------------------------------"
 
 # upload contrast Security jar file into application using file-upload jar
