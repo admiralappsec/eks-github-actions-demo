@@ -32,9 +32,9 @@ printenv
 echo "file system..."
 ls -a
 echo "entering docker-action directory..."
-cd docker-action
+cd /usr/bin/docker-action
 #echo "what is inside..."
-#ls -l
+ls -l
 #echo "creating docker image with the following inputs..."
 
 #echo "azure-application-name: $AZURE_APPLICATION_NAME"
