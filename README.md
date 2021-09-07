@@ -10,7 +10,9 @@ The automation is based off the sideloading solution found at this git repositor
 - A functioning Azure Spring Cloud Instance
 - A functioning Spring Configuration Server
 - A deployable java application artifact (JAR)
-- An Azure Service Principle with enough permissions to read and create an Azure Spring cloud instance, an Azure Spring Cloud application, deploy a JAR file to an Azure Spring Cloud application. 
+- An Azure Service Principle with enough permissions to:
+    - Read and create an Azure Spring Cloud application 
+    - Deploy a JAR file to an Azure Spring Cloud application 
 - A valid Contrast Security account
 - Prepopulated Contrast Security and Azure JSON objects - details within 'Inputs' section
 
