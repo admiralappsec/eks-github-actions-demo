@@ -31,10 +31,6 @@ inputs:
     description: 'Instance count allocated to application deployment'
     required: false
     default: '1'
-  github-developer-branch:
-    description: 'Repository branch the deployable artifact is located in'
-    required: false
-    default: 'main'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -47,4 +43,3 @@ runs:
     - ${{ inputs.application-jvm-options }}
     - ${{ inputs.application-memory }}
     - ${{ inputs.application-instance-count }}
-    - ${{ inputs.github-developer-branch }}

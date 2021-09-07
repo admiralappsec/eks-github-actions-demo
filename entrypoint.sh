@@ -10,7 +10,6 @@ AZURE_APPLICATION_ARTIFACT_LOCATION=${5}
 AZURE_APPLICATION_JVM_OPTIONS=${6}
 APPLICATION_MEMORY=${7}
 APPLICATION_INSTANCE_COUNT=${8}
-GITHUB_DEVELOPER_BRANCH=${9}
 
 # echo "printing environment variables..."
 #echo "--------------------------------------------------"
@@ -39,7 +38,6 @@ cd /usr/bin/docker-action
 #echo "azure-application-jvm-options: $AZURE_APPLICATION_JVM_OPTIONS"
 #echo "application-memory: $APPLICATION_MEMORY"
 #echo "application-instance-count: $APPLICATION_INSTANCE_COUNT"
-#echo "github-developer-branch: $GITHUB_DEVELOPER_BRANCH"
 #echo "--------------------------------------------------"
 
 echo "running docker build with passed arguments..."
@@ -47,4 +45,4 @@ echo "running docker build with passed arguments..."
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
-docker build -t docker-action --build-arg azure_application_name="$AZURE_APPLICATION_NAME" --build-arg azure_spring_cloud_service_name="$AZURE_SPRING_CLOUD_SERVICE_NAME" --build-arg azure_application_artifact_location="$AZURE_APPLICATION_ARTIFACT_LOCATION" --build-arg azure_application_jvm_options="$AZURE_APPLICATION_JVM_OPTIONS" --build-arg contrast_security_credentials_file="$CONTRAST_SECURITY_CREDENTIALS_FILE" --build-arg azure_credentials_file="$AZURE_CREDENTIALS_FILE" --build-arg github_developer_branch="$GITHUB_DEVELOPER_BRANCH" --build-arg application_memory="$APPLICATION_MEMORY" --build-arg application_instance_count="$APPLICATION_INSTANCE_COUNT" . && docker run docker-action
+docker build -t docker-action --build-arg azure_application_name="$AZURE_APPLICATION_NAME" --build-arg azure_spring_cloud_service_name="$AZURE_SPRING_CLOUD_SERVICE_NAME" --build-arg azure_application_artifact_location="$AZURE_APPLICATION_ARTIFACT_LOCATION" --build-arg azure_application_jvm_options="$AZURE_APPLICATION_JVM_OPTIONS" --build-arg contrast_security_credentials_file="$CONTRAST_SECURITY_CREDENTIALS_FILE" --build-arg azure_credentials_file="$AZURE_CREDENTIALS_FILE" --build-arg application_memory="$APPLICATION_MEMORY" --build-arg application_instance_count="$APPLICATION_INSTANCE_COUNT" . && docker run docker-action

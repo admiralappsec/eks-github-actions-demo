@@ -6,7 +6,6 @@ ARG azure_application_artifact_location
 ARG azure_application_jvm_options
 ARG contrast_security_credentials_file
 ARG azure_credentials_file
-ARG github_developer_branch
 ARG application_memory
 ARG application_instance_count
 
@@ -21,7 +20,6 @@ ENV AZURE_APPLICATION_ARTIFACT_LOCATION ${azure_application_artifact_location}
 ENV AZURE_SP_SERVICE_NAME ${azure_spring_cloud_service_name}   
 ENV CONTRAST_SECURITY_CREDENTIALS_FILE ${contrast_security_credentials_file}
 ENV AZURE_CREDENTIALS_FILE ${azure_credentials_file}
-ENV GITHUB_DEVELOPER_BRANCH ${github_developer_branch}
 ENV APPLICATION_MEMORY ${application_memory}
 ENV APPLICATION_INSTANCE_COUNT ${application_instance_count}
 
