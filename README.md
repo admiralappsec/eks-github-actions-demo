@@ -1,7 +1,7 @@
 # azure-spring-cloud-contrast-security-github-action
 
 This github action deploys a java application with a Contrast Security Java Agent (JAR) to the Azure Spring Cloud PaaS environment.
-If there is an existing application running on the PaaS with the same name as passed by the user via input, the new deployment will override the existing application deployment.
+If there is an existing application running on the PaaS with the same name as passed by the user via input, the new deployment will override the existing application deployment. Otherwise, a new application with the passed 'application-name' will be created within the Azure Spring Cloud instance prior to the deployment process.
 
 ## Prerequisites
 
