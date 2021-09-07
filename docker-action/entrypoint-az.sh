@@ -7,9 +7,8 @@
 # echo "mapping environment variables to inputs..."
 
 if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
-    echo "No Contrast Security credentials file passed via input."
-    echo "Using individual user inputs as environment variables."
-    echo "-----------------------------"
+    printf '%s\n' "No Contrast Security credentials file passed via input." >&2
+    exit 1
 else
     echo "$CONTRAST_SECURITY_CREDENTIALS_FILE" >> contrast.json
 #    echo "contrast_security_credentials_file value:"
@@ -43,9 +42,8 @@ fi
 # echo "---------------------------------"
 
 if [ -z "$AZURE_CREDENTIALS_FILE" ]; then
-    echo "No Azure credentials file passed via input"
-    echo "Using individual user inputs as environment variables."
-    echo "-----------------------------"
+    printf '%s\n' "No Azure credentials file passed via input." >&2
+    exit 1
 else
     echo "$AZURE_CREDENTIALS_FILE" >> azure.json
 #    echo "azure_credentials_file value:"
@@ -133,12 +131,6 @@ echo "downloading contrast security java agent jar file..."
 curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
 echo "successfully downloaded contrast security java agent jar file"
 echo "-------------------------------------------"
-
-# download application artifact jar file
-# echo "downloading application artifact jar file..."
-# curl -o application-artifact.jar https://${GITHUB_DEVELOPER_TOKEN}@raw.githubusercontent.com/${GITHUB_USER_REPO}/${GITHUB_DEVELOPER_BRANCH}/${AZURE_APPLICATION_ARTIFACT_LOCATION}
-# echo "successfully downloaded application artifact jar file"
-# echo "-------------------------------------------"
 
 # echo "checking file system..."
 # ls -l
