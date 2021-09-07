@@ -9,12 +9,9 @@ ARG azure_credentials_file
 ARG application_memory
 ARG application_instance_count
 
-ENV AZURE_ADAL_LOGGING_ENABLED=1
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV AZURE_APPLICATION_JVM_OPTIONS ${azure_application_jvm_options}
-ENV AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL "https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
-ENV AZURE_FILE_UPLOAD_ARTIFACT_LOCATION "/spring-upload.jar"
 ENV AZURE_APPLICATION_NAME ${azure_application_name}        
 ENV AZURE_APPLICATION_ARTIFACT_LOCATION ${azure_application_artifact_location} 
 ENV AZURE_SP_SERVICE_NAME ${azure_spring_cloud_service_name}   
