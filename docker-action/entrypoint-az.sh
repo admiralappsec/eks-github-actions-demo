@@ -6,8 +6,8 @@
 
 echo "creating environment variables from contants..."
 export AZURE_ADAL_LOGGING_ENABLED=1
-export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL "https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
-export AZURE_FILE_UPLOAD_ARTIFACT_LOCATION "/spring-upload.jar"
+export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
+export AZURE_FILE_UPLOAD_ARTIFACT_LOCATION="/spring-upload.jar"
 echo "-------------------------------------------"
 
 # echo "mapping environment variables to inputs..."
