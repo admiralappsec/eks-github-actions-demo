@@ -13,3 +13,5 @@ This phase provisions the docker container that will perform the automation pres
 ![phase-2](https://github.com/admiralappsec/springone-github-action/blob/main/diagrams/springone-ga2.png)
 
 ## Phase 3: Action Automation Flow
+
+This phase performs the automation of the github action. The action steps are highlighted below.
