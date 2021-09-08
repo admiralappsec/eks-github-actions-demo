@@ -87,6 +87,7 @@ Can be found at these links:
           spring-cloud-service-name: 'spring-cloud-test'
           contrast-security-credentials-file: ${{ secrets.CONTRAST_CREDS_FILE }}
           azure-credentials-file: ${{ secrets.AZURE_CREDS_FILE }}
+          application-artifact-location: '/target/*.jar'
 ```
 
 ## Development
