@@ -117,6 +117,11 @@ echo "-------------------------------------------"
 
 # update deployment yaml to include volume mount and init container logic
 echo "updating deployment manifests..."
+# verify that deployment is an application deployment
+## if application deployment present, add volume mounts
+## check if init container spec is present
+### if not, append new
+### if so, append to existing 
 echo "-------------------------------------------"
 
 # deploy application into the Azure Kubernetes Service platform
