@@ -4,12 +4,6 @@
 
 # printenv
 
-echo "creating environment variables from contants..."
-export AZURE_ADAL_LOGGING_ENABLED=1
-export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
-export AZURE_FILE_UPLOAD_ARTIFACT_LOCATION="/spring-upload.jar"
-echo "-------------------------------------------"
-
 # echo "mapping environment variables to inputs..."
 
 if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
@@ -88,10 +82,10 @@ fi
 # printenv
 # echo "-------------------------------------------"
 
-# install spring-cloud extension into azure cli
-echo "++installing azure spring-cloud extension into azure cli..."
-az extension add --name spring-cloud;
-echo "++successfully installed spring-cloud extension"
+# install azure kubernetes service cli
+echo "++installing azure kubernetes service cli..."
+az aks install-cli;
+echo "++successfully installed azure kubernetes service cli"
 echo "-------------------------------------------"
 
 # log into azure cli using service principal and secret
@@ -106,77 +100,34 @@ az account set --subscription "${AZURE_SUBSCRIPTION_ID}";
 echo "++successfully set subscription to cli interaction"
 echo "-------------------------------------------"
 
-# configure default resource group for spring cloud interaction on cli
-echo "setting default resource group for spring cloud interaction..."
-az configure --defaults group="${AZURE_RESOURCE_GROUP_NAME}" spring-cloud="${AZURE_SP_SERVICE_NAME}"; 
-echo "successfully set default resource group for spring cloud interaction"
+# configure kubectl to connect to AKS cluster
+echo "configuring kubectl..."
+az aks get-credentials --resource-group <RESOURCE GROUP> --name <AKS CLUSTER NAME>
 echo "-------------------------------------------"
 
-# create spring cloud application and assign specs
-echo "creating spring cloud application..."
-# az spring-cloud app create --name "${AZURE_APPLICATION_NAME}" --service "${AZURE_SP_SERVICE_NAME}" -g ${AZURE_RESOURCE_GROUP_NAME} --instance-count 1 --is-public true --memory 2 --jvm-options='-Xms2048m -Xmx2048m' --enable-persistent-storage true --assign-endpoint;
-az spring-cloud app create --name "${AZURE_APPLICATION_NAME}" --instance-count "${APPLICATION_INSTANCE_COUNT}" --is-public true --memory "${APPLICATION_MEMORY}" --jvm-options='-Xms2048m -Xmx2048m' --enable-persistent-storage true
-echo "successfully created spring cloud application"
+# check cluster nodes
+echo "checking cluster nodes..."
+kubectl get nodes
 echo "-------------------------------------------"
 
-# deploy sample file-upload jar into the Azure Spring Cloud application
-echo "deploying sample file-upload jar..."
-az spring-cloud app deploy --name "${AZURE_APPLICATION_NAME}" --jar-path "${AZURE_FILE_UPLOAD_ARTIFACT_LOCATION}" --verbose
-echo "successfully deployed sample file-upload jar"
+# deploy Contrast Security secret
+echo "creating Contrast Security secret..."
+kubectl apply -f <MANIFEST>
 echo "-------------------------------------------"
 
-# get application endpoint for jar upload
+# update deployment yaml to include volume mount and init container logic
+echo "updating deployment manifests..."
+echo "-------------------------------------------"
+
+# deploy application into the Azure Kubernetes Service platform
+echo "deploying application manifests..."
+kubectl apply -f <MANIFEST FILES>
+echo "successfully deployed application to aks cluster"
+echo "-------------------------------------------"
+
+# get application endpoint for kubernetes deployment
 echo "retrieving endpoint information..."
-AZURE_APPLICATION_URL="https://${AZURE_SP_SERVICE_NAME}-${AZURE_APPLICATION_NAME}.azuremicroservices.io"
-echo ${AZURE_APPLICATION_URL}
-echo "successfully retrieved endpoint information"
-echo "-------------------------------------------"
-
-# download constrast security jar file
-echo "downloading contrast security java agent jar file..."
-curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
-echo "successfully downloaded contrast security java agent jar file"
-echo "-------------------------------------------"
-
-# echo "checking file system..."
-# ls -l
-# echo "-------------------------------------------"
-
-# upload contrast Security jar file into application using file-upload jar
-# this is where the nodejs puppeteer script runs
-echo "running puppet-upload.js script..."
-node puppet-upload.js --url "${AZURE_APPLICATION_URL}" --headless false --contrast-upload-file 'contrast.jar'
-echo "puppet-upload.js script successfully completed."
-echo "-------------------------------------------"
-
-# wait for script to complete - 10 seconds
-echo "waiting for 10 seconds..."
-sleep 10s;
-echo "sleep concluded. continue processing..."
-echo "------------------------------------------"
-
-# if user doesn't pass any application jvm options, then just append the contrast security java agent location, else append the contrast java agent location with a space between the passed jvm options the user passes via input
-if [ -z "$AZURE_APPLICATION_JVM_OPTIONS" ]; then
-    echo "No user-defined application jvm options passed"
-    echo "using -javaagent:/persistent/apm/contrast.jar..."
-    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="-javaagent:/persistent/apm/contrast.jar"
-else
-    echo "user passed in application-specific jvm options outside of contrast deployment"
-    echo "appending contrast java agent location to user input..."
-    END_RESULT_AZURE_APPLICATION_JVM_OPTIONS="${AZURE_APPLICATION_JVM_OPTIONS} -javaagent:/persistent/apm/contrast.jar"
-fi
-
-END_JVM_OPTIONS="$END_RESULT_AZURE_APPLICATION_JVM_OPTIONS"
-
-# deploy sample file-upload jar into the Azure Spring Cloud application
-echo "deploying application jar..."
-az spring-cloud app deploy --name ${AZURE_APPLICATION_NAME} --jar-path application-artifact.jar --jvm-options="${END_JVM_OPTIONS}" --env CONTRAST__API__URL=${CONTRAST_API_URL} CONTRAST__API__USER_NAME=${CONTRAST_API_USERNAME} CONTRAST__API__API_KEY=${CONTRAST_API_API_KEY} CONTRAST__API__SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST__AGENT__JAVA__STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST__APPLICATION__VERSION=${CONTRAST_APPLICATION_VERSION} CONTRAST__AGENT__LOGGER__STDERR=true --verbose
-echo "successfully deployed application jar"
-echo "-------------------------------------------"
-
-# get application endpoint for jar upload
-echo "retrieving endpoint information..."
-#az spring-cloud app show --name "${AZURE_APPLICATION_NAME}" | grep url
+AZURE_APPLICATION_URL=$(kubectl describe svc <SERVICE NAME> | grep IP)
 echo ${AZURE_APPLICATION_URL}
 echo "successfully retrieved endpoint information"
 echo "-------------------------------------------"
