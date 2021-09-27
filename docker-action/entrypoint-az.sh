@@ -4,6 +4,11 @@
 
 # printenv
 
+echo "creating environment variables from constants..."
+export AZURE_ADAL_LOGGING_ENABLED=1
+export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
+echo "-------------------------------------------"
+
 # echo "mapping environment variables to inputs..."
 
 if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
@@ -55,13 +60,14 @@ else
 #    echo "-----------"
 #    cat azure.json | jq -r '.azure_tenant_id'
     echo "mapping..."
-    export AZURE_APPLICATION_ID=$(cat azure.json | jq -r '.azure_application_id')
+    export AZURE_CONTAINER_REGISTRY=$(cat azure.json | jq -r '.azure_container_registry')
     export AZURE_TENANT_ID=$(cat azure.json | jq -r '.azure_tenant_id')
     export AZURE_CLIENT_SECRET=$(cat azure.json | jq -r '.azure_client_secret')
     export AZURE_SUBSCRIPTION_ID=$(cat azure.json | jq -r '.azure_subscription_id')
     export AZURE_REGION=$(cat azure.json | jq -r '.azure_region')
     export AZURE_RESOURCE_GROUP_NAME=$(cat azure.json | jq -r '.azure_resource_group_name')
-    # export AZURE_SP_SERVICE_NAME=$(cat azure.json | jq -r '.azure_spring_cloud_service_name')
+    export AZURE_REGISTRY_PASSWORD=$(cat azure.json | jq -r '.azure_registry_password')
+    export AZURE_REGISTRY_USERNAME=$(cat azure.json | jq -r '.azure_registry_username')
     echo "parsing and mapping complete."
 #    echo "removing azure.json..."
     rm -f azure.json
@@ -78,9 +84,59 @@ fi
 # echo "azure-sp-service-name: $AZURE_SP_SERVICE_NAME"
 # echo "---------------------------------"
 
+#if [ -z "$APPLICATION_DOCKERFILE" ]; then
+#    printf '%s\n' "No Dockerfile passed via input." >&2
+#    exit 1
+#fi
+
+if [ -z "$APPLICATION_IMAGE_OUTPUT_NAME_TAG" ]; then
+    printf '%s\n' "No docker image name/tag passed via input." >&2
+    exit 1
+fi
+
+if [ -z "$APPLICATION_MANIFESTS" ]; then
+    printf '%s\n' "No kubernetes application manifests passed via input." >&2
+    exit 1
+fi
+
 # echo "printing environment variables for testing..."
 # printenv
 # echo "-------------------------------------------"
+
+# docker build using passed application dockerfile and image name/tag
+echo "++application docker build started..."
+docker build -t application-docker-image .
+echo "++application docker build successfully completed."
+echo "-------------------------------------------"
+
+# download Contrast Security java agent
+echo "++downloading contrast security java agent..."
+curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
+echo "++successfully downloaded contrast security java agent."
+echo "-------------------------------------------"
+
+# inject contrast agent into new application image
+echo "injecting contrast security agent..."
+docker run application-docker-image
+docker cp contrast.jar application-docker-image:/opt/contrast/
+echo "-------------------------------------------"
+
+# create image from running container
+echo "creating container image from running container..."
+docker commit application-docker-image ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}
+echo "-------------------------------------------"
+
+# docker login to container registry url
+echo "logging into container registry..."
+docker login ${AZURE_CONTAINER_REGISTRY} -u ${AZURE_CONTAINER_USERNAME} -p ${AZURE_CONTAINER_PASSWORD} 
+echo "successfully logged into container registry."
+echo "-------------------------------------------"
+
+# docker push to registry url
+echo "pushing image to container registry..."
+docker push ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}
+echo "successfully pushed container image to registry."
+echo "-------------------------------------------"
 
 # install azure kubernetes service cli
 echo "++installing azure kubernetes service cli..."
@@ -102,7 +158,7 @@ echo "-------------------------------------------"
 
 # configure kubectl to connect to AKS cluster
 echo "configuring kubectl..."
-az aks get-credentials --resource-group <RESOURCE GROUP> --name <AKS CLUSTER NAME>
+az aks get-credentials --resource-group ${AZURE_RESOURCE_GROUP_NAME} --name ${CLUSTER_NAME}
 echo "-------------------------------------------"
 
 # check cluster nodes
@@ -112,7 +168,8 @@ echo "-------------------------------------------"
 
 # deploy Contrast Security secret
 echo "creating Contrast Security secret..."
-kubectl apply -f <MANIFEST>
+<CREATE SECRETS FILE>
+kubectl apply -f <CREATE SECRET>
 echo "-------------------------------------------"
 
 # update deployment yaml to include volume mount and init container logic
@@ -126,7 +183,7 @@ echo "-------------------------------------------"
 
 # deploy application into the Azure Kubernetes Service platform
 echo "deploying application manifests..."
-kubectl apply -f <MANIFEST FILES>
+kubectl apply -f ${APPLICATION_MANIFESTS}
 echo "successfully deployed application to aks cluster"
 echo "-------------------------------------------"
 
