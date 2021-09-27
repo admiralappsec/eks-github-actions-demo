@@ -24,7 +24,7 @@ spec:
               memory: 2048Mi
               cpu: 2
           ports:
-            - containerPort: 8080
+            - containerPort: 9999
 status: {}
 ---
 apiVersion: v1
@@ -37,6 +37,6 @@ spec:
     app: petclinic
   ports:
     - port: 8080
-      targetPort: 8080
+      targetPort: 9999
       protocol: TCP
       name: http
