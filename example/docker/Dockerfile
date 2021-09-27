@@ -6,7 +6,7 @@ ENV APP_VERSION ${APP_VERSION}
 
 RUN mkdir -p /opt/app
 
-ADD target/spring-petclinic-$APP_VERSION.jar /opt/app
+ADD spring-petclinic-$APP_VERSION.jar /opt/app
 
 #RUN mkdir -p /opt/contrast
 #ADD target/lib/contrast.jar /opt/contrast/
