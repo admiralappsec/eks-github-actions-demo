@@ -167,9 +167,10 @@ kubectl get nodes
 echo "-------------------------------------------"
 
 # deploy Contrast Security secret
-echo "creating Contrast Security secret..."
-<CREATE SECRETS FILE>
-kubectl apply -f <CREATE SECRET>
+echo "replacing secret file placeholders with inputs from user..."
+
+echo "creating Contrast Security secret from file..."
+kubectl create secret generic contrast-security --from-file=./contrast_security.yaml
 echo "-------------------------------------------"
 
 # update deployment yaml to include volume mount and init container logic
