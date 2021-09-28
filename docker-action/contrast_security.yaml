@@ -2,4 +2,4 @@ api:
   url: ${CONTRAST_TEAM_SERVER_URL}
   api_key: ${API_KEY}
   service_key: ${SERVICE_KEY}
-  user_name: ${CONTRAST_TEAM_SERVER_NAME}
+  user_name: ${CONTRAST_TEAM_USERNAME}

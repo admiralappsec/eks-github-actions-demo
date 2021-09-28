@@ -168,7 +168,10 @@ echo "-------------------------------------------"
 
 # deploy Contrast Security secret
 echo "replacing secret file placeholders with inputs from user..."
-
+sed -i "s/${CONTRAST_TEAM_SERVER_URL}/${CONTRAST_API_URL}/g" contrast_security.yaml
+sed -i "s/${API_KEY}/${CONTRAST_API_API_KEY}/g" contrast_security.yaml
+sed -i "s/${SERVICE_KEY}/${CONTRAST_API_SERVICE_KEY}/g" contrast_security.yaml
+sed -i "s/${CONTRAST_TEAM_USERNAME}/${CONTRAST_API_USERNAME}/g" contrast_security.yaml
 echo "creating Contrast Security secret from file..."
 kubectl create secret generic contrast-security --from-file=./contrast_security.yaml
 echo "-------------------------------------------"
