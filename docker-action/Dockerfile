@@ -17,5 +17,6 @@ ENV CLUSTER_NAME ${cluster_name}
 COPY entrypoint-az.sh /entrypoint.sh
 COPY /application-dockerfile/Dockerfile /Dockerfile
 COPY /application-manifests/deployment.yaml /deployment.yaml
+COPY contrast_security.yaml /contrast_security.yaml
 
 ENTRYPOINT ["/entrypoint.sh"]
