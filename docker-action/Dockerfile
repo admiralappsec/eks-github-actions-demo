@@ -15,7 +15,6 @@ ENV APPLICATION_OUTPUT_IMAGE_NAME_TAG ${application_output_image_name_tag}
 ENV CLUSTER_NAME ${cluster_name}
 
 RUN apk update && apk add --no-cache sed docker
-RUN rc-update add docker boot
 
 COPY entrypoint-az.sh /opt/entrypoint.sh
 COPY /application-dockerfile/Dockerfile /opt/Dockerfile
