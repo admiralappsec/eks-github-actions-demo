@@ -104,6 +104,7 @@ fi
 # echo "-------------------------------------------"
 
 echo "file system contents..."
+cd /opt
 ls -l
 cat Dockerfile
 

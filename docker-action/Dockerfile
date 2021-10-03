@@ -16,9 +16,9 @@ ENV CLUSTER_NAME ${cluster_name}
 
 RUN apk update && apk add --no-cache sed docker
 
-COPY entrypoint-az.sh /entrypoint.sh
-COPY /application-dockerfile/Dockerfile /Dockerfile
-COPY /application-manifests/deployment.yaml /deployment.yaml
-COPY contrast_security.yaml /contrast_security.yaml
+COPY entrypoint-az.sh /opt/entrypoint.sh
+COPY /application-dockerfile/Dockerfile /opt/Dockerfile
+COPY /application-manifests/deployment.yaml /opt/deployment.yaml
+COPY contrast_security.yaml /opt/contrast_security.yaml
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/opt/entrypoint.sh"]
