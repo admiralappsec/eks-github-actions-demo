@@ -108,6 +108,10 @@ cd /opt
 ls -l
 cat Dockerfile
 
+docker version
+docker ps
+docker images
+
 # docker build using passed application dockerfile and image name/tag
 echo "++application docker build started..."
 docker build -t application-docker-image .
