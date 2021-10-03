@@ -4,6 +4,8 @@ set -x
 
 printenv
 
+hostnamectl
+
 echo "creating environment variables from constants..."
 export AZURE_ADAL_LOGGING_ENABLED=1
 export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
