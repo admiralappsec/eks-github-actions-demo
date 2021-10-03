@@ -103,6 +103,10 @@ fi
 # printenv
 # echo "-------------------------------------------"
 
+echo "file system contents..."
+ls -l
+cat Dockerfile
+
 # docker build using passed application dockerfile and image name/tag
 echo "++application docker build started..."
 docker build -t application-docker-image .
