@@ -1,0 +1,30 @@
+name: Build and Deploy Java app to Azure Kubernetes Service
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME_TAG: 'aks-petclinic-mark-testing:contrast1'
+  APPLICATION_MANIFEST: '/example/kubernetes/petclinic.yaml'
+  APPLICATION_DOCKERFILE: '/example/docker/Dockerfile'
+  CLUSTER_NAME: 'aks-mark-testing-ga'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Contrast Security Azure Kubernetes Service Build-Deploy
+      uses: admiralappsec/aks-github-action@main
+      id: contrast-build-deploy
+      with:
+        application-manifest: ${{ env.APPLICATION_MANIFEST }}
+        application-dockerfile: ${{ env.APPLICATION_DOCKERFILE }}
+        application-output-image-name-tag: ${{ env.IMAGE_NAME_TAG }}
+        cluster-name: ${{ env.CLUSTER_NAME }}
+        contrast-security-credentials-file: ${{ secrets.CONTRAST_CREDS_FILE }}
+        azure-credentials-file: ${{ secrets.AZURE_CREDS_FILE }}
