@@ -16,6 +16,9 @@ CLUSTER_NAME=${6}
 
 # echo "file system..."
 # ls -a
+echo "creating file locations..."
+mkdir /usr/bin/docker-action/application-dockerfile/
+mkdir /usr/bin/docker-action/application-manifests/
 echo "copying user-defined dockerfile into container filesystem..."
 cp /github/workspace/${APPLICATION_DOCKERFILE} /usr/bin/docker-action/application-dockerfile/Dockerfile
 echo "entering docker-action directory..."
