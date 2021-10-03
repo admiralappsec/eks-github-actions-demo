@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# set -x
+set -x
 
-# printenv
+printenv
 
 echo "creating environment variables from constants..."
 export AZURE_ADAL_LOGGING_ENABLED=1
@@ -90,12 +90,12 @@ fi
 #fi
 
 if [ -z "$APPLICATION_IMAGE_OUTPUT_NAME_TAG" ]; then
-    printf '%s\n' "No docker image name/tag passed via input." >&2
+    printf '%s\n' "No docker image name/tag passed via input. Exiting..." >&2
     exit 1
 fi
 
 if [ -z "$APPLICATION_MANIFESTS" ]; then
-    printf '%s\n' "No kubernetes application manifests passed via input." >&2
+    printf '%s\n' "No kubernetes application manifests passed via input. Exiting..." >&2
     exit 1
 fi
 
