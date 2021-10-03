@@ -108,7 +108,7 @@ cd /opt
 ls -l
 cat Dockerfile
 
-sudo service docker status
+su service docker status
 
 docker version
 docker ps
