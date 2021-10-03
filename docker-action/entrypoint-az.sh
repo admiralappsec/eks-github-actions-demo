@@ -122,7 +122,7 @@ echo "-------------------------------------------"
 
 # inject contrast agent into new application image
 echo "injecting contrast security agent..."
-docker run application-docker-image -d
+docker run -d application-docker-image
 docker cp contrast.jar application-docker-image:/opt/contrast/
 echo "-------------------------------------------"
 
