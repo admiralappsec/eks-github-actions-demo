@@ -10,6 +10,7 @@ env:
   APPLICATION_MANIFEST: '/example/kubernetes/petclinic.yaml'
   APPLICATION_DOCKERFILE: '/example/docker/Dockerfile'
   CLUSTER_NAME: 'aks-mark-testing-ga'
+  APPLICATION_ARTIFACT: '/example/docker/spring-petclinic-1.5.1.jar'
 
 jobs:
   build-and-deploy:
@@ -28,3 +29,4 @@ jobs:
         cluster-name: ${{ env.CLUSTER_NAME }}
         contrast-security-credentials-file: ${{ secrets.CONTRAST_CREDS_FILE }}
         azure-credentials-file: ${{ secrets.AZURE_CREDS_FILE }}
+        application-artifact: ${{ env.APPLICATION_ARTIFACT }}
