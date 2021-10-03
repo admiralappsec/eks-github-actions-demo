@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-# set -x
+set -x
 
 AZURE_CREDENTIALS_FILE=${1}
 CONTRAST_SECURITY_CREDENTIALS_FILE=${2}
@@ -29,9 +29,11 @@ ls -l
 echo "what is inside - application-dockerfile..."
 cd /usr/bin/docker-action/application-dockerfile/
 ls -l
+cat /usr/bin/docker-action/application-dockerfile/Dockerfile
 echo "what is inside - application-manifests..."
 cd /usr/bin/docker-action/application-manifests/
 ls -l
+cat /usr/bin/docker-action/application-manifests/deployment.yaml
 
 echo "go into build directory..."
 cd /usr/bin/docker-action

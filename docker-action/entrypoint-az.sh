@@ -89,7 +89,7 @@ fi
 #    exit 1
 #fi
 
-if [ -z "$APPLICATION_IMAGE_OUTPUT_NAME_TAG" ]; then
+if [ -z "$APPLICATION_OUTPUT_IMAGE_NAME_TAG" ]; then
     printf '%s\n' "No docker image name/tag passed via input. Exiting..." >&2
     exit 1
 fi
