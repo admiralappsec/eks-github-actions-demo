@@ -121,9 +121,12 @@ echo "++successfully downloaded contrast security java agent."
 echo "-------------------------------------------"
 
 # inject contrast agent into new application image
-echo "injecting contrast security agent..."
+echo "running container image..."
 docker run -d application-docker-image
-docker cp contrast.jar application-docker-image:/opt/contrast/
+echo "getting running container id..."
+RUNNING_CONTAINER_ID=$(docker inspect -f '{{.Id}}' application-docker-image)
+echo "injecting contrast security agent jar..."
+docker cp contrast.jar $RUNNING_CONTAINER_ID:/opt/contrast/
 echo "-------------------------------------------"
 
 # create image from running container
