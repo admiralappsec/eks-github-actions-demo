@@ -108,15 +108,13 @@ cd /opt
 ls -l
 cat Dockerfile
 
-su service docker status
-
-docker version
-docker ps
-docker images
+su docker version
+su docker ps
+su docker images
 
 # docker build using passed application dockerfile and image name/tag
 echo "++application docker build started..."
-docker build -t application-docker-image .
+su docker build -t application-docker-image .
 echo "++application docker build successfully completed."
 echo "-------------------------------------------"
 
