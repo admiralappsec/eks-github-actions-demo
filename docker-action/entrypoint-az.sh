@@ -125,7 +125,7 @@ echo "running container image..."
 docker run -d application-docker-image
 echo "getting running container id..."
 #RUNNING_CONTAINER_ID=$(docker inspect -f '{{.Id}}' application-docker-image)
-RUNNING_CONTAINER_ID=$(docker ps -aqf "name=^application-docker-image$")
+RUNNING_CONTAINER_ID=$(docker ps -aqf "name=application-docker-image")
 echo "waiting 5 seconds..."
 sleep 5
 docker ps
@@ -135,7 +135,7 @@ echo "-------------------------------------------"
 
 # create image from running container
 echo "creating container image from running container..."
-docker commit application-docker-image ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}
+docker commit $RUNNING_CONTAINER_ID ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}
 echo "-------------------------------------------"
 
 # docker login to container registry url
