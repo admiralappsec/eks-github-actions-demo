@@ -24,6 +24,6 @@ COPY entrypoint-az.sh /opt/entrypoint.sh
 COPY /application-dockerfile/Dockerfile /opt/Dockerfile
 COPY /application-manifests/deployment.yaml /opt/deployment.yaml
 COPY contrast_security.yaml /opt/contrast_security.yaml
-COPY /application-dockerfile${APPLICATION_ARTIFACT} /opt/${APPLICATION_ARTIFACT_2}
+COPY /application-dockerfile/${APPLICATION_ARTIFACT_2} /opt/${APPLICATION_ARTIFACT_2}
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
