@@ -199,12 +199,12 @@ echo "-------------------------------------------"
 
 # deploy application into the Azure Kubernetes Service platform
 echo "++deploying application manifests..."
-startDeploy='deployment.apps'
-endSD='c'
-startService='service'
+startDeploy='deployment.apps/'
+endSD=' '
+startService='service/'
 KUBECTL_RESULTS=$(kubectl apply -f '/opt/deployment.yaml')
-DEPLOYMENT_NAME=$(echo "$KUBECTL_RESULTS" | sed -E "s/.*$startDeploy (.*) $endSD.*/\1/")
-SERVICE_NAME=$(echo "$KUBECTL_RESULTS" | sed -E "s/.*$startService (.*) $endSD.*/\1/")
+DEPLOYMENT_NAME=$(awk -F"$startDeploy | $endSD" '{print $2}' <<< "$KUBECTL_RESULTS")
+SERVICE_NAME=$(awk -F"$startService | $endSD" '{print $2}' <<< "$KUBECTL_RESULTS")
 kubectl get deployments
 kubectl describe deployments $DEPLOYMENT_NAME
 # THIS IS WHERE YOU GET THE CONTAINER NAME FOR THE SET IMAGE COMMAND!!! REPLACE BELOW!!!
