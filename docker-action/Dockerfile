@@ -18,7 +18,7 @@ ENV CLUSTER_NAME ${cluster_name}
 ENV APPLICATION_ARTIFACT ${application_artifact}
 ENV APPLICATION_ARTIFACT_2 ${application_artifact_2}
 
-RUN apk update && apk add --no-cache sed docker
+RUN apk update && apk add --no-cache sed docker gawk
 
 COPY entrypoint-az.sh /opt/entrypoint.sh
 COPY /application-dockerfile/Dockerfile /opt/Dockerfile
