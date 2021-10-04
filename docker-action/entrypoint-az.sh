@@ -213,15 +213,15 @@ echo "-------------------------------------------"
 
 # update deployment with secret/environment variables and updated image
 echo "updating deployment $DEPLOYMENT_NAME with image..."
-kubectl set image deployment/$DEPLOYMENT_NAME $DEPLOYMENT_NAME=${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG} --record
+kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG} --record
 kubectl rollout status deployment $DEPLOYMENT_NAME
 kubectl get deployments
-echo "++updated deployment $DEPLOYMENT_NAME image to ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}"
+echo "++updated deployment $DEPLOYMENT_NAME container $CONTAINER_NAME image to ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}"
 echo "-------------------------------------------"
 
 # get application endpoint for kubernetes deployment
 echo "++retrieving endpoint information..."
-AZURE_APPLICATION_URL=$(kubectl describe svc $SERVICE_NAME | grep IP)
+AZURE_APPLICATION_URL=$(kubectl describe svc $SERVICE_NAME)
 echo ${AZURE_APPLICATION_URL}
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
