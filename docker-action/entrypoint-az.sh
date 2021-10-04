@@ -178,32 +178,38 @@ echo "-------------------------------------------"
 # check cluster nodes
 echo "checking cluster nodes..."
 kubectl get nodes
+kubectl get deployments
 echo "-------------------------------------------"
 
 # deploy Contrast Security secret
-echo "replacing secret file placeholders with inputs from user..."
-sed -i "s/__CONTRAST_TEAM_SERVER_URL__/${CONTRAST_API_URL}/g" contrast_security.yaml
-sed -i "s/__API_KEY__/${CONTRAST_API_API_KEY}/g" contrast_security.yaml
-sed -i "s/__SERVICE_KEY__/${CONTRAST_API_SERVICE_KEY}/g" contrast_security.yaml
-sed -i "s/__CONTRAST_TEAM_USERNAME__/${CONTRAST_API_USERNAME}/g" contrast_security.yaml
-echo "contrast_security.yaml contents:"
+echo "++replacing secret file placeholders with inputs from user..."
+sed -i "s|__CONTRAST_TEAM_SERVER_URL__|${CONTRAST_API_URL}|g" contrast_security.yaml
+sed -i "s|__API_KEY__|${CONTRAST_API_API_KEY}|g" contrast_security.yaml
+sed -i "s|__SERVICE_KEY__|${CONTRAST_API_SERVICE_KEY}|g" contrast_security.yaml
+sed -i "s|__CONTRAST_TEAM_USERNAME__|${CONTRAST_API_USERNAME}|g" contrast_security.yaml
+echo "++contrast_security.yaml contents:"
+echo "--------------------------------------------"
 cat contrast_security.yaml
-echo "creating Contrast Security secret from file..."
+echo "--------------------------------------------"
+echo "++creating Contrast Security secret from file..."
+kubectl delete secret contrast-security
 kubectl create secret generic contrast-security --from-file=./contrast_security.yaml
-echo "successfully created Contrast Security secret"
+echo "++successfully created Contrast Security secret"
 echo "-------------------------------------------"
 
 # deploy application into the Azure Kubernetes Service platform
-echo "deploying application manifests..."
-kubectl apply -f /github/workspace${APPLICATION_MANIFESTS}
-echo "successfully deployed application to aks cluster"
+echo "++deploying application manifests..."
+kubectl apply -f '/opt/deployment.yaml'
+sleep 5
+kubectl get deployments
+echo "++successfully deployed application to aks cluster"
 echo "-------------------------------------------"
 
 # update deployment with secret/environment variables and updated image
 
 # get application endpoint for kubernetes deployment
-echo "retrieving endpoint information..."
+echo "++retrieving endpoint information..."
 AZURE_APPLICATION_URL=$(kubectl describe svc <SERVICE NAME> | grep IP)
 echo ${AZURE_APPLICATION_URL}
-echo "successfully retrieved endpoint information"
+echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
