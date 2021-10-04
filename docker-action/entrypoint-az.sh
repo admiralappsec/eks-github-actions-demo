@@ -199,8 +199,8 @@ echo "-------------------------------------------"
 
 # deploy application into the Azure Kubernetes Service platform
 echo "++deploying application manifests..."
-kubectl apply -f '/opt/deployment.yaml'
-sleep 5
+DEPLOYMENT_NAME=$(kubectl apply -f '/opt/deployment.yaml' | sed 's/.*deployment.apps/\(.*\) created/\1/')
+kubectl rollout status deployment $DEPLOYMENT_NAME
 kubectl get deployments
 echo "++successfully deployed application to aks cluster"
 echo "-------------------------------------------"
