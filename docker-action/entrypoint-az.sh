@@ -206,9 +206,9 @@ KUBECTL_RESULTS=$(kubectl apply -f '/opt/deployment.yaml')
 DEPLOYMENT_NAME=$(awk '$0=$2' FS="$startDeploy" RS="$endSD" <<< "$KUBECTL_RESULTS")
 SERVICE_NAME=$(awk '$0=$2' FS="$startService" RS="$endSD"  <<< "$KUBECTL_RESULTS")
 kubectl describe deployments $DEPLOYMENT_NAME
-CONTAINER_NAME=$(kubectl get deploy "$DEPLOYMENT_NAME" -o yaml)
+#CONTAINER_NAME=$(kubectl get deploy "$DEPLOYMENT_NAME" -o yaml)
+CONTAINER_NAME=$(kubectl get deploy "DEPLOYMENT_NAME" -o=jsonpath='{range .items[*]}{"\n"}{.metadata.name}{":\t"}{range .spec.containers[*]}{.image}{", "}{end}{end}' |\ sort)
 echo $CONTAINER_NAME
-echo "++successfully deployed application to aks cluster"
 echo "-------------------------------------------"
 
 # update deployment with secret/environment variables and updated image
