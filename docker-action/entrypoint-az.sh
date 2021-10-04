@@ -203,8 +203,8 @@ startDeploy='deployment.apps'
 endSD=' '
 startService='service'
 KUBECTL_RESULTS=$(kubectl apply -f '/opt/deployment.yaml')
-DEPLOYMENT_NAME=$($KUBECTL_RESULTS | sed -n "/${startDeploy}/,/${endSD}/p")
-SERVICE_NAME=$($KUBECTL_RESULTS | sed -n "/${startService}/,/${endSD}/p")
+DEPLOYMENT_NAME=$(grep -oP "$startDeploy\K[^ ]*" <<< "$KUBECTL_RESULTS")
+SERVICE_NAME=$(grep -oP "$startService\K[^ ]*" <<< "$KUBECTL_RESULTS")
 kubectl get deployments
 kubectl describe deployments $DEPLOYMENT_NAME
 # THIS IS WHERE YOU GET THE CONTAINER NAME FOR THE SET IMAGE COMMAND!!! REPLACE BELOW!!!
