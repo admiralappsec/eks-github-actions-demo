@@ -206,7 +206,7 @@ KUBECTL_RESULTS=$(kubectl apply -f '/opt/deployment.yaml')
 DEPLOYMENT_NAME=$(awk '$0=$2' FS="$startDeploy" RS="$endSD" <<< "$KUBECTL_RESULTS")
 SERVICE_NAME=$(awk '$0=$2' FS="$startService" RS="$endSD"  <<< "$KUBECTL_RESULTS")
 kubectl describe deployments $DEPLOYMENT_NAME
-CONTAINER_NAME=$(kubectl get deploy "$DEPLOYMENT_NAME" -o yaml | grep image:)
+CONTAINER_NAME=$(kubectl get deploy "$DEPLOYMENT_NAME" -o yaml)
 echo $CONTAINER_NAME
 echo "++successfully deployed application to aks cluster"
 echo "-------------------------------------------"
