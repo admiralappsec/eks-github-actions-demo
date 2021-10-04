@@ -130,6 +130,7 @@ echo "creating directory inside running container..."
 docker exec -i $RUNNING_CONTAINER_ID mkdir /opt/contrast
 echo "injecting contrast security agent jar..."
 docker cp contrast.jar $RUNNING_CONTAINER_ID:/opt/contrast/
+docker exec -i $RUNNING_CONTAINER_ID cd /opt/contrast && ls -l
 echo "-------------------------------------------"
 
 # create image from running container
