@@ -214,6 +214,8 @@ echo "-------------------------------------------"
 # update deployment with secret/environment variables and updated image
 echo "updating deployment $DEPLOYMENT_NAME with image..."
 kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG} --record
+echo "updating deployment with Contrast Security label..."
+kubectl label deployment $DEPLOYMENT_NAME contrast-secured=true contrast-agent-type=java
 kubectl rollout status deployment $DEPLOYMENT_NAME
 kubectl get deployments
 echo "++updated deployment $DEPLOYMENT_NAME container $CONTAINER_NAME image to ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}"
