@@ -182,28 +182,24 @@ echo "-------------------------------------------"
 
 # deploy Contrast Security secret
 echo "replacing secret file placeholders with inputs from user..."
-sed -i "s/${CONTRAST_TEAM_SERVER_URL}/${CONTRAST_API_URL}/g" contrast_security.yaml
-sed -i "s/${API_KEY}/${CONTRAST_API_API_KEY}/g" contrast_security.yaml
-sed -i "s/${SERVICE_KEY}/${CONTRAST_API_SERVICE_KEY}/g" contrast_security.yaml
-sed -i "s/${CONTRAST_TEAM_USERNAME}/${CONTRAST_API_USERNAME}/g" contrast_security.yaml
+sed -i "s/__CONTRAST_TEAM_SERVER_URL__/${CONTRAST_API_URL}/g" contrast_security.yaml
+sed -i "s/__API_KEY__/${CONTRAST_API_API_KEY}/g" contrast_security.yaml
+sed -i "s/__SERVICE_KEY__/${CONTRAST_API_SERVICE_KEY}/g" contrast_security.yaml
+sed -i "s/__CONTRAST_TEAM_USERNAME__/${CONTRAST_API_USERNAME}/g" contrast_security.yaml
+echo "contrast_security.yaml contents:"
+cat contrast_security.yaml
 echo "creating Contrast Security secret from file..."
 kubectl create secret generic contrast-security --from-file=./contrast_security.yaml
-echo "-------------------------------------------"
-
-# update deployment yaml to include volume mount and init container logic
-echo "updating deployment manifests..."
-# verify that deployment is an application deployment
-## if application deployment present, add volume mounts
-## check if init container spec is present
-### if not, append new
-### if so, append to existing 
+echo "successfully created Contrast Security secret"
 echo "-------------------------------------------"
 
 # deploy application into the Azure Kubernetes Service platform
 echo "deploying application manifests..."
-kubectl apply -f ${APPLICATION_MANIFESTS}
+kubectl apply -f /github/workspace${APPLICATION_MANIFESTS}
 echo "successfully deployed application to aks cluster"
 echo "-------------------------------------------"
+
+# update deployment with secret/environment variables and updated image
 
 # get application endpoint for kubernetes deployment
 echo "retrieving endpoint information..."

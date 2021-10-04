@@ -1,5 +1,5 @@
 api:
-  url: ${CONTRAST_TEAM_SERVER_URL}
-  api_key: ${API_KEY}
-  service_key: ${SERVICE_KEY}
-  user_name: ${CONTRAST_TEAM_USERNAME}
+  url: __CONTRAST_TEAM_SERVER_URL__
+  api_key: __API_KEY__
+  service_key: __SERVICE_KEY__
+  user_name: __CONTRAST_TEAM_USERNAME__
