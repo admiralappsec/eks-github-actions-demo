@@ -205,9 +205,8 @@ startService='service/'
 KUBECTL_RESULTS=$(kubectl apply -f '/opt/deployment.yaml')
 DEPLOYMENT_NAME=$(awk '$0=$2' FS="$startDeploy" RS="$endSD" <<< "$KUBECTL_RESULTS")
 SERVICE_NAME=$(awk '$0=$2' FS="$startService" RS="$endSD"  <<< "$KUBECTL_RESULTS")
-kubectl get deployments
 kubectl describe deployments $DEPLOYMENT_NAME
-# THIS IS WHERE YOU GET THE CONTAINER NAME FOR THE SET IMAGE COMMAND!!! REPLACE BELOW!!!
+kubectl get deployment $DEPLOYMENT_NAME -o=jsonpath="{range .items[*]}{'\n'}{.metadata.name}{':\t'}{range .spec.template.spec.containers[*]}{.image}{', '}{end}{end}"
 echo "++successfully deployed application to aks cluster"
 echo "-------------------------------------------"
 
