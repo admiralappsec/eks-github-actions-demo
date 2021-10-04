@@ -199,17 +199,29 @@ echo "-------------------------------------------"
 
 # deploy application into the Azure Kubernetes Service platform
 echo "++deploying application manifests..."
-DEPLOYMENT_NAME=$(kubectl apply -f '/opt/deployment.yaml' | sed 's/.*deployment.apps/\(.*\) created/\1/')
-kubectl rollout status deployment $DEPLOYMENT_NAME
+startDeploy='deployment.apps'
+endSD='created'
+startService='service/'
+KUBECTL_RESULTS=$(kubectl apply -f '/opt/deployment.yaml')
+DEPLOYMENT_NAME=$($KUBECTL_RESULTS | sed -n "/${startDeploy}/,/${endSD}/p" | sed 's/\\//g')
+SERVICE_NAME=$($KUBECTL_RESULTS | sed -n "/${startService}/,/${endSD}/p")
 kubectl get deployments
+kubectl describe deployments $DEPLOYMENT_NAME
+# THIS IS WHERE YOU GET THE CONTAINER NAME FOR THE SET IMAGE COMMAND!!! REPLACE BELOW!!!
 echo "++successfully deployed application to aks cluster"
 echo "-------------------------------------------"
 
 # update deployment with secret/environment variables and updated image
+echo "updating deployment $DEPLOYMENT_NAME with image..."
+kubectl set image deployment/$DEPLOYMENT_NAME $DEPLOYMENT_NAME=${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG} --record
+kubectl rollout status deployment $DEPLOYMENT_NAME
+kubectl get deployments
+echo "++updated deployment $DEPLOYMENT_NAME image to ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}"
+echo "-------------------------------------------"
 
 # get application endpoint for kubernetes deployment
 echo "++retrieving endpoint information..."
-AZURE_APPLICATION_URL=$(kubectl describe svc <SERVICE NAME> | grep IP)
+AZURE_APPLICATION_URL=$(kubectl describe svc $SERVICE_NAME | grep IP)
 echo ${AZURE_APPLICATION_URL}
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
