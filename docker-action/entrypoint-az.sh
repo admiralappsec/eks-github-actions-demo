@@ -66,8 +66,7 @@ else
     export AZURE_SUBSCRIPTION_ID=$(cat azure.json | jq -r '.azure_subscription_id')
     export AZURE_REGION=$(cat azure.json | jq -r '.azure_region')
     export AZURE_RESOURCE_GROUP_NAME=$(cat azure.json | jq -r '.azure_resource_group_name')
-    export AZURE_REGISTRY_PASSWORD=$(cat azure.json | jq -r '.azure_registry_password')
-    export AZURE_REGISTRY_USERNAME=$(cat azure.json | jq -r '.azure_registry_username')
+    export AZURE_APPLICATION_ID=$(cat azure.json | jq -r '.azure_application_id')
     echo "parsing and mapping complete."
 #    echo "removing azure.json..."
     rm -f azure.json
@@ -130,17 +129,20 @@ echo "creating directory inside running container..."
 docker exec -i $RUNNING_CONTAINER_ID mkdir /opt/contrast
 echo "injecting contrast security agent jar..."
 docker cp contrast.jar $RUNNING_CONTAINER_ID:/opt/contrast/
+echo "verifying file copy..."
 docker exec -w /opt/contrast $RUNNING_CONTAINER_ID ls -l
 echo "-------------------------------------------"
 
 # create image from running container
 echo "creating container image from running container..."
 docker commit $RUNNING_CONTAINER_ID ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}
+echo "verifying local docker image..."
+docker images
 echo "-------------------------------------------"
 
 # docker login to container registry url
 echo "logging into container registry..."
-docker login ${AZURE_CONTAINER_REGISTRY} -u ${AZURE_CONTAINER_USERNAME} -p ${AZURE_CONTAINER_PASSWORD} 
+docker login ${AZURE_CONTAINER_REGISTRY} -u ${AZURE_APPLICATION_ID} -p ${AZURE_CLIENT_SECRET} 
 echo "successfully logged into container registry."
 echo "-------------------------------------------"
 
