@@ -123,12 +123,11 @@ echo "-------------------------------------------"
 # inject contrast agent into new application image
 echo "running container image..."
 RUNNING_CONTAINER_ID=$(docker run -d application-docker-image)
-echo "getting running container id..."
-#RUNNING_CONTAINER_ID=$(docker inspect -f '{{.Id}}' application-docker-image)
-#RUNNING_CONTAINER_ID=$(docker ps -aqf "name=application-docker-image")
 echo "waiting 5 seconds..."
 sleep 5
 docker ps
+echo "creating directory inside running container..."
+docker exec -it $RUNNING_CONTAINER_ID mkdir /opt/contrast
 echo "injecting contrast security agent jar..."
 docker cp contrast.jar $RUNNING_CONTAINER_ID:/opt/contrast/
 echo "-------------------------------------------"
