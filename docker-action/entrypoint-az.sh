@@ -207,7 +207,7 @@ DEPLOYMENT_NAME=$(awk '$0=$2' FS="$startDeploy" RS="$endSD" <<< "$KUBECTL_RESULT
 SERVICE_NAME=$(awk '$0=$2' FS="$startService" RS="$endSD"  <<< "$KUBECTL_RESULTS")
 kubectl describe deployments $DEPLOYMENT_NAME
 #CONTAINER_NAME=$(kubectl get deploy "$DEPLOYMENT_NAME" -o yaml)
-CONTAINER_NAME=$(kubectl get deploy "$DEPLOYMENT_NAME" -o=jsonpath='{range .items[*]}{"\n"}{.metadata.name}{":\t"}{range .spec.containers[*]}{.image}{", "}{end}{end}' |\ sort)
+CONTAINER_NAME=$(kubectl get deployments "$DEPLOYMENT_NAME" -o=jsonpath='{range .items[*]}{"\n"}{.metadata.name}{":\t"}{range .spec.containers[*]}{.image}{", "}{end}{end}')
 echo $CONTAINER_NAME
 echo "-------------------------------------------"
 
