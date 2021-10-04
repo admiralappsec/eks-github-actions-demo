@@ -127,7 +127,7 @@ echo "waiting 5 seconds..."
 sleep 5
 docker ps
 echo "creating directory inside running container..."
-docker exec -it $RUNNING_CONTAINER_ID mkdir /opt/contrast
+docker exec -i $RUNNING_CONTAINER_ID mkdir /opt/contrast
 echo "injecting contrast security agent jar..."
 docker cp contrast.jar $RUNNING_CONTAINER_ID:/opt/contrast/
 echo "-------------------------------------------"
