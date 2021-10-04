@@ -10,7 +10,7 @@ export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/s
 echo "-------------------------------------------"
 
 # echo "mapping environment variables to inputs..."
-
+echo "loving it..."
 if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
     printf '%s\n' "No Contrast Security credentials file passed via input." >&2
     exit 1
