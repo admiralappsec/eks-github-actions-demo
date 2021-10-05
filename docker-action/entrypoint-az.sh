@@ -229,8 +229,10 @@ echo $CONTAINER_NAME
 echo "-------------------------------------------"
 
 # update deployment with secret/environment variables and updated image
+echo "updating deployment $DEPLOYMENT_NAME" with environment variables..."
+kubectl set env deployment/$DEPLOYMENT_NAME JAVA_TOOL_OPTIONS="-javaagent:/opt/contrast/contrast.jar" CONTRAST__API__URL=${CONTRAST_API_URL} CONTRAST__API__USER_NAME=${CONTRAST_API_USERNAME} CONTRAST__API__API_KEY=${CONTRAST_API_API_KEY} CONTRAST__API__SERVICE_KEY=${CONTRAST_API_SERVICE_KEY} CONTRAST__AGENT__JAVA__STANDALONE_APP_NAME=${CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME} CONTRAST__AGENT__LOGGER__STDERR=true -o yaml
 echo "updating deployment $DEPLOYMENT_NAME with image..."
-kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG} --record
+kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG} -o yaml
 echo "updating deployment with Contrast Security label..."
 kubectl label deployment $DEPLOYMENT_NAME contrast-secured=true contrast-agent-type=java
 kubectl rollout status deployment $DEPLOYMENT_NAME
