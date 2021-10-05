@@ -252,6 +252,10 @@ kubectl get deployments
 echo "++updated deployment $DEPLOYMENT_NAME container $CONTAINER_NAME image to ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}"
 echo "-------------------------------------------"
 
+# wait 5 seconds
+echo "waiting 5 seconds..."
+sleep 5
+
 # get application endpoint for kubernetes deployment
 echo "++retrieving endpoint information..."
 AZURE_APPLICATION_URL=$(kubectl describe svc $SERVICE_NAME)
