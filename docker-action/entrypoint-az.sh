@@ -281,9 +281,9 @@ while [ -z $external_ip ]; do
   external_ip=$(kubectl get svc $SERVICE_NAME --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")
   [ -z "$external_ip" ] && sleep 10
 done
-echo 'End point ready:' && echo "https://$external_ip:"
+external_port=$(kubectl get svc $SERVICE_NAME --template="{{range .status.loadBalancer.ingress}}{{.port}}{{end}}")
+echo 'End point ready:' && echo "https://$external_ip:$external_port"
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
-kubectl get svc $SERVICE_NAME --template="{{range .status.loadBalancer.ingress}}{{end}}"
 echo "-------------------------------------------"
 echo "Contrast Security has been successfully onboarded. Contrast Rocks!"
