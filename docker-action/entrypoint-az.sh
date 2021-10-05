@@ -121,7 +121,7 @@ echo "-------------------------------------------"
 
 # inject contrast agent into new application image
 echo "running container image..."
-RUNNING_CONTAINER_ID=$(docker run -d application-docker-image)
+RUNNING_CONTAINER_ID=$(docker run -d --restart=always application-docker-image)
 echo "waiting 5 seconds..."
 sleep 5
 docker ps
