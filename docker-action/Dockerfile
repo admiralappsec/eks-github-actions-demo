@@ -26,4 +26,6 @@ COPY /application-manifests/deployment.yaml /opt/deployment.yaml
 COPY contrast_security.yaml /opt/contrast_security.yaml
 COPY /application-dockerfile/${APPLICATION_ARTIFACT_2} /opt/${APPLICATION_ARTIFACT_2}
 
+RUN chmod +x /opt/entrypoint.sh
+
 ENTRYPOINT ["/opt/entrypoint.sh"]
