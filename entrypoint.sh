@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-set -x
+#set -x
 
 AZURE_CREDENTIALS_FILE=${1}
 CONTRAST_SECURITY_CREDENTIALS_FILE=${2}
@@ -44,7 +44,7 @@ cd /usr/bin/docker-action/application-manifests/
 ls -l
 cat /usr/bin/docker-action/application-manifests/deployment.yaml
 
-echo "go into build directory..."
+#echo "go into build directory..."
 cd /usr/bin/docker-action
 
 #echo "creating docker image with the following inputs..."
