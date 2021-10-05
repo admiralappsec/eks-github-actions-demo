@@ -1,17 +1,17 @@
 #!/bin/bash
 
-set -x
+#set -x
 
-echo "Printing existing environment variables..."
-echo "------------------------------------------"
-printenv
-echo "------------------------------------------"
+#echo "Printing existing environment variables..."
+#echo "------------------------------------------"
+#printenv
+#echo "------------------------------------------"
 
-echo "creating environment variables from coded constants..."
-echo "-------------------------------------------"
+#echo "creating environment variables from coded constants..."
+#echo "-------------------------------------------"
 export AZURE_ADAL_LOGGING_ENABLED=1
 export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
-echo "-------------------------------------------"
+#echo "-------------------------------------------"
 
 # echo "mapping environment variables to inputs..."
 
@@ -97,27 +97,27 @@ fi
 if [ -z "$APPLICATION_OUTPUT_IMAGE_NAME_TAG" ]; then
     printf '%s\n' "No docker image name/tag passed via input. Exiting..." >&2
     exit 1
-else
-   echo "docker image name/tag validation passed."
+#else
+#   echo "docker image name/tag validation passed."
 fi
 
 if [ -z "$APPLICATION_MANIFESTS" ]; then
     printf '%s\n' "No kubernetes application manifests passed via input. Exiting..." >&2
     exit 1
-else
-   echo "docker image name/tag validation passed."
+#else
+#   echo "docker image name/tag validation passed."
 fi
 
 # echo "printing environment variables for testing..."
 # printenv
 # echo "-------------------------------------------"
 
-echo "++Displaying '/opt/' directory contents..."
-echo "---------------------------------------------"
+#echo "++Displaying '/opt/' directory contents..."
+#echo "---------------------------------------------"
 cd /opt
-ls -l
-echo "---------------------------------------------"
-echo "++Displaying Dockerfile contents..."
+#ls -l
+#echo "---------------------------------------------"
+echo "++Displaying incoming Dockerfile contents..."
 echo "---------------------------------------------"
 cat Dockerfile
 echo "---------------------------------------------"
@@ -195,24 +195,25 @@ echo "-------------------------------------------"
 # check cluster nodes
 echo "checking cluster nodes..."
 kubectl get nodes
+echo "checking existing deployments..."
 kubectl get deployments
 echo "-------------------------------------------"
 
 # deploy Contrast Security secret
-echo "++replacing secret file placeholders with inputs from user..."
-sed -i "s|__CONTRAST_TEAM_SERVER_URL__|${CONTRAST_API_URL}|g" contrast_security.yaml
-sed -i "s|__API_KEY__|${CONTRAST_API_API_KEY}|g" contrast_security.yaml
-sed -i "s|__SERVICE_KEY__|${CONTRAST_API_SERVICE_KEY}|g" contrast_security.yaml
-sed -i "s|__CONTRAST_TEAM_USERNAME__|${CONTRAST_API_USERNAME}|g" contrast_security.yaml
-echo "++contrast_security.yaml contents:"
-echo "--------------------------------------------"
-cat contrast_security.yaml
-echo "--------------------------------------------"
-echo "++creating Contrast Security secret from file..."
-kubectl delete secret contrast-security
-kubectl create secret generic contrast-security --from-file=./contrast_security.yaml
-echo "++successfully created Contrast Security secret"
-echo "-------------------------------------------"
+#echo "++replacing secret file placeholders with inputs from user..."
+#sed -i "s|__CONTRAST_TEAM_SERVER_URL__|${CONTRAST_API_URL}|g" contrast_security.yaml
+#sed -i "s|__API_KEY__|${CONTRAST_API_API_KEY}|g" contrast_security.yaml
+#sed -i "s|__SERVICE_KEY__|${CONTRAST_API_SERVICE_KEY}|g" contrast_security.yaml
+#sed -i "s|__CONTRAST_TEAM_USERNAME__|${CONTRAST_API_USERNAME}|g" contrast_security.yaml
+#echo "++contrast_security.yaml contents:"
+#echo "--------------------------------------------"
+#cat contrast_security.yaml
+#echo "--------------------------------------------"
+#echo "++creating Contrast Security secret from file..."
+#kubectl delete secret contrast-security
+#kubectl create secret generic contrast-security --from-file=./contrast_security.yaml
+#echo "++successfully created Contrast Security secret"
+#echo "-------------------------------------------"
 
 # deploy application into the Azure Kubernetes Service platform
 echo "++deploying application manifests..."
@@ -252,13 +253,11 @@ kubectl get deployments
 echo "++updated deployment $DEPLOYMENT_NAME container $CONTAINER_NAME image to ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}"
 echo "-------------------------------------------"
 
-# wait 5 seconds
-echo "waiting 5 seconds..."
-sleep 5
-
 # get application endpoint for kubernetes deployment
 echo "++retrieving endpoint information..."
 AZURE_APPLICATION_URL=$(kubectl describe svc $SERVICE_NAME)
 echo ${AZURE_APPLICATION_URL}
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
+
+echo "Contrast Security has been successfully onboarded."
