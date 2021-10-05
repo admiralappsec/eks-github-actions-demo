@@ -272,9 +272,16 @@ echo "-------------------------------------------"
 
 # get application endpoint for kubernetes deployment
 echo "++retrieving endpoint information..."
-AZURE_APPLICATION_URL=$(kubectl describe svc $SERVICE_NAME)
+#AZURE_APPLICATION_URL=$(kubectl describe svc $SERVICE_NAME)
 echo "------------------------------------"
-echo ${AZURE_APPLICATION_URL}
+#echo ${AZURE_APPLICATION_URL}
+external_ip=""
+while [ -z $external_ip ]; do
+  echo "Waiting for end point..."
+  external_ip=$(kubectl get svc $SERVICE_NAME --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")
+  [ -z "$external_ip" ] && sleep 10
+done
+echo 'End point ready:' && echo $external_ip
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
 echo "-------------------------------------------"
