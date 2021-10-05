@@ -21,8 +21,8 @@ spec:
           name: springboot-petclinic
           resources:
             limits:
-              memory: 2048Mi
-              cpu: 2
+              memory: 
+              cpu:
           ports:
             - containerPort: 9999
 status: {}
