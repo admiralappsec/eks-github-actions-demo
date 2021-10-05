@@ -2,19 +2,25 @@
 
 set -x
 
+echo "Printing existing environment variables..."
+echo "------------------------------------------"
 printenv
+echo "------------------------------------------"
 
-echo "creating environment variables from constants..."
+echo "creating environment variables from coded constants..."
+echo "-------------------------------------------"
 export AZURE_ADAL_LOGGING_ENABLED=1
 export AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL="https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.contrastsecurity&a=contrast-agent&v=LATEST"
 echo "-------------------------------------------"
 
 # echo "mapping environment variables to inputs..."
-echo "loving it..."
+
 if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
     printf '%s\n' "No Contrast Security credentials file passed via input." >&2
     exit 1
 else
+    echo "Contrast Security credentials file found. "
+    echo "----------------------------------------"
     echo "$CONTRAST_SECURITY_CREDENTIALS_FILE" >> contrast.json
 #    echo "contrast_security_credentials_file value:"
 #    cat contrast.json
@@ -91,30 +97,41 @@ fi
 if [ -z "$APPLICATION_OUTPUT_IMAGE_NAME_TAG" ]; then
     printf '%s\n' "No docker image name/tag passed via input. Exiting..." >&2
     exit 1
+else
+   echo "docker image name/tag validation passed."
 fi
 
 if [ -z "$APPLICATION_MANIFESTS" ]; then
     printf '%s\n' "No kubernetes application manifests passed via input. Exiting..." >&2
     exit 1
+else
+   echo "docker image name/tag validation passed."
 fi
 
 # echo "printing environment variables for testing..."
 # printenv
 # echo "-------------------------------------------"
 
-echo "file system contents..."
+echo "++Displaying '/opt/' directory contents..."
+echo "---------------------------------------------"
 cd /opt
 ls -l
+echo "---------------------------------------------"
+echo "++Displaying Dockerfile contents..."
+echo "---------------------------------------------"
 cat Dockerfile
+echo "---------------------------------------------"
 
 # docker build using passed application dockerfile and image name/tag
 echo "++application docker build started..."
+echo "-------------------------------------------"
 docker build -t application-docker-image .
 echo "++application docker build successfully completed."
 echo "-------------------------------------------"
 
 # download Contrast Security java agent
 echo "++downloading contrast security java agent..."
+echo "-------------------------------------------"
 curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
 echo "++successfully downloaded contrast security java agent."
 echo "-------------------------------------------"
