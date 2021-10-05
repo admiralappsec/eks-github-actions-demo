@@ -19,10 +19,6 @@ spec:
       containers:
         - image: arey/springboot-petclinic
           name: springboot-petclinic
-          resources:
-            limits:
-              memory: 
-              cpu:
           ports:
             - containerPort: 9999
 status: {}
