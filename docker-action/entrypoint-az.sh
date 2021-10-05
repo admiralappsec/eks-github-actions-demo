@@ -19,7 +19,7 @@ if [ -z "$CONTRAST_SECURITY_CREDENTIALS_FILE" ]; then
     printf '%s\n' "No Contrast Security credentials file passed via input." >&2
     exit 1
 else
-    echo "Contrast Security credentials file found. "
+#    echo "Contrast Security credentials file found. "
     echo "----------------------------------------"
     echo "$CONTRAST_SECURITY_CREDENTIALS_FILE" >> contrast.json
 #    echo "contrast_security_credentials_file value:"
@@ -131,7 +131,7 @@ echo "-------------------------------------------"
 
 # download Contrast Security java agent
 echo "++downloading contrast security java agent..."
-echo "-------------------------------------------"
+#echo "-------------------------------------------"
 curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
 echo "++successfully downloaded contrast security java agent."
 echo "-------------------------------------------"
@@ -141,7 +141,9 @@ echo "running container image..."
 RUNNING_CONTAINER_ID=$(docker run -d --restart=always application-docker-image)
 echo "waiting 5 seconds..."
 sleep 5
+echo "-------------------------------------------"
 docker ps
+echo "-------------------------------------------"
 echo "creating directory inside running container..."
 docker exec -i $RUNNING_CONTAINER_ID mkdir /opt/contrast
 echo "injecting contrast security agent jar..."
@@ -153,7 +155,9 @@ echo "-------------------------------------------"
 # create image from running container
 echo "creating container image from running container..."
 docker commit $RUNNING_CONTAINER_ID ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}
+echo "successfully created container image."
 echo "verifying local docker image..."
+echo "-------------------------------------------"
 docker images
 echo "-------------------------------------------"
 
@@ -188,14 +192,16 @@ echo "++successfully set subscription to cli interaction"
 echo "-------------------------------------------"
 
 # configure kubectl to connect to AKS cluster
-echo "configuring kubectl..."
+echo "++configuring kubectl..."
 az aks get-credentials --resource-group ${AZURE_RESOURCE_GROUP_NAME} --name ${CLUSTER_NAME}
+echo "++successfully configured kubectl."
 echo "-------------------------------------------"
 
 # check cluster nodes
-echo "checking cluster nodes..."
+echo "++checking cluster nodes..."
 kubectl get nodes
 echo "checking existing deployments..."
+echo "-------------------------------------------"
 kubectl get deployments
 echo "-------------------------------------------"
 
@@ -220,13 +226,15 @@ echo "++deploying application manifests..."
 startDeploy='deployment.apps/'
 endSD=' '
 startService='service/'
+echo "++Returning results from kubernetes deployment..."
+echo "--------------------------------------------"
 KUBECTL_RESULTS=$(kubectl apply -f '/opt/deployment.yaml')
 DEPLOYMENT_NAME=$(awk '$0=$2' FS="$startDeploy" RS="$endSD" <<< "$KUBECTL_RESULTS")
 SERVICE_NAME=$(awk '$0=$2' FS="$startService" RS="$endSD"  <<< "$KUBECTL_RESULTS")
 kubectl describe deployments $DEPLOYMENT_NAME
 #CONTAINER_NAME=$(kubectl get deploy "$DEPLOYMENT_NAME" -o yaml)
 CONTAINER_NAME=$(kubectl get deployments "$DEPLOYMENT_NAME" -o=jsonpath='{$.spec.template.spec.containers[:1].name}')
-echo $CONTAINER_NAME
+#echo $CONTAINER_NAME
 echo "-------------------------------------------"
 
 # update deployment with secret/environment variables and updated image
@@ -247,17 +255,27 @@ kubectl set env deployment/$DEPLOYMENT_NAME CONTRAST__AGENT__LOGGER__STDERR=true
 echo "updating deployment $DEPLOYMENT_NAME with image..."
 kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG} -o yaml
 echo "updating deployment with Contrast Security label..."
+echo "Returning deployment(s)..."
+echo "--------------------------------------------"
 kubectl label deployment $DEPLOYMENT_NAME contrast-secured=true contrast-agent-type=java -o yaml
+echo "--------------------------------------------"
+echo "++checking update-deployment status..."
+echo "--------------------------------------------"
 kubectl rollout status deployment $DEPLOYMENT_NAME
+echo "--------------------------------------------"
+echo "++confirming deployment details..."
+echo "--------------------------------------------"
 kubectl get deployments
+echo "--------------------------------------------"
 echo "++updated deployment $DEPLOYMENT_NAME container $CONTAINER_NAME image to ${AZURE_CONTAINER_REGISTRY}/${APPLICATION_OUTPUT_IMAGE_NAME_TAG}"
 echo "-------------------------------------------"
 
 # get application endpoint for kubernetes deployment
 echo "++retrieving endpoint information..."
 AZURE_APPLICATION_URL=$(kubectl describe svc $SERVICE_NAME)
+echo "------------------------------------"
 echo ${AZURE_APPLICATION_URL}
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
-
-echo "Contrast Security has been successfully onboarded."
+echo "-------------------------------------------"
+echo "Contrast Security has been successfully onboarded. Contrast Rocks!"

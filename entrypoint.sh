@@ -31,18 +31,22 @@ echo "copying user-defined application files into container filesystem..."
 cp /github/workspace/${APPLICATION_ARTIFACT} /usr/bin/docker-action/application-dockerfile/${APPLICATION_ARTIFACT_2}
 echo "copying user-defined kubernetes manifests into container filesystem..."
 cp /github/workspace/${APPLICATION_MANIFESTS} /usr/bin/docker-action/application-manifests/deployment.yaml
-echo "entering docker-action directory..."
+#echo "entering docker-action directory..."
 cd /usr/bin/docker-action
-echo "what is inside - docker-action..."
-ls -l
+#echo "what is inside - docker-action..."
+#ls -l
 echo "what is inside - application-dockerfile..."
 cd /usr/bin/docker-action/application-dockerfile/
-ls -l
+#ls -l
+echo "------------------------------------------"
 cat /usr/bin/docker-action/application-dockerfile/Dockerfile
+echo "------------------------------------------"
 echo "what is inside - application-manifests..."
 cd /usr/bin/docker-action/application-manifests/
-ls -l
+#ls -l
+echo "------------------------------------------"
 cat /usr/bin/docker-action/application-manifests/deployment.yaml
+echo "------------------------------------------"
 
 #echo "go into build directory..."
 cd /usr/bin/docker-action
