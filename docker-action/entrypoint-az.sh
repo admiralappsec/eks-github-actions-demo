@@ -284,6 +284,6 @@ done
 echo 'End point ready:' && echo "https://$external_ip:"
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
-kubectl get svc $SERVICE_NAME --template="{{range .status.loadBalancer.ingress}}"
+kubectl get svc $SERVICE_NAME --template="{{range .status.loadBalancer.ingress}}{{end}}"
 echo "-------------------------------------------"
 echo "Contrast Security has been successfully onboarded. Contrast Rocks!"
