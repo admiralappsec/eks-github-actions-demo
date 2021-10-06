@@ -257,7 +257,7 @@ kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${AZURE_CONTAINER_
 echo "updating deployment with Contrast Security label..."
 echo "Returning deployment(s)..."
 echo "--------------------------------------------"
-kubectl label deployment $DEPLOYMENT_NAME contrast-secured=true contrast-agent-type=java -o yaml
+kubectl label deployment $DEPLOYMENT_NAME contrast-secured=true contrast-agent-type=java contrast-assess=true contrast-protect=false contrast-oss=false contrast-application-url=coming-soon contrast-application-name=application-name contrast-application-version=version-number contrast-env=environment -o yaml
 echo "--------------------------------------------"
 echo "++checking update-deployment status..."
 echo "--------------------------------------------"
