@@ -132,14 +132,11 @@ echo "-------------------------------------------"
 # download Contrast Security java agent
 echo "++downloading contrast security java agent..."
 #echo "-------------------------------------------"
-#curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
-curl "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}"
-CONTRAST_AGENT_VERSION=$(find . -name '*contrast-agent*' | grep -o '[0-9]*') 
+curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
+CONTRAST_URL=$(curl "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -s -L -I -o /dev/null -w '%{url_effective}')
+echo $CONTRAST_URL
+#CONTRAST_AGENT_VERSION=$(find . -name '*contrast-agent*' | grep -o '[0-9]*') 
 echo "Contrast Security agent version is: $CONTRAST_AGENT_VERSION"
-CONTRAST_AGENT_NAME=$(find . -name '*contrast-agent*')
-echo "renaming Contrast Security agent file $CONTRAST_AGENT_NAME to 'contrast.jar'"
-cp $CONTRAST_AGENT_NAME contrast.jar
-rm -f $CONTRAST_AGENT_NAME
 echo "++successfully downloaded contrast security java agent."
 echo "-------------------------------------------"
 
