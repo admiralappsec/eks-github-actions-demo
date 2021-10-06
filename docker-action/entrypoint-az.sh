@@ -132,9 +132,23 @@ echo "-------------------------------------------"
 # download Contrast Security java agent
 echo "++downloading contrast security java agent..."
 #echo "-------------------------------------------"
-curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
+#curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}" -o contrast.jar
+curl -L "${AZURE_CONTRAST_JAVA_AGENT_DOWNLOAD_URL}"
+CONTRAST_AGENT_VERSION=$(find . -name '*contrast-agent*' | grep -o '[0-9]*') 
+echo "Contrast Security agent version is: $CONTRAST_AGENT_VERSION"
+CONTRAST_AGENT_NAME=$(find . -name '*contrast-agent*')
+echo "renaming Contrast Security agent file $CONTRAST_AGENT_NAME to 'contrast.jar'"
+cp $CONTRAST_AGENT_NAME contrast.jar
+rm -f $CONTRAST_AGENT_NAME
 echo "++successfully downloaded contrast security java agent."
 echo "-------------------------------------------"
+
+# set up contrast-agent label
+echo "checking agent type..."
+if [[ "$CONTRAST_AGENT_NAME" == *".jar"*  ]]; then 
+    echo "agent-type = JAVA"
+    CONTRAST_AGENT_TYPE="JAVA"
+fi
 
 # inject contrast agent into new application image
 echo "running container image..."
@@ -257,7 +271,7 @@ kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${AZURE_CONTAINER_
 echo "updating deployment with Contrast Security label..."
 echo "Returning deployment(s)..."
 echo "--------------------------------------------"
-kubectl label --overwrite deployment $DEPLOYMENT_NAME contrast-secured=true contrast-agent-type=java contrast-assess=true contrast-protect=false contrast-oss=false contrast-application-url=coming-soon contrast-application-name=application-name contrast-application-version=version-number contrast-env=environment -o yaml
+kubectl label --overwrite deployment $DEPLOYMENT_NAME contrast-secured=true contrast-agent-type=$CONTRAST_AGENT_TYPE contrast-assess=true contrast-protect=false contrast-oss=false contrast-application-url=coming-soon contrast-application-name=$CONTRAST_AGENT_JAVA_STANDALONE_APP_NAME contrast-application-version=$CONTRAST_AGENT_VERSION contrast-env=environment contrast-server=coming-soon -o yaml
 echo "--------------------------------------------"
 echo "++checking update-deployment status..."
 echo "--------------------------------------------"
