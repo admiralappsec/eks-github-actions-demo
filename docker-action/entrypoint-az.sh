@@ -281,7 +281,7 @@ while [ -z $external_ip ]; do
   external_ip=$(kubectl get svc $SERVICE_NAME --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")
   [ -z "$external_ip" ] && sleep 10
 done
-external_port=$(kubectl describe svc $SERVICE_NAME | grep Port:)
+external_port=$(kubectl describe svc $SERVICE_NAME | grep 'Port:' | grep -v 'NodePort:' | grep -v 'TargetPort:')
 echo 'End point ready:' && echo "https://$external_ip:$external_port"
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
