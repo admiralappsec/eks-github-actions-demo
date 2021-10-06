@@ -282,8 +282,10 @@ while [ -z $external_ip ]; do
   [ -z "$external_ip" ] && sleep 10
 done
 external_port=$(kubectl describe svc $SERVICE_NAME | grep 'Port:' | grep -v 'NodePort:' | grep -v 'TargetPort:' | grep -o '[0-9]*')
-echo 'End point ready:' && echo "$external_ip:$external_port"
-echo "++successfully retrieved endpoint information"
+echo 'End point ready:'
+echo "SECURED endpoint - HTTPS: https://$external_ip:$external_port"
+echo "UNSECURED endpoint - HTTP: http://$external_ip:$external_port"
 echo "-------------------------------------------"
-echo "-------------------------------------------"
-echo "Contrast Security has been successfully onboarded. Contrast Rocks!"
+echo "**************************************************************************"
+echo "****Contrast Security has been successfully onboarded. Contrast Rocks!****"
+echo "**************************************************************************"
