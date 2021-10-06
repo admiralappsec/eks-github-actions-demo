@@ -282,7 +282,7 @@ while [ -z $external_ip ]; do
   [ -z "$external_ip" ] && sleep 10
 done
 external_port=$(kubectl describe svc $SERVICE_NAME | grep 'Port:' | grep -v 'NodePort:' | grep -v 'TargetPort:' | grep -o '[0-9]*')
-echo 'End point ready:' && echo "https://$external_ip:$external_port"
+echo 'End point ready:' && echo "$external_ip:$external_port"
 echo "++successfully retrieved endpoint information"
 echo "-------------------------------------------"
 echo "-------------------------------------------"
