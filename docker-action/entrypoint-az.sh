@@ -285,6 +285,7 @@ external_port=$(kubectl describe svc $SERVICE_NAME | grep 'Port:' | grep -v 'Nod
 echo 'End point ready:'
 echo "SECURED endpoint - HTTPS: https://$external_ip:$external_port"
 echo "UNSECURED endpoint - HTTP: http://$external_ip:$external_port"
+echo "Contrast Security Application URL: https://${CONTRAST_API_URL}static/ng/index.html#/"
 echo "-------------------------------------------"
 echo "**************************************************************************"
 echo "****Contrast Security has been successfully onboarded. Contrast Rocks!****"
