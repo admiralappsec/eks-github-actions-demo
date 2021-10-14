@@ -20,7 +20,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Contrast Security Azure Kubernetes Service Build-Deploy
-      uses: admiralappsec/aks-github-action@main
+      uses: admiralappsec/aks-github-action@v1
       id: contrast-build-deploy
       with:
         application-manifest: ${{ env.APPLICATION_MANIFEST }}
