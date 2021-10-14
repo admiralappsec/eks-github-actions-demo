@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME_TAG: 'aks-petclinic-mark-testing:contrast-demo1'
+  IMAGE_NAME_TAG: 'aks-petclinic-mark-testing:contrast-demo-2'
   APPLICATION_MANIFEST: '/example/kubernetes/petclinic.yaml'
   APPLICATION_DOCKERFILE: '/example/docker/Dockerfile'
   CLUSTER_NAME: 'aks-mark-testing-ga'
