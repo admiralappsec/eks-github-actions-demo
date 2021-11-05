@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  #creationTimestamp: null
   labels:
     app: petclinic
   name: petclinic
@@ -32,7 +31,24 @@ spec:
   selector:
     app: petclinic
   ports:
-    - port: 8080
+    - port: 80
       targetPort: 9999
       protocol: TCP
       name: http
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-petclinic
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: petclinic
+              servicePort: 80
