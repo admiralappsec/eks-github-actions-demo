@@ -1,6 +1,6 @@
-# aks-ga-demo
+# amazon eks-github-actions-demo
 
-This github repository hosts an example use of the AKS Contrast Security GitHub Action.
+This github repository hosts an example use of the Amazon EKS Contrast Security GitHub Action.
 
 ## Prerequisites
 
