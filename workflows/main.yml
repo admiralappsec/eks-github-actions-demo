@@ -28,5 +28,5 @@ jobs:
         application-output-image-name-tag: ${{ env.IMAGE_NAME_TAG }}
         cluster-name: ${{ env.CLUSTER_NAME }}
         contrast-security-credentials-file: ${{ secrets.CONTRAST_CREDS_FILE }}
-        azure-credentials-file: ${{ secrets.AWS_CREDS_FILE }}
+        aws-credentials-file: ${{ secrets.AWS_CREDS_FILE }}
         application-artifact: ${{ env.APPLICATION_ARTIFACT }}
